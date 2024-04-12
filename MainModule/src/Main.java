@@ -32,5 +32,24 @@ public class Main {
 
         // Print total bill
         System.out.println("Total bill for patient " + patientName + ": $" + totalBill);
+
+        // Print total bill
+        System.out.println("Total bill for patient " + patientName + ": $" + totalBill);
+
+        //update patient info
+        aliceJohnson.updateContactInfo("115 saad el din st. - Tanta - Gharbeya","01277174147");
+        System.out.println("updated address : " + aliceJohnson.getAddress());
+        System.out.println("updated phone number : " + aliceJohnson.getPhoneNumber());
+
+        //checking information validity
+        boolean isValid= aliceJohnson.validatePatientInfo();
+        if (isValid) {
+            System.out.println("Patient information is valid.");
+        }
+        else
+        {
+            System.out.println("Patient information is invalid.");
+        }
+
     }
 }

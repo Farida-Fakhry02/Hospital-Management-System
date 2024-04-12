@@ -1,6 +1,8 @@
-import java.util.*;
-import java.time.*;
-import java.time.format.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
+
 
 public class Patient {
     private String firstName;
@@ -126,6 +128,36 @@ public class Patient {
             return "Obese";
         }
     }
+
+    //update data
+    public void updateContactInfo(String newAddress, String newPhoneNumber) {
+        if (newAddress != null && !newAddress.isEmpty()) {
+            this.address = newAddress;
+        }
+        if (newPhoneNumber != null && !newPhoneNumber.isEmpty()) {
+            this.phoneNumber = newPhoneNumber;
+        }
+
+
+    }
+
+    // Method to validate patient information
+    public boolean validatePatientInfo() {
+        return isValidPhoneNumber(phoneNumber) && isValidDateOfBirth(dateOfBirth);
+    }
+    // Method to validate phone number format
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        // Simple regex to match a typical phone number format (e.g., XXXXXXXXXXX)
+        String phoneRegex = "\\d{11}";
+        return Pattern.matches(phoneRegex, phoneNumber);
+    }
+
+    // Method to validate date of birth (simplified check)
+    private boolean isValidDateOfBirth(LocalDate dateOfBirth) {
+        //We're checking if it's not null
+        return dateOfBirth != null ;
+    }
+
 
 
 
