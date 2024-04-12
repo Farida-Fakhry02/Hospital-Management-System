@@ -1,6 +1,6 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.*;
+import java.time.*;
+import java.time.format.*;
 
 public class Appointment {
     private LocalDateTime dateTime;

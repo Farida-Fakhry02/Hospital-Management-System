@@ -1,11 +1,6 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.DayOfWeek;
-import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
-import java.util.Locale;
+import java.util.*;
+import java.time.*;
+import java.time.format.*;
 
 public class Doctor {
     // Attributes
