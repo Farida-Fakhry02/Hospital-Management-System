@@ -2,6 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -49,6 +50,39 @@ public class Main {
         else
         {
             System.out.println("Patient information is invalid.");
+        }
+
+        // Create a new medical records module
+        MedicalRecordsModule medicalRecordsModule = new MedicalRecordsModule();
+
+        // Add a new medical record
+        medicalRecordsModule.addMedicalRecord(1, "John Doe", "Fever", "Rest and fluids", LocalDate.of(2024, 4, 12));
+
+        // Retrieve and display the medical record
+        MedicalRecord record = medicalRecordsModule.getMedicalRecord(1);
+        System.out.println("Medical Record ID: " + record.getRecordId());
+        System.out.println("Patient Name: " + record.getPatientName());
+        System.out.println("Diagnosis: " + record.getDiagnosis());
+        System.out.println("Treatment: " + record.getTreatment());
+        System.out.println("Date: " + record.getDate());
+
+        // Update the medical record
+        medicalRecordsModule.updateMedicalRecord(1, "Cold", "Medication and rest");
+
+        // Retrieve and display the updated medical record
+        record = medicalRecordsModule.getMedicalRecord(1);
+        System.out.println("\nUpdated Medical Record:");
+        System.out.println("Medical Record ID: " + record.getRecordId());
+        System.out.println("Patient Name: " + record.getPatientName());
+        System.out.println("Diagnosis: " + record.getDiagnosis());
+        System.out.println("Treatment: " + record.getTreatment());
+        System.out.println("Date: " + record.getDate());
+
+        // Testing additional methods
+        System.out.println("\nSearch Medical Records by Patient Name:");
+        List<MedicalRecord> recordsByName = medicalRecordsModule.searchMedicalRecordsByPatientName("John Doe");
+        for (MedicalRecord r : recordsByName) {
+            System.out.println(r.getRecordId() + " - " + r.getPatientName() + " - " + r.getDiagnosis() + " - " + r.getTreatment());
         }
 
     }
