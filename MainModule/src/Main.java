@@ -1,6 +1,7 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -84,6 +85,38 @@ public class Main {
         for (MedicalRecord r : recordsByName) {
             System.out.println(r.getRecordId() + " - " + r.getPatientName() + " - " + r.getDiagnosis() + " - " + r.getTreatment());
         }
+        // Testing Inventory Control Class
 
+        InventoryControl inventoryControl = new InventoryControl();
+
+        // Add some sample items to inventory
+        InventoryItem item1 = new InventoryItem(1, "Surgical Mask", "Disposable mask for surgical procedures", 100, 1);
+        InventoryItem item2 = new InventoryItem(2, "Gauze Pads", "Sterile pads for wound dressing", 50, 1);
+        inventoryControl.addItem(item1);
+        inventoryControl.addItem(item2);
+
+        System.out.println("Initial Inventory");
+
+        inventoryControl.generateInventoryReport();
+
+        inventoryControl.updateItemQuantity(1, 80);
+
+        System.out.println("Inventory after updating an item's quantity");
+
+        inventoryControl.generateInventoryReport();
+
+        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
+
+        System.out.println("Inventory after removing an item");
+
+        inventoryControl.removeItem(1);
+
+        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
+
+        Supplier supplier1 = new Supplier(1, "Medical Supply Inc.", "contact@medicalsupply.com");
+
+        inventoryControl.addSupplier(supplier1);
+
+        inventoryControl.placeOrder(2, 20);
     }
 }
