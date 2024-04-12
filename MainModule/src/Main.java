@@ -15,22 +15,29 @@ public class Main {
             System.out.println("i = " + i);
         }
 
-        Patient johnDoe = new Patient("John", "Doe", LocalDate.of(1990, 5, 15), "Male", "123 Main St", "123-456-7890", 180.0, 75.0);
-        Patient janeSmith = new Patient("Jane", "Smith", LocalDate.of(1985, 9, 20), "Female", "456 Oak St", "987-654-3210", 160.0, 60.0);
+
+
         Patient aliceJohnson = new Patient("Alice", "Johnson", LocalDate.of(1975, 3, 10), "Female", "789 Elm St", "555-123-4567", 170.0, 65.0);
 
         // Create a billing instance
         Billing billingSystem = new Billing();
 
-        // Add some sample invoices
-        billingSystem.addInvoice(new Billing.Invoice(johnDoe.getFirstName() + " " + johnDoe.getLastName(), 100.0));
-        billingSystem.addInvoice(new Billing.Invoice(janeSmith.getFirstName() + " " + janeSmith.getLastName(), 200.0));
-        billingSystem.addInvoice(new Billing.Invoice(johnDoe.getFirstName() + " " + johnDoe.getLastName(), 150.0));
+        // Add an invoice for Alice Johnson
         billingSystem.addInvoice(new Billing.Invoice(aliceJohnson.getFirstName() + " " + aliceJohnson.getLastName(), 300.0));
 
-        // Generate bill for a patient
-        String patientName = johnDoe.getFirstName() + " " + johnDoe.getLastName(); // Example: John Doe
+        // Generate bill for Alice Johnson
+        String patientName = aliceJohnson.getFirstName() + " " + aliceJohnson.getLastName(); // Example: Alice Johnson
         double totalBill = billingSystem.generateBillForPatient(patientName);
+
+        // Print invoice details
+        System.out.println("Invoice Details for " + patientName + ":");
+        for (Billing.Invoice invoice : billingSystem.getInvoices()) {
+            if (invoice.getPatientName().equals(patientName)) {
+                invoice.printInvoiceDetails();
+            }
+        }
+
+        // Print total bill
         System.out.println("Total bill for patient " + patientName + ": $" + totalBill);
     }
-}
+    }
