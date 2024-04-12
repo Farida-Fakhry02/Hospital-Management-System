@@ -29,6 +29,11 @@ public class Billing {
         return totalBill;
     }
 
+    // Method to retrieve the list of invoices
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
     // Inner class representing an invoice
     public static class Invoice {
         private String patientName;
