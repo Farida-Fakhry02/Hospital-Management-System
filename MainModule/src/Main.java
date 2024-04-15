@@ -118,5 +118,13 @@ public class Main {
         inventoryControl.addSupplier(supplier1);
 
         inventoryControl.placeOrder(2, 20);
+
+
+        //Test method in patient class( to get agecategory)
+        Patient Walaa = new Patient("Walaa", "Doe", LocalDate.of(1975, 5, 10), "Male", "123 Main St", "1234567890", 175, 75);
+        String ageCategory = Walaa.getAgeCategory();
+        System.out.println("Age Category: " + ageCategory);
+
+
     }
 }

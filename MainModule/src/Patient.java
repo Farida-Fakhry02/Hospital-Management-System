@@ -158,25 +158,15 @@ public class Patient {
         return dateOfBirth != null ;
     }
 
-
-
-
-
-    /*
-
-updateContactInfo(String newAddress, String newPhoneNumber): This method could allow updating the address and phone number of the patient.
-
-validatePatientInfo(): This method could validate the information of the patient, ensuring that it meets certain criteria (e.g., valid phone number format, valid date of birth).
-
-generatePatientID(): This method could generate a unique identifier for the patient, which can be useful for database operations and tracking.
-
-getAgeCategory(): This method could return the age category of the patient (e.g., child, adult, senior).
-
-**** addMedicalRecord(MedicalRecord medicalRecord): This method could add a medical record object to the patient's record.
-
-payBill(double amount): This method could handle payment of bills associated with the patient's medical services.
-
-
-    */
+    public String getAgeCategory() {
+        int age = calculateAge();
+        if (age < 18) {
+            return "Child";
+        } else if (age >= 18 && age < 60) {
+            return "Adult";
+        } else {
+            return "Senior";
+        }
+    }
 }
 
