@@ -23,6 +23,19 @@ public class Doctor {
     //garaby delete ml list ama y7gz
     //momkn list not available
     //if
+    public Doctor() {
+        this.firstName = "";
+        this.lastName = "";
+        this.specialty = "";
+        this.phoneNumber = "";
+        this.doctorID = "";
+        this.emailAddress = "";
+        this.experienceYears = 0;
+        this.department = "";
+        this.consultationFee = 0.0;
+        this.availability = new ArrayList<>();
+        this.appointments = new ArrayList<>();
+    }
 
     //constructor
     public Doctor(String firstName, String lastName, String specialty, String phoneNumber, String doctorID, String emailAddress, int experienceYears, String department, double consultationFee, List<String> availability) {

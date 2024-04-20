@@ -7,14 +7,18 @@ import java.time.format.DateTimeFormatter;
 public class Billing {
     // Define instance variables
     private List<Invoice> invoices;
+    private int nextInvoiceNumber; // Keeps track of the next invoice number
 
     // Constructor
     public Billing() {
         invoices = new ArrayList<>();
+        nextInvoiceNumber = 1; // Initialize the invoice number to start from 1
     }
 
     // Method to add an invoice
     public void addInvoice(Invoice invoice) {
+        // Set the invoice number before adding the invoice
+        invoice.setInvoiceNumber(nextInvoiceNumber++);
         invoices.add(invoice);
     }
 
@@ -34,11 +38,24 @@ public class Billing {
         return invoices;
     }
 
+    // Method to get the total amount for a patient
+    public double totalAmountForPatient(String patientName) {
+        double totalAmount = 0.0;
+        for (Invoice invoice : invoices) {
+            if (invoice.getPatientName().equals(patientName)) {
+                totalAmount += invoice.getAmount();
+            }
+        }
+        return totalAmount;
+    }
+
     // Inner class representing an invoice
     public static class Invoice {
+        private int invoiceNumber; // Invoice number
         private String patientName;
         private double amount;
         private LocalDate dateIssued;
+        private String itemizedBilling; // Itemized billing details
 
         // Constructor
         public Invoice(String patientName, double amount) {
@@ -48,6 +65,14 @@ public class Billing {
         }
 
         // Getters and setters
+        public int getInvoiceNumber() {
+            return invoiceNumber;
+        }
+
+        public void setInvoiceNumber(int invoiceNumber) {
+            this.invoiceNumber = invoiceNumber;
+        }
+
         public String getPatientName() {
             return patientName;
         }
@@ -68,12 +93,23 @@ public class Billing {
             return dateIssued;
         }
 
+        public String getItemizedBilling() {
+            return itemizedBilling;
+        }
+
+        public void setItemizedBilling(String itemizedBilling) {
+            this.itemizedBilling = itemizedBilling;
+        }
+
         // Method to print invoice details
         public void printInvoiceDetails() {
-            System.out.println("Invoice Details:");
+            System.out.println("Invoice Number: " + invoiceNumber);
             System.out.println("Patient Name: " + patientName);
             System.out.println("Amount: $" + amount);
             System.out.println("Date Issued: " + dateIssued.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            if (itemizedBilling != null && !itemizedBilling.isEmpty()) {
+                System.out.println("Itemized Billing: " + itemizedBilling);
+            }
         }
     }
 }
