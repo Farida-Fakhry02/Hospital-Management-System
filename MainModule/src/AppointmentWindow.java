@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 
 public class AppointmentWindow {
 
-    private JFrame frame;
+    public JFrame frame;
     private JTextField textField;
     private JComboBox<Integer> dayComboBox;
     private JComboBox<String> monthComboBox;

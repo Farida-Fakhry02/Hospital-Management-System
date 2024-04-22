@@ -53,6 +53,11 @@ public class Receptionist_GUI {
         btnInventory.setBounds(28, 235, 143, 59);
         frame.getContentPane().add(btnInventory);
         
+        JButton btnAppointment = new JButton("Appointment");
+        btnAppointment.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnAppointment.setBounds(345, 235, 154, 59);
+        frame.getContentPane().add(btnAppointment);
+        
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Doctorwindow doctorWindow = new Doctorwindow();
@@ -71,6 +76,13 @@ public class Receptionist_GUI {
             public void actionPerformed(ActionEvent e) {
                 InventoryControlGUI inventoryWindow = new InventoryControlGUI();
                 inventoryWindow.setVisible(true);
+            }
+        });
+        
+        btnAppointment.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AppointmentWindow appointmentWindow = new AppointmentWindow();
+                appointmentWindow.frame.setVisible(true);
             }
         });
     }
