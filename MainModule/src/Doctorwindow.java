@@ -1,8 +1,6 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -10,9 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
-import java.util.ArrayList;
+import javax.swing.JScrollPane;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class Doctorwindow {
 
@@ -28,9 +27,6 @@ public class Doctorwindow {
     private JButton btnPrintDetails;
     private Doctor doctor;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -44,17 +40,11 @@ public class Doctorwindow {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public Doctorwindow() {
         initialize();
         doctor = new Doctor();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
         frmP = new JFrame();
         frmP.setTitle("Doctor");
@@ -151,6 +141,7 @@ public class Doctorwindow {
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnUpdate.setBounds(180, 289, 125, 46);
         frmP.getContentPane().add(btnUpdate);
+        
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Update doctor details
@@ -178,13 +169,12 @@ public class Doctorwindow {
             }
         });
         
-        
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnDelete.setBounds(333, 289, 125, 46);
         frmP.getContentPane().add(btnDelete);
-     // Assuming the delete button is named btnDelete
 
+        // Method to clear input fields
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected doctor's ID
@@ -210,7 +200,6 @@ public class Doctorwindow {
                 }
             }
             
-         // Method to clear input fields
             private void clearInputFields() {
                 firstNameField.setText("");
                 lastNameField.setText("");
@@ -221,10 +210,8 @@ public class Doctorwindow {
                 consultationFeeField.setText("");
                 // Clear any other fields if needed
             }
-
         });
 
-        
         
         JButton btnExit = new JButton("Exit");
         btnExit.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -245,18 +232,13 @@ public class Doctorwindow {
         });
         frmP.getContentPane().add(btnPrintDetails);
         
-     // Create a JTextArea
         JTextArea textArea = new JTextArea();
-
-        // Add the JTextArea to a JScrollPane
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(223, 378, 322, 127);
         frmP.getContentPane().add(scrollPane);
-
     }
     
     private void addDoctor() {
-        // Retrieve data from fields
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String specialty = specialityField.getText();
@@ -266,31 +248,16 @@ public class Doctorwindow {
         double consultationFee = Double.parseDouble(consultationFeeField.getText());
         int experienceYears = (int) experienceSpinner.getValue();
         
-        // Create doctor object
         Doctor doctorToAdd = new Doctor(firstName, lastName, specialty, "", doctorId, email, experienceYears, department, consultationFee, new ArrayList<>());
-        
-        // Get the instance of DoctorDataModel
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
-        
-        // Add the doctor to the list of doctors
         dataModel.getDoctors().add(doctorToAdd);
-        
-        // Optionally, you can call any method you want to execute after adding the doctor
-        // For example, you can update the GUI or display a confirmation message
     }
 
-    
     private void printDoctorDetails() {
-        // Get the instance of DoctorDataModel
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
-        
-        // Retrieve the list of doctors
         LinkedList<Doctor> doctors = dataModel.getDoctors();
-        
-        // Create a StringBuilder to store all details
         StringBuilder details = new StringBuilder("Doctor Details:\n");
 
-        // Iterate over the list of doctors and append details to the StringBuilder
         for (Doctor doctor : doctors) {
             details.append("First Name: ").append(doctor.getFirstName()).append("\n");
             details.append("Last Name: ").append(doctor.getLastName()).append("\n");
@@ -302,12 +269,12 @@ public class Doctorwindow {
             details.append("Consultation Fee: $").append(doctor.getConsultationFee()).append("\n\n");
         }
         
-        // Get the existing JTextArea from the JScrollPane
         JScrollPane scrollPane = (JScrollPane) frmP.getContentPane().getComponentAt(223, 378);
         JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
-        
-        // Update the text of the JTextArea with the new details
         textArea.setText(details.toString());
     }
 
+    public JFrame getFrame() {
+        return frmP;
+    }
 }

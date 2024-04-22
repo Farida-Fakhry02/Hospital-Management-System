@@ -2,14 +2,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Receptionist_GUI {
 
     private JFrame frame;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -23,16 +23,10 @@ public class Receptionist_GUI {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public Receptionist_GUI() {
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 600, 454);
@@ -43,9 +37,20 @@ public class Receptionist_GUI {
         lblNewLabel.setFont(new Font("Monotype Corsiva", Font.PLAIN, 30));
         lblNewLabel.setBounds(236, 11, 128, 80);
         frame.getContentPane().add(lblNewLabel);
+        
+        JButton btnNewButton = new JButton("Doctor");
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnNewButton.setBounds(28, 101, 143, 59);
+        frame.getContentPane().add(btnNewButton);
+        
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Doctorwindow doctorWindow = new Doctorwindow();
+                doctorWindow.getFrame().setVisible(true);
+            }
+        });
     }
-    
-    // Method to get the frame
+
     public JFrame getFrame() {
         return frame;
     }
