@@ -36,6 +36,7 @@
 /Login_Page$2.class
 >>>>>>> 85a0d5eac1bb8fc91e07a0b8e253a3061cb24606
 /MedicalRecordWindow$2.class
+<<<<<<< HEAD
 /AppointmentWindow$1.class
 /AppointmentWindow.class
 /AppointmentWindow$2.class
@@ -44,3 +45,11 @@
 /AppointmentWindow$4.class
 /AppointmentManager.class
 /AppointmentWindow$5.class
+=======
+/Receptionist_GUI$1.class
+/Receptionist_GUI.class
+/Login_Page$3.class
+/Receptionist_GUI$2.class
+/Receptionist_GUI$3.class
+/Receptionist_GUI$4.class
+>>>>>>> 48751b747b062ac9a4778eaee97dfe583ed709b9

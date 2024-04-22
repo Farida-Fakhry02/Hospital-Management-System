@@ -81,6 +81,9 @@ public class Login_Page {
                 String password = new String(passwordField.getPassword()); // Retrieve password from password field
                 if (username.equals("admin") && password.equals("1234")) { // Check if password is "1234"
                     lblMessage.setText("Correct username and password");
+                    Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                    receptionistGUI.getFrame().setVisible(true); // Make the receptionist GUI window visible
+                    frame.dispose(); // Close the login window
                 } else {
                     lblMessage.setText("Incorrect username or password");
                 }

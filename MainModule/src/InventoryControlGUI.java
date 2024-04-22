@@ -17,6 +17,7 @@ public class InventoryControlGUI extends JFrame {
     private JTextField tfSupplier;
     private JLabel lblMessage; // New label for displaying messages
     private InventoryControl inventoryControl;
+    private JFrame frame;
 
     /**
      * Launch the application.
@@ -100,7 +101,7 @@ public class InventoryControlGUI extends JFrame {
                 }
             }
         });
-        btnAdditem.setBounds(25, 227, 85, 21);
+        btnAdditem.setBounds(25, 227, 105, 21);
         contentPane.add(btnAdditem);
 
         JButton btnRemoveItem = new JButton("Remove Item");
@@ -116,7 +117,7 @@ public class InventoryControlGUI extends JFrame {
                 }
             }
         });
-        btnRemoveItem.setBounds(185, 228, 105, 19);
+        btnRemoveItem.setBounds(185, 228, 135, 19);
         contentPane.add(btnRemoveItem);
 
         JButton btnUpdate = new JButton("Update Quantity");
@@ -133,7 +134,7 @@ public class InventoryControlGUI extends JFrame {
                 }
             }
         });
-        btnUpdate.setBounds(351, 228, 105, 19);
+        btnUpdate.setBounds(351, 228, 159, 19);
         contentPane.add(btnUpdate);
 
         JButton btnCheckAvailability = new JButton("Check Availability");
@@ -149,7 +150,7 @@ public class InventoryControlGUI extends JFrame {
                 }
             }
         });
-        btnCheckAvailability.setBounds(25, 285, 117, 21);
+        btnCheckAvailability.setBounds(10, 285, 150, 21);
         contentPane.add(btnCheckAvailability);
 
         JButton btnGenerate = new JButton("Generate Report");
@@ -159,7 +160,7 @@ public class InventoryControlGUI extends JFrame {
                 lblMessage.setText("Inventory report generated.");
             }
         });
-        btnGenerate.setBounds(185, 285, 135, 21);
+        btnGenerate.setBounds(185, 285, 151, 21);
         contentPane.add(btnGenerate);
 
         JButton btnPlaceOrder = new JButton("Place Order");
@@ -176,7 +177,7 @@ public class InventoryControlGUI extends JFrame {
                 }
             }
         });
-        btnPlaceOrder.setBounds(351, 285, 105, 19);
+        btnPlaceOrder.setBounds(375, 286, 135, 19);
         contentPane.add(btnPlaceOrder);
 
         lblMessage = new JLabel("");
