@@ -12,6 +12,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JEditorPane;
 import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MedicalRecordWindow {
 
@@ -144,13 +146,17 @@ public class MedicalRecordWindow {
         frame.getContentPane().add(btnDelete);
         
         btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBack.setBounds(540, 352, 115, 51);
+        btnBack.setBounds(59, 456, 115, 51);
         frame.getContentPane().add(btnBack);
         
         btnSearch = new JButton("Search");
         btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnSearch.setBounds(55, 455, 115, 51);
+        btnSearch.setBounds(538, 348, 115, 51);
         frame.getContentPane().add(btnSearch);
         
         JFormattedTextField formattedTextField = new JFormattedTextField();
