@@ -12,8 +12,8 @@ public class PatientDataModel {
         patients = new ArrayList<>();
         
      // Add some default patients
-        patients.add(new Patient("John", "Doe", LocalDate.of(1990, 5, 15), "Male", "123 Main St", "1234567890", 170.0, 70.0));
-        patients.add(new Patient("Jane", "Smith", LocalDate.of(1985, 10, 25), "Female", "456 Oak St", "9876543210", 160.0, 60.0));
+        patients.add(new Patient("John", "Doe", LocalDate.of(1990, 5, 15), "Male", "123 Main St", "1234567890", 170.0, 70.0,1));
+        patients.add(new Patient("Jane", "Smith", LocalDate.of(1985, 10, 25), "Female", "456 Oak St", "9876543210", 160.0, 60.0,4));
         // Add more patients as needed
     }
 

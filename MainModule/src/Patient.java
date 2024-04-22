@@ -13,9 +13,10 @@ public class Patient {
     private String phoneNumber;
     private double height;
     private double weight;
+    private int id;
 
     // Constructor
-    public Patient(String firstName, String lastName, LocalDate dateOfBirth, String gender, String address, String phoneNumber, double height, double weight) {
+    public Patient(String firstName, String lastName, LocalDate dateOfBirth, String gender, String address, String phoneNumber, double height, double weight, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -24,8 +25,8 @@ public class Patient {
         this.phoneNumber = phoneNumber;
         this.height = height;
         this.weight = weight;
+        this.id = id;
     }
-
 
     // Getters and setters
     public String getFirstName() {
@@ -92,6 +93,13 @@ public class Patient {
         this.weight = weight;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int calculateAge() {
         LocalDate currentDate = LocalDate.now();
@@ -103,6 +111,7 @@ public class Patient {
     public void printDetails() {
         System.out.println("Patient Details:");
         System.out.println("Name: " + firstName + " " + lastName);
+        System.out.println("ID: " + id);
         System.out.println("Date of Birth: " + dateOfBirth.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("Gender: " + gender);
         System.out.println("Address: " + address);

@@ -12,7 +12,7 @@ public class Main {
         System.out.printf("Hello and welcome!");
         System.out.printf("change detection");
 
-        Patient aliceJohnson = new Patient("Alice", "Johnson", LocalDate.of(1975, 3, 10), "Female", "789 Elm St", "555-123-4567", 170.0, 65.0);
+        Patient aliceJohnson = new Patient("Alice", "Johnson", LocalDate.of(1975, 3, 10), "Female", "789 Elm St", "555-123-4567", 170.0, 65.0,1);
 
         // Create a billing instance
         Billing billingSystem = new Billing();
@@ -121,7 +121,7 @@ public class Main {
 
 
         //Test method in patient class( to get agecategory)
-        Patient Walaa = new Patient("Walaa", "Doe", LocalDate.of(1975, 5, 10), "Male", "123 Main St", "1234567890", 175, 75);
+        Patient Walaa = new Patient("Walaa", "Doe", LocalDate.of(1975, 5, 10), "Male", "123 Main St", "1234567890", 175, 75,2);
         String ageCategory = Walaa.getAgeCategory();
         System.out.println("Age Category: " + ageCategory);
 

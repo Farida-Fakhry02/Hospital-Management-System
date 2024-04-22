@@ -20,7 +20,9 @@ public class Patientwindow {
     private JSpinner heightSpinner;
     private JSpinner weightSpinner;
     private JTextArea textArea;
+    private JTextField textField_4; // For patient ID
     private Patient patient;
+    private int nextId = 1; // Next available ID
 
     /**
      * Launch the application.
@@ -29,7 +31,7 @@ public class Patientwindow {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Patientwindow window = new Patientwindow();
+                	Patientwindow window = new Patientwindow();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -61,18 +63,18 @@ public class Patientwindow {
         frame.getContentPane().add(lblNewLabel);
 
         textField = new JTextField();
-        textField.setBounds(181, 37, 139, 20);
+        textField.setBounds(172, 37, 139, 20);
         frame.getContentPane().add(textField);
         textField.setColumns(10);
 
         JLabel lblNewLabel_1 = new JLabel("Last name");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_1.setBounds(10, 62, 103, 14);
+        lblNewLabel_1.setBounds(350, 37, 103, 14);
         frame.getContentPane().add(lblNewLabel_1);
 
         textField_1 = new JTextField();
         textField_1.setColumns(10);
-        textField_1.setBounds(181, 62, 139, 20);
+        textField_1.setBounds(441, 38, 139, 20);
         frame.getContentPane().add(textField_1);
 
         JLabel lblNewLabel_2 = new JLabel("Birth date");
@@ -80,16 +82,14 @@ public class Patientwindow {
         lblNewLabel_2.setBounds(10, 95, 103, 14);
         frame.getContentPane().add(lblNewLabel_2);
 
-        // Day dropdown
         dayComboBox = new JComboBox<>();
         dayComboBox.setMaximumRowCount(31);
         for (int i = 1; i <= 31; i++) {
             dayComboBox.addItem(String.valueOf(i));
         }
-        dayComboBox.setBounds(181, 94, 49, 22);
+        dayComboBox.setBounds(172, 94, 49, 22);
         frame.getContentPane().add(dayComboBox);
 
-        // Month dropdown
         monthComboBox = new JComboBox<>();
         monthComboBox.addItem("January");
         monthComboBox.addItem("February");
@@ -103,16 +103,15 @@ public class Patientwindow {
         monthComboBox.addItem("October");
         monthComboBox.addItem("November");
         monthComboBox.addItem("December");
-        monthComboBox.setBounds(240, 94, 98, 22);
+        monthComboBox.setBounds(231, 94, 98, 22);
         frame.getContentPane().add(monthComboBox);
 
-        // Year dropdown
         yearComboBox = new JComboBox<>();
         int currentYear = java.time.Year.now().getValue();
         for (int i = currentYear; i >= currentYear - 100; i--) {
             yearComboBox.addItem(String.valueOf(i));
         }
-        yearComboBox.setBounds(350, 94, 75, 22);
+        yearComboBox.setBounds(341, 94, 75, 22);
         frame.getContentPane().add(yearComboBox);
 
         JLabel lblNewLabel_3 = new JLabel("Gender");
@@ -121,11 +120,11 @@ public class Patientwindow {
         frame.getContentPane().add(lblNewLabel_3);
 
         JRadioButton rdbtnMale = new JRadioButton("Male");
-        rdbtnMale.setBounds(181, 125, 70, 23);
+        rdbtnMale.setBounds(172, 125, 70, 23);
         frame.getContentPane().add(rdbtnMale);
 
         JRadioButton rdbtnFemale = new JRadioButton("Female");
-        rdbtnFemale.setBounds(250, 125, 70, 23);
+        rdbtnFemale.setBounds(241, 125, 70, 23);
         frame.getContentPane().add(rdbtnFemale);
 
         ButtonGroup genderGroup = new ButtonGroup();
@@ -138,7 +137,7 @@ public class Patientwindow {
         frame.getContentPane().add(lblNewLabel_4);
 
         textField_2 = new JTextField();
-        textField_2.setBounds(181, 164, 187, 20);
+        textField_2.setBounds(172, 164, 187, 20);
         frame.getContentPane().add(textField_2);
         textField_2.setColumns(10);
 
@@ -149,7 +148,7 @@ public class Patientwindow {
 
         textField_3 = new JTextField();
         textField_3.setColumns(10);
-        textField_3.setBounds(181, 206, 139, 20);
+        textField_3.setBounds(172, 206, 139, 20);
         frame.getContentPane().add(textField_3);
 
         JLabel lblNewLabel_6 = new JLabel("Height");
@@ -158,7 +157,7 @@ public class Patientwindow {
         frame.getContentPane().add(lblNewLabel_6);
 
         heightSpinner = new JSpinner();
-        heightSpinner.setBounds(181, 238, 49, 20);
+        heightSpinner.setBounds(172, 238, 49, 20);
         frame.getContentPane().add(heightSpinner);
 
         JLabel lblNewLabel_7 = new JLabel("Weight");
@@ -167,8 +166,18 @@ public class Patientwindow {
         frame.getContentPane().add(lblNewLabel_7);
 
         weightSpinner = new JSpinner();
-        weightSpinner.setBounds(181, 276, 49, 20);
+        weightSpinner.setBounds(172, 276, 49, 20);
         frame.getContentPane().add(weightSpinner);
+
+        JLabel lblId = new JLabel("ID");
+        lblId.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblId.setBounds(10, 65, 34, 14);
+        frame.getContentPane().add(lblId);
+
+        textField_4 = new JTextField();
+        textField_4.setColumns(10);
+        textField_4.setBounds(172, 64, 59, 20);
+        frame.getContentPane().add(textField_4);
 
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -210,7 +219,6 @@ public class Patientwindow {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(99, 540, 354, 89);
         frame.getContentPane().add(scrollPane);
-      
 
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -238,13 +246,13 @@ public class Patientwindow {
             public void actionPerformed(ActionEvent e) {
                 // Get the identifier of the patient to delete
                 String patientNameToDelete = textField.getText(); // Assuming the first name is used as the identifier
-                
+
                 // Get the instance of PatientDataModel
                 PatientDataModel dataModel = PatientDataModel.getInstance();
-                
+
                 // Get the list of patients
                 ArrayList<Patient> patientList = dataModel.getPatients();
-                
+
                 // Iterate through the list to find the patient with the matching name
                 for (Patient patient : patientList) {
                     if (patient.getFirstName().equals(patientNameToDelete)) {
@@ -258,7 +266,7 @@ public class Patientwindow {
                     }
                 }
             }
-            
+
             private void clearAllFields() {
                 textField.setText("");
                 textField_1.setText("");
@@ -276,8 +284,6 @@ public class Patientwindow {
 
         });
 
-
-
         btnNewButton_2_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
@@ -288,18 +294,19 @@ public class Patientwindow {
             public void actionPerformed(ActionEvent e) {
                 // Get the instance of PatientDataModel
                 PatientDataModel dataModel = PatientDataModel.getInstance();
-                        
+
                 // Get the list of patients
                 ArrayList<Patient> patientList = dataModel.getPatients();
-                
+
                 // Clear previous content
                 textArea.setText("");
-                
+
                 if (!patientList.isEmpty()) {
                     // Print patient details in JTextArea
                     textArea.append("Patient Details:\n");
                     for (Patient patient : patientList) {
                         textArea.append("Name: " + patient.getFirstName() + " " + patient.getLastName() + "\n");
+                        textArea.append("ID: " + patient.getId() + "\n");
                         textArea.append("Date of Birth: " + patient.getDateOfBirth().toString() + "\n");
                         textArea.append("Gender: " + patient.getGender() + "\n");
                         textArea.append("Address: " + patient.getAddress() + "\n");
@@ -313,7 +320,6 @@ public class Patientwindow {
                 }
             }
         });
-
 
         btnBmi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -337,24 +343,26 @@ public class Patientwindow {
                 String phoneNumber = textField_3.getText();
                 double height = ((Number) heightSpinner.getValue()).doubleValue();
                 double weight = ((Number) weightSpinner.getValue()).doubleValue();
+                int id = Integer.parseInt(textField_4.getText()); // Assuming ID is provided in the input field
 
+                patient = new Patient(firstName, lastName, LocalDate.of(year, Month.valueOf(month.toUpperCase()), day),
+                        gender, address, phoneNumber, height, weight, id);
 
-                LocalDate dateOfBirth = LocalDate.of(year, Month.valueOf(month.toUpperCase()), day);
+                // Add patient to data model
+                PatientDataModel.getInstance().getPatients().add(patient);
 
-                patient = new Patient(firstName, lastName, dateOfBirth, gender, address, phoneNumber, height, weight);
-
-                // Get the instance of PatientDataModel
-                PatientDataModel dataModel = PatientDataModel.getInstance();
-                
-                // Get the list of patients
-                ArrayList<Patient> patientList = dataModel.getPatients();
-                
-                // Add the new patient to the list
-                patientList.add(patient);
-                
-                textArea.append("Patient added: " + patient.getFirstName() + " " + patient.getLastName() + "\n");
+                textArea.append("Patient added successfully.\n");
             }
         });
 
+        btnAgeCategory.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (patient != null) {
+                    textArea.append("Age category: " + patient.getAgeCategory() + "\n");
+                } else {
+                    textArea.append("No patient data available to determine age category.\n");
+                }
+            }
+        });
     }
 }

@@ -6,25 +6,22 @@ public class Appointment {
     private LocalDateTime dateTime;
     private Doctor doctor;
     private Patient patient;
-    private String description;
     private String slot;
 
     // Constructor
 
 
-    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient, String description) {
+    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient) {
         this.dateTime = dateTime;
         this.doctor = doctor;
         this.patient = patient;
-        this.description = description;
         this.slot = formatSlot(dateTime);
     }
 
-    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient, String description, String slot) {
+    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient, String slot) {
         this.dateTime = dateTime;
         this.doctor = doctor;
         this.patient = patient;
-        this.description = description;
         this.slot = slot;
     }
 
@@ -63,13 +60,7 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  
 
     //other methods
 
@@ -79,7 +70,6 @@ public class Appointment {
         System.out.println("Date and Time: " + dateTime);
         System.out.println("Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
         System.out.println("Patient: " + patient.getFirstName() + " " + patient.getLastName());
-        System.out.println("Description: " + description);
         System.out.println("Slot: "+slot);
     }
 
