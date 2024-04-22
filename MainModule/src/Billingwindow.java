@@ -9,7 +9,6 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-
 import java.awt.Font;
 
 public class Billingwindow {
@@ -146,5 +145,9 @@ public class Billingwindow {
         lblAmount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblAmount.setBounds(26, 77, 98, 20);
         frame.getContentPane().add(lblAmount);
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

@@ -43,10 +43,34 @@ public class Receptionist_GUI {
         btnNewButton.setBounds(28, 101, 143, 59);
         frame.getContentPane().add(btnNewButton);
         
+        JButton btnBilling = new JButton("Billing");
+        btnBilling.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnBilling.setBounds(345, 102, 143, 59);
+        frame.getContentPane().add(btnBilling);
+        
+        JButton btnInventory = new JButton("Inventory");
+        btnInventory.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnInventory.setBounds(28, 235, 143, 59);
+        frame.getContentPane().add(btnInventory);
+        
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Doctorwindow doctorWindow = new Doctorwindow();
                 doctorWindow.getFrame().setVisible(true);
+            }
+        });
+        
+        btnBilling.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Billingwindow billingWindow = new Billingwindow();
+                billingWindow.getFrame().setVisible(true);
+            }
+        });
+        
+        btnInventory.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                InventoryControlGUI inventoryWindow = new InventoryControlGUI();
+                inventoryWindow.setVisible(true);
             }
         });
     }
