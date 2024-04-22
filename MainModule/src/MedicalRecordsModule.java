@@ -10,7 +10,7 @@ class MedicalRecord {
     private String patientName;
     private String diagnosis;
     private String treatment;
-    private LocalDate date; // Added for date-related operations
+    private LocalDate date; 
 
     public MedicalRecord(int recordId, String patientName, String diagnosis, String treatment, LocalDate date) {
         this.recordId = recordId;
@@ -108,7 +108,7 @@ class MedicalRecordsModule {
     }
 
     // Search medical records by diagnosis
-    public List<MedicalRecord> searchMedicalRecordsByDiagnosis(String diagnosis) {
+    /*public List<MedicalRecord> searchMedicalRecordsByDiagnosis(String diagnosis) {
         List<MedicalRecord> result = new ArrayList<>();
         for (MedicalRecord record : records.values()) {
             if (record.getDiagnosis().equalsIgnoreCase(diagnosis)) {
@@ -129,16 +129,16 @@ class MedicalRecordsModule {
             }
         }
         return result;
-    }
+    }*/
 
     // Get all medical records
-    public List<MedicalRecord> getAllMedicalRecords() {
+    /*public List<MedicalRecord> getAllMedicalRecords() {
         return new ArrayList<>(records.values());
-    }
+    }*/
 
     // Count medical records
-    public int countMedicalRecords() {
+    /*public int countMedicalRecords() {
         return records.size();
-    }
+    }*/
 
 }
