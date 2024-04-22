@@ -13,7 +13,15 @@ public class InventoryItem {
         this.supplierId = supplierId;
     }
 
-    public int getItemId() {
+    public InventoryItem(int itemId2, String itemName, int quantity2, int supplierId2) {
+    	this.itemId=itemId2;
+    	this.name=itemName;
+    	this.quantity=quantity2;
+    	this.supplierId=supplierId2;
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getItemId() {
         return itemId;
     }
 
