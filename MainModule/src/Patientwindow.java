@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class Patientwindow {
 
@@ -52,6 +53,7 @@ public class Patientwindow {
      */
     private void initialize() {
         frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(135,206,250));
         frame.setTitle("Patient");
         frame.setBounds(100, 100, 617, 687);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +61,7 @@ public class Patientwindow {
 
         JLabel lblNewLabel = new JLabel("First name");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel.setBounds(10, 37, 103, 14);
+        lblNewLabel.setBounds(10, 37, 103, 20);
         frame.getContentPane().add(lblNewLabel);
 
         textField = new JTextField();
@@ -69,7 +71,7 @@ public class Patientwindow {
 
         JLabel lblNewLabel_1 = new JLabel("Last name");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_1.setBounds(350, 37, 103, 14);
+        lblNewLabel_1.setBounds(350, 37, 103, 20);
         frame.getContentPane().add(lblNewLabel_1);
 
         textField_1 = new JTextField();
@@ -79,7 +81,7 @@ public class Patientwindow {
 
         JLabel lblNewLabel_2 = new JLabel("Birth date");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_2.setBounds(10, 95, 103, 14);
+        lblNewLabel_2.setBounds(10, 95, 103, 21);
         frame.getContentPane().add(lblNewLabel_2);
 
         dayComboBox = new JComboBox<>();
@@ -116,15 +118,19 @@ public class Patientwindow {
 
         JLabel lblNewLabel_3 = new JLabel("Gender");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_3.setBounds(10, 129, 103, 14);
+        lblNewLabel_3.setBounds(10, 129, 103, 19);
         frame.getContentPane().add(lblNewLabel_3);
 
         JRadioButton rdbtnMale = new JRadioButton("Male");
+        rdbtnMale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        rdbtnMale.setBackground(new Color(135,206,250));
         rdbtnMale.setBounds(172, 125, 70, 23);
         frame.getContentPane().add(rdbtnMale);
 
         JRadioButton rdbtnFemale = new JRadioButton("Female");
-        rdbtnFemale.setBounds(241, 125, 70, 23);
+        rdbtnFemale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        rdbtnFemale.setBackground(new Color(135,206,250));
+        rdbtnFemale.setBounds(241, 125, 103, 23);
         frame.getContentPane().add(rdbtnFemale);
 
         ButtonGroup genderGroup = new ButtonGroup();
@@ -171,7 +177,7 @@ public class Patientwindow {
 
         JLabel lblId = new JLabel("ID");
         lblId.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblId.setBounds(10, 65, 34, 14);
+        lblId.setBounds(10, 65, 34, 19);
         frame.getContentPane().add(lblId);
 
         textField_4 = new JTextField();
@@ -193,11 +199,6 @@ public class Patientwindow {
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnDelete.setBounds(327, 311, 125, 46);
         frame.getContentPane().add(btnDelete);
-
-        JButton btnNewButton_2_1 = new JButton("Exit");
-        btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1.setBounds(272, 461, 125, 46);
-        frame.getContentPane().add(btnNewButton_2_1);
 
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -222,7 +223,7 @@ public class Patientwindow {
         
         JButton btnNewButton_2_1_1 = new JButton("Back");
         btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1_1.setBounds(117, 461, 125, 46);
+        btnNewButton_2_1_1.setBounds(186, 460, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1_1);
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -298,12 +299,6 @@ public class Patientwindow {
                 textArea.setText("");
             }
 
-        });
-
-        btnNewButton_2_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
         });
 
         btnPrintDetails.addActionListener(new ActionListener() {

@@ -10,10 +10,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.Color;
 
 public class Billingwindow {
 
-    private JFrame frame;
+    private JFrame frmBilling;
     private JTextField patientNameField;
     private JTextField amountField;
     private Billing billingModule;
@@ -28,7 +29,7 @@ public class Billingwindow {
             public void run() {
                 try {
                     Billingwindow window = new Billingwindow();
-                    window.frame.setVisible(true);
+                    window.frmBilling.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -48,19 +49,21 @@ public class Billingwindow {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 505, 428);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
+        frmBilling = new JFrame();
+        frmBilling.setTitle("Billing");
+        frmBilling.getContentPane().setBackground(new Color(135,206,250));
+        frmBilling.setBounds(100, 100, 505, 428);
+        frmBilling.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmBilling.getContentPane().setLayout(null);
 
         patientNameField = new JTextField();
         patientNameField.setBounds(152, 29, 192, 20);
-        frame.getContentPane().add(patientNameField);
+        frmBilling.getContentPane().add(patientNameField);
         patientNameField.setColumns(10);
 
         amountField = new JTextField();
         amountField.setBounds(152, 74, 192, 20);
-        frame.getContentPane().add(amountField);
+        frmBilling.getContentPane().add(amountField);
         amountField.setColumns(10);
 
         JButton addButton = new JButton("Add Invoice");
@@ -75,7 +78,7 @@ public class Billingwindow {
                 outputArea.setText("Invoice added for " + patientName + " with amount $" + amount);
             }
         });
-        frame.getContentPane().add(addButton);
+        frmBilling.getContentPane().add(addButton);
 
         JButton generateBillButton = new JButton("Generate Bill");
         generateBillButton.setBounds(180, 117, 133, 35);
@@ -110,7 +113,7 @@ public class Billingwindow {
                 outputArea.setText(invoiceDetails.toString());
             }
         });
-        frame.getContentPane().add(generateBillButton);
+        frmBilling.getContentPane().add(generateBillButton);
 
         JButton totalInvoicesButton = new JButton("Total Invoices");
         totalInvoicesButton.setBounds(323, 117, 144, 35);
@@ -121,10 +124,11 @@ public class Billingwindow {
                 outputArea.setText("Total invoices: " + totalInvoices);
             }
         });
-        frame.getContentPane().add(totalInvoicesButton);
+        frmBilling.getContentPane().add(totalInvoicesButton);
 
         JButton totalAmountButton = new JButton("Total Amount for Patient");
-        totalAmountButton.setBounds(138, 163, 191, 23);
+        totalAmountButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        totalAmountButton.setBounds(138, 163, 222, 23);
         totalAmountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
@@ -132,38 +136,39 @@ public class Billingwindow {
                 outputArea.setText("Total amount for " + patientName + " is $" + totalAmount);
             }
         });
-        frame.getContentPane().add(totalAmountButton);
+        frmBilling.getContentPane().add(totalAmountButton);
 
         outputArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(outputArea);
         scrollPane.setBounds(26, 196, 414, 91);
-        frame.getContentPane().add(scrollPane);
+        frmBilling.getContentPane().add(scrollPane);
         
         JLabel lblNewLabel = new JLabel("Patient Name");
         lblNewLabel.setBounds(26, 28, 98, 20);
-        lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        frame.getContentPane().add(lblNewLabel);
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        frmBilling.getContentPane().add(lblNewLabel);
         
         JLabel lblAmount = new JLabel("Amount");
         lblAmount.setBounds(26, 77, 98, 20);
-        lblAmount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        frame.getContentPane().add(lblAmount);
+        lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        frmBilling.getContentPane().add(lblAmount);
         
         JButton btnNewButton = new JButton("Back");
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.setBounds(180, 319, 119, 45);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform action to return to the Receptionist_GUI window
-                frame.dispose(); // Close the current window
+                frmBilling.dispose(); // Close the current window
                 receptionistGUI = new Receptionist_GUI(); // Create an instance of Receptionist_GUI
                 receptionistGUI.getFrame().setVisible(true); // Show the Receptionist_GUI window
             }
         });
-        frame.getContentPane().add(btnNewButton);
+        frmBilling.getContentPane().add(btnNewButton);
     
     }
 
     public JFrame getFrame() {
-        return frame;
+        return frmBilling;
     }
 }
