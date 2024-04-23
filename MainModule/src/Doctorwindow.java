@@ -254,9 +254,12 @@ public class Doctorwindow {
         });
         frmP.getContentPane().add(btnPrintDetails);
         
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(382, 26, 256, 483);
+        frmP.getContentPane().add(scrollPane);
+        
         JTextArea textArea = new JTextArea();
-        textArea.setBounds(369, 22, 259, 481);
-        frmP.getContentPane().add(textArea);
+        scrollPane.setViewportView(textArea);
     }
     
     private void addDoctor() {
@@ -306,6 +309,4 @@ public class Doctorwindow {
         // Display the error message in a dialog box
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
-
-    
 }

@@ -55,7 +55,7 @@ public class Patientwindow {
         frame = new JFrame();
         frame.getContentPane().setBackground(new Color(135,206,250));
         frame.setTitle("Patient");
-        frame.setBounds(100, 100, 617, 687);
+        frame.setBounds(100, 100, 617, 630);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
@@ -192,12 +192,12 @@ public class Patientwindow {
 
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(186, 311, 125, 46);
+        btnUpdate.setBounds(29, 460, 125, 46);
         frame.getContentPane().add(btnUpdate);
 
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(327, 311, 125, 46);
+        btnDelete.setBounds(182, 311, 125, 46);
         frame.getContentPane().add(btnDelete);
 
         JButton btnPrintDetails = new JButton("Print Details");
@@ -212,18 +212,18 @@ public class Patientwindow {
 
         JButton btnAgeCategory = new JButton("Age Category");
         btnAgeCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnAgeCategory.setBounds(327, 384, 125, 46);
+        btnAgeCategory.setBounds(186, 460, 125, 46);
         frame.getContentPane().add(btnAgeCategory);
-
-        textArea = new JTextArea();
-        textArea.setBounds(99, 540, 354, 89);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setBounds(99, 540, 354, 89);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(369, 140, 217, 418);
         frame.getContentPane().add(scrollPane);
+        
+                textArea = new JTextArea();
+                scrollPane.setViewportView(textArea);
         
         JButton btnNewButton_2_1_1 = new JButton("Back");
         btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1_1.setBounds(186, 460, 125, 46);
+        btnNewButton_2_1_1.setBounds(129, 523, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1_1);
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
