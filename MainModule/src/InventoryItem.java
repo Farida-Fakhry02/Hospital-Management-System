@@ -1,11 +1,12 @@
+
 public class InventoryItem {
-    private int itemId;
+    private String itemId;
     private String name;
     private String description;
     private int quantity;
-    private int supplierId;
+    private String supplierId;
 
-    public InventoryItem(int itemId, String name, String description, int quantity, int supplierId) {
+    public InventoryItem(String itemId, String name, String description, int quantity, String supplierId) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
@@ -13,15 +14,14 @@ public class InventoryItem {
         this.supplierId = supplierId;
     }
 
-    public InventoryItem(int itemId2, String itemName, int quantity2, int supplierId2) {
-    	this.itemId=itemId2;
-    	this.name=itemName;
-    	this.quantity=quantity2;
-    	this.supplierId=supplierId2;
-		// TODO Auto-generated constructor stub
-	}
+    public InventoryItem(String itemId, String name, int quantity, String supplierId) {
+        this.itemId = itemId;
+        this.name = name;
+        this.quantity = quantity;
+        this.supplierId = supplierId;
+    }
 
-	public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
@@ -41,7 +41,7 @@ public class InventoryItem {
         this.quantity = quantity;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 

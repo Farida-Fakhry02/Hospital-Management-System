@@ -87,10 +87,10 @@ public class InventoryControlGUI extends JFrame {
         btnAdditem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int itemId = Integer.parseInt(tFItemID.getText());
+                    String itemId = tFItemID.getText();
                     String itemName = tfItemName.getText();
                     int quantity = Integer.parseInt(tfQuantity.getText());
-                    int supplierId = Integer.parseInt(tfSupplier.getText());
+                    String supplierId = tfSupplier.getText();
 
                     InventoryItem item = new InventoryItem(itemId, itemName, quantity, supplierId);
                     inventoryControl.addItem(item);
@@ -108,7 +108,7 @@ public class InventoryControlGUI extends JFrame {
         btnRemoveItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int itemId = Integer.parseInt(tFItemID.getText());
+                    String itemId = tFItemID.getText();
                     inventoryControl.removeItem(itemId);
                     lblMessage.setText("Item removed successfully.");
                 } catch (NumberFormatException ex) {
@@ -124,7 +124,7 @@ public class InventoryControlGUI extends JFrame {
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int itemId = Integer.parseInt(tFItemID.getText());
+                    String itemId = tFItemID.getText();
                     int quantity = Integer.parseInt(tfQuantity.getText());
                     inventoryControl.updateItemQuantity(itemId, quantity);
                     lblMessage.setText("Quantity updated successfully.");
@@ -141,7 +141,7 @@ public class InventoryControlGUI extends JFrame {
         btnCheckAvailability.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int itemId = Integer.parseInt(tFItemID.getText());
+                    String itemId = tFItemID.getText();
                     String availability = inventoryControl.checkItemAvailability(itemId);
                     lblMessage.setText("Availability: " + availability);
                 } catch (NumberFormatException ex) {
@@ -167,7 +167,7 @@ public class InventoryControlGUI extends JFrame {
         btnPlaceOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int itemId = Integer.parseInt(tFItemID.getText());
+                    String itemId = tFItemID.getText();
                     int quantity = Integer.parseInt(tfQuantity.getText());
                     inventoryControl.placeOrder(itemId, quantity);
                     lblMessage.setText("Order placed successfully.");

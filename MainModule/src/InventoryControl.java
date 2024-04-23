@@ -1,9 +1,10 @@
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class InventoryControl {
-    private Map<Integer, InventoryItem> inventory;
-    private Map<Integer, Supplier> suppliers;
+    private Map<String, InventoryItem> inventory;
+    private Map<String, Supplier> suppliers;
 
     public InventoryControl() {
         this.inventory = new HashMap<>();
@@ -16,12 +17,12 @@ public class InventoryControl {
     }
 
     // Method to remove an item from inventory
-    public void removeItem(int itemId) {
+    public void removeItem(String itemId) {
         inventory.remove(itemId);
     }
 
     // Method to update quantity of an item in inventory
-    public void updateItemQuantity(int itemId, int quantity) {
+    public void updateItemQuantity(String itemId, int quantity) {
         if (inventory.containsKey(itemId)) {
             InventoryItem item = inventory.get(itemId);
             item.setQuantity(quantity);
@@ -32,7 +33,7 @@ public class InventoryControl {
     }
 
     // Method to check availability of an item in inventory
-    public String checkItemAvailability(int itemId) {
+    public String checkItemAvailability(String itemId) {
         if (inventory.containsKey(itemId) && inventory.get(itemId).getQuantity() > 0) {
             return "Available";
         } else {
@@ -41,7 +42,7 @@ public class InventoryControl {
     }
 
     // Method to retrieve item information from inventory
-    public InventoryItem getItem(int itemId) {
+    public InventoryItem getItem(String itemId) {
         return inventory.getOrDefault(itemId, null);
     }
 
@@ -59,12 +60,12 @@ public class InventoryControl {
     }
 
     // Method to retrieve supplier information
-    public Supplier getSupplier(int supplierId) {
+    public Supplier getSupplier(String supplierId) {
         return suppliers.getOrDefault(supplierId, null);
     }
 
     // Method to place order for items
-    public void placeOrder(int itemId, int quantity) {
+    public void placeOrder(String itemId, int quantity) {
         if (inventory.containsKey(itemId)) {
             InventoryItem item = inventory.get(itemId);
             if (suppliers.containsKey(item.getSupplierId())) {
@@ -79,6 +80,3 @@ public class InventoryControl {
         }
     }
 }
-
-
-

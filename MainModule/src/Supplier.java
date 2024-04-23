@@ -1,15 +1,15 @@
 class Supplier {
-    private int supplierId;
+    private String supplierId;
     private String name;
     private String contactInfo;
 
-    public Supplier(int supplierId, String name, String contactInfo) {
+    public Supplier(String supplierId, String name, String contactInfo) {
         this.supplierId = supplierId;
         this.name = name;
         this.contactInfo = contactInfo;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 

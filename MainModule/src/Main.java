@@ -90,40 +90,40 @@ public class Main {
         InventoryControl inventoryControl = new InventoryControl();
 
         // Add some sample items to inventory
-        InventoryItem item1 = new InventoryItem(1, "Surgical Mask", "Disposable mask for surgical procedures", 100, 1);
-        InventoryItem item2 = new InventoryItem(2, "Gauze Pads", "Sterile pads for wound dressing", 50, 1);
-        inventoryControl.addItem(item1);
-        inventoryControl.addItem(item2);
-
-        System.out.println("Initial Inventory");
-
-        inventoryControl.generateInventoryReport();
-
-        inventoryControl.updateItemQuantity(1, 80);
-
-        System.out.println("Inventory after updating an item's quantity");
-
-        inventoryControl.generateInventoryReport();
-
-        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
-
-        System.out.println("Inventory after removing an item");
-
-        inventoryControl.removeItem(1);
-
-        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
-
-        Supplier supplier1 = new Supplier(1, "Medical Supply Inc.", "contact@medicalsupply.com");
-
-        inventoryControl.addSupplier(supplier1);
-
-        inventoryControl.placeOrder(2, 20);
-
-
-        //Test method in patient class( to get agecategory)
-        Patient Walaa = new Patient("Walaa", "Doe", LocalDate.of(1975, 5, 10), "Male", "123 Main St", "1234567890", 175, 75,2);
-        String ageCategory = Walaa.getAgeCategory();
-        System.out.println("Age Category: " + ageCategory);
+//        InventoryItem item1 = new InventoryItem(1, "Surgical Mask", "Disposable mask for surgical procedures", 100, 1);
+//        InventoryItem item2 = new InventoryItem(2, "Gauze Pads", "Sterile pads for wound dressing", 50, 1);
+//        inventoryControl.addItem(item1);
+//        inventoryControl.addItem(item2);
+//
+//        System.out.println("Initial Inventory");
+//
+//        inventoryControl.generateInventoryReport();
+//
+//        inventoryControl.updateItemQuantity(1, 80);
+//
+//        System.out.println("Inventory after updating an item's quantity");
+//
+//        inventoryControl.generateInventoryReport();
+//
+//        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
+//
+//        System.out.println("Inventory after removing an item");
+//
+//        inventoryControl.removeItem(1);
+//
+//        System.out.println("Is Surgical Mask available? " + inventoryControl.checkItemAvailability(1));
+//
+//        Supplier supplier1 = new Supplier(1, "Medical Supply Inc.", "contact@medicalsupply.com");
+//
+//        inventoryControl.addSupplier(supplier1);
+//
+//        inventoryControl.placeOrder(2, 20);
+//
+//
+//        //Test method in patient class( to get agecategory)
+//        Patient Walaa = new Patient("Walaa", "Doe", LocalDate.of(1975, 5, 10), "Male", "123 Main St", "1234567890", 175, 75,2);
+//        String ageCategory = Walaa.getAgeCategory();
+//        System.out.println("Age Category: " + ageCategory);
 
 
     }
