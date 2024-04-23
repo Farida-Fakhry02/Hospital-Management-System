@@ -18,9 +18,14 @@ public class InventoryControl {
     }
 
     // Method to remove an item from inventory
-    public void removeItem(String itemId) {
-        inventory.remove(itemId);
+    public boolean removeItem(String itemId) {
+        if (inventory.containsKey(itemId)) {
+            inventory.remove(itemId);
+            return true; // Return true if item is removed successfully
+        }
+        return false; // Return false if item is not found
     }
+
 
     // Method to update quantity of an item in inventory
     public void updateItemQuantity(String itemId, int quantity) {
