@@ -14,6 +14,7 @@ import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class MedicalRecordWindow {
 
@@ -31,6 +32,7 @@ public class MedicalRecordWindow {
     private JButton btnDelete;
     private JButton btnBack;
     private JButton btnSearch;
+    private JScrollPane scrollPane;
 
     /**
      * Launch the application.
@@ -172,8 +174,12 @@ public class MedicalRecordWindow {
         frmMedicalRecords.getContentPane().add(btnSearch);
         
         JFormattedTextField formattedTextField = new JFormattedTextField();
-        formattedTextField.setBounds(444, 20, 231, 457);
+        formattedTextField.setBounds(451, 20, 231, 457);
         frmMedicalRecords.getContentPane().add(formattedTextField);
+        
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(451, 20, 231, 457);
+        frmMedicalRecords.getContentPane().add(scrollPane);
     }
 
     // Create a MaskFormatter for the date field

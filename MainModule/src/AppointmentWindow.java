@@ -174,9 +174,12 @@ public class AppointmentWindow {
         dayComboBox_1.setBounds(157, 120, 112, 21);
         frmAppointment.getContentPane().add(dayComboBox_1);
         
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(369, 57, 262, 434);
+        frmAppointment.getContentPane().add(scrollPane);
+        
         textArea = new JTextArea();
-        textArea.setBounds(389, 55, 243, 436);
-        frmAppointment.getContentPane().add(textArea);
+        scrollPane.setViewportView(textArea);
         
         // Add action listeners to month and year JComboBoxes
         monthComboBox.addActionListener(new ActionListener() {

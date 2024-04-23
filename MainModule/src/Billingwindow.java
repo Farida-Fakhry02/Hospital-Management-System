@@ -128,7 +128,7 @@ public class Billingwindow {
 
         JButton totalAmountButton = new JButton("Total Amount for Patient");
         totalAmountButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        totalAmountButton.setBounds(138, 163, 222, 23);
+        totalAmountButton.setBounds(138, 163, 222, 34);
         totalAmountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
@@ -137,11 +137,12 @@ public class Billingwindow {
             }
         });
         frmBilling.getContentPane().add(totalAmountButton);
-
-        outputArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(outputArea);
-        scrollPane.setBounds(26, 196, 414, 91);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 207, 471, 121);
         frmBilling.getContentPane().add(scrollPane);
+        
+                outputArea = new JTextArea();
+                scrollPane.setViewportView(outputArea);
         
         JLabel lblNewLabel = new JLabel("Patient Name");
         lblNewLabel.setBounds(26, 28, 98, 20);
@@ -155,7 +156,7 @@ public class Billingwindow {
         
         JButton btnNewButton = new JButton("Back");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(180, 319, 119, 45);
+        btnNewButton.setBounds(194, 336, 119, 45);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform action to return to the Receptionist_GUI window
