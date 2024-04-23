@@ -119,17 +119,17 @@ public class AppointmentWindow {
         
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(57, 343, 112, 42);
+        btnNewButton.setBounds(57, 313, 112, 42);
         frame.getContentPane().add(btnNewButton);
         
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(202, 343, 112, 42);
+        btnUpdate.setBounds(202, 313, 112, 42);
         frame.getContentPane().add(btnUpdate);
         
         JButton btnNewButton_1_1 = new JButton("Back");
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_1_1.setBounds(495, 343, 112, 42);
+        btnNewButton_1_1.setBounds(495, 313, 112, 42);
         frame.getContentPane().add(btnNewButton_1_1);
 
         btnNewButton_1_1.addActionListener(new ActionListener() {
@@ -157,12 +157,12 @@ public class AppointmentWindow {
         
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnCancel.setBounds(350, 343, 112, 42);
+        btnCancel.setBounds(350, 313, 112, 42);
         frame.getContentPane().add(btnCancel);
         
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(57, 430, 122, 42);
+        btnPrintDetails.setBounds(57, 393, 122, 42);
         frame.getContentPane().add(btnPrintDetails);
         
         JScrollPane scrollPane = new JScrollPane();

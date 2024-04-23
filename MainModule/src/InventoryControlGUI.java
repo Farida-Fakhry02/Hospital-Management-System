@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Font;
 
 public class InventoryControlGUI extends JFrame {
 
@@ -42,53 +44,59 @@ public class InventoryControlGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 648, 503);
         contentPane = new JPanel();
+        contentPane.setBackground(new Color(135,206,250));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lbItemID = new JLabel("ItemID:");
+        lbItemID.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lbItemID.setBounds(10, 23, 74, 33);
         contentPane.add(lbItemID);
 
         tFItemID = new JTextField();
-        tFItemID.setBounds(102, 30, 218, 19);
+        tFItemID.setBounds(102, 30, 218, 26);
         contentPane.add(tFItemID);
         tFItemID.setColumns(10);
 
         JLabel lbItemName = new JLabel("Item Name:");
-        lbItemName.setBounds(10, 73, 74, 13);
+        lbItemName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lbItemName.setBounds(10, 73, 82, 13);
         contentPane.add(lbItemName);
 
         tfItemName = new JTextField();
-        tfItemName.setBounds(102, 70, 218, 19);
+        tfItemName.setBounds(102, 70, 218, 26);
         contentPane.add(tfItemName);
         tfItemName.setColumns(10);
 
         JLabel lblQuantity = new JLabel("Quantity:");
+        lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblQuantity.setBounds(10, 114, 74, 33);
         contentPane.add(lblQuantity);
 
         tfQuantity = new JTextField();
         tfQuantity.setColumns(10);
-        tfQuantity.setBounds(102, 121, 218, 19);
+        tfQuantity.setBounds(102, 121, 218, 26);
         contentPane.add(tfQuantity);
 
         JLabel lblSupplier = new JLabel("Supplier ID:");
-        lblSupplier.setBounds(10, 161, 74, 33);
+        lblSupplier.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblSupplier.setBounds(10, 163, 82, 33);
         contentPane.add(lblSupplier);
 
         tfSupplier = new JTextField();
         tfSupplier.setColumns(10);
-        tfSupplier.setBounds(102, 168, 218, 19);
+        tfSupplier.setBounds(102, 168, 218, 26);
         contentPane.add(tfSupplier);
 
         JLabel lblDescription = new JLabel("Description:");
-        lblDescription.setBounds(10, 204, 74, 33);
+        lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblDescription.setBounds(10, 204, 82, 33);
         contentPane.add(lblDescription);
         
         tfDescription = new JTextField();
         tfDescription.setColumns(10);
-        tfDescription.setBounds(102, 211, 218, 19);
+        tfDescription.setBounds(102, 211, 218, 26);
         contentPane.add(tfDescription);
 
         JButton btnAdditem = new JButton("Add Item");
