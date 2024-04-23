@@ -88,13 +88,31 @@ public class Main {
         // Testing Inventory Control Class
 
         InventoryControl inventoryControl = new InventoryControl();
+        Supplier S=new Supplier("1","2","3");
 
         // Add some sample items to inventory
-//        InventoryItem item1 = new InventoryItem(1, "Surgical Mask", "Disposable mask for surgical procedures", 100, 1);
-//        InventoryItem item2 = new InventoryItem(2, "Gauze Pads", "Sterile pads for wound dressing", 50, 1);
-//        inventoryControl.addItem(item1);
-//        inventoryControl.addItem(item2);
-//
+        InventoryItem item1 = new InventoryItem("1", "Surgical Mask", "Disposable mask for surgical procedures", 100, "1");
+        InventoryItem item2 = new InventoryItem("2", "Gauze Pads", "Sterile pads for wound dressing", 50, "1");
+        inventoryControl.addItem(item1);
+        inventoryControl.addItem(item2);
+        inventoryControl.addSupplier(S);
+        
+     
+     // Assuming suppliers and items have already been added to the inventory control
+
+     // Search for a supplier by name
+     boolean supplierFound = inventoryControl.searchSupplier("1");
+     if (!supplierFound) {
+         System.out.println("Supplier not found.");
+     }
+
+     // Search for an item by name
+     boolean itemFound = inventoryControl.searchItem("1");
+     if (!itemFound) {
+         System.out.println("Item not found.");
+     }
+
+
 //        System.out.println("Initial Inventory");
 //
 //        inventoryControl.generateInventoryReport();

@@ -49,4 +49,12 @@ public class InventoryItem {
     public String toString() {
         return "Item ID: " + itemId + ", Name: " + name + ", Description: " + description + ", Quantity: " + quantity;
     }
+    
+    public void printDetails() {
+        System.out.println("Item ID: " + itemId);
+        System.out.println("Name: " + name);
+        System.out.println("Description: " + description);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Supplier ID: " + supplierId);
+    }
 }

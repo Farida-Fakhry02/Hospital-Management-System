@@ -20,4 +20,10 @@ class Supplier {
     public String getContactInfo() {
         return contactInfo;
     }
+    
+    public void printDetails() {
+        System.out.println("Supplier ID: " + supplierId);
+        System.out.println("Name: " + name);
+        System.out.println("Contact Info: " + contactInfo);
+    }
 }

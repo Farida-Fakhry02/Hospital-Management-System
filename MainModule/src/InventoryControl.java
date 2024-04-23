@@ -2,6 +2,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class InventoryControl {
     private Map<String, InventoryItem> inventory;
     private Map<String, Supplier> suppliers;
@@ -77,6 +78,32 @@ public class InventoryControl {
             }
         } else {
             System.out.println("Item with ID " + itemId + " does not exist in inventory.");
+        }
+    }
+    
+    public boolean searchSupplier(String supplierId) {
+        Supplier supplier = suppliers.get(supplierId);
+        if (supplier != null) {
+            System.out.println("Supplier found:");
+            supplier.printDetails();
+            return true;
+        } else {
+            System.out.println("Supplier with ID " + supplierId + " not found.");
+            return false;
+        }
+    }
+
+
+    // Method to search for an item by name
+    public boolean searchItem(String itemId) {
+        InventoryItem item = inventory.get(itemId);
+        if (item != null) {
+            System.out.println("Item found:");
+            item.printDetails();
+            return true;
+        } else {
+            System.out.println("Item with ID " + itemId + " not found.");
+            return false;
         }
     }
 }
