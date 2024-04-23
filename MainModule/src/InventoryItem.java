@@ -45,11 +45,7 @@ public class InventoryItem {
         return supplierId;
     }
 
-    @Override
-    public String toString() {
-        return "Item ID: " + itemId + ", Name: " + name + ", Description: " + description + ", Quantity: " + quantity;
-    }
-    
+ 
     public void printDetails() {
         System.out.println("Item ID: " + itemId);
         System.out.println("Name: " + name);
