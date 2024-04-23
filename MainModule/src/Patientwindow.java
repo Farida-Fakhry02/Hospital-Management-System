@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Patientwindow {
 
-    private JFrame frame;
+    public JFrame frame;
     private JTextField textField;
     private JTextField textField_1;
     private JComboBox<String> dayComboBox;
@@ -196,7 +196,7 @@ public class Patientwindow {
 
         JButton btnNewButton_2_1 = new JButton("Exit");
         btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1.setBounds(186, 461, 125, 46);
+        btnNewButton_2_1.setBounds(272, 461, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1);
 
         JButton btnPrintDetails = new JButton("Print Details");
@@ -219,6 +219,22 @@ public class Patientwindow {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(99, 540, 354, 89);
         frame.getContentPane().add(scrollPane);
+        
+        JButton btnNewButton_2_1_1 = new JButton("Back");
+        btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_2_1_1.setBounds(117, 461, 125, 46);
+        frame.getContentPane().add(btnNewButton_2_1_1);
+        btnNewButton_2_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the current Patientwindow frame
+                frame.dispose();
+                
+                // Create an instance of the Receptionist_GUI and make it visible
+                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                receptionistGUI.frame.setVisible(true);
+            }
+        });
+
 
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

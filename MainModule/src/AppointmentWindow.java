@@ -131,6 +131,29 @@ public class AppointmentWindow {
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton_1_1.setBounds(495, 343, 112, 42);
         frame.getContentPane().add(btnNewButton_1_1);
+
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the current window
+                frame.dispose();
+
+                // Show the receptionist window
+                Receptionist_GUI receptionistWindow = new Receptionist_GUI();
+                receptionistWindow.frame.setVisible(true);
+            }
+        });
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the current window
+                frame.dispose();
+
+                // Show the receptionist window
+                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                receptionistGUI.getFrame().setVisible(true);
+            }
+        });
+
+
         
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));

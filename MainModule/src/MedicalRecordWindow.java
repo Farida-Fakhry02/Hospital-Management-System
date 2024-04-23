@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class MedicalRecordWindow {
 
-    private JFrame frame;
+     JFrame frame;
     private JTextField textField;
     private JComboBox<String> comboBoxDay;
     private JComboBox<String> comboBoxMonth;
@@ -85,7 +85,7 @@ public class MedicalRecordWindow {
 
         JLabel lblDate = new JLabel("Date");
         lblDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblDate.setBounds(40, 260, 53, 27);
+        lblDate.setBounds(31, 260, 53, 27);
         frame.getContentPane().add(lblDate);
 
         textField = new JTextField();
@@ -94,14 +94,14 @@ public class MedicalRecordWindow {
         textField.setColumns(10);
         
         comboBoxDay = new JComboBox<>();
-        comboBoxDay.setBounds(166, 264, 53, 27);
+        comboBoxDay.setBounds(219, 260, 53, 27);
         for (int i = 1; i <= 31; i++) {
             comboBoxDay.addItem(String.valueOf(i));
         }
         frame.getContentPane().add(comboBoxDay);
         
         comboBoxMonth = new JComboBox<>();
-        comboBoxMonth.setBounds(229, 264, 115, 27);
+        comboBoxMonth.setBounds(282, 260, 115, 27);
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         for (String month : months) {
             comboBoxMonth.addItem(month);
@@ -109,7 +109,7 @@ public class MedicalRecordWindow {
         frame.getContentPane().add(comboBoxMonth);
         
         comboBoxYear = new JComboBox<>();
-        comboBoxYear.setBounds(354, 264, 70, 27);
+        comboBoxYear.setBounds(407, 260, 70, 27);
         for (int i = 1900; i <= 2024; i++) {
             comboBoxYear.addItem(String.valueOf(i));
         }
@@ -132,35 +132,41 @@ public class MedicalRecordWindow {
         
         btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(55, 352, 115, 51);
+        btnNewButton.setBounds(31, 352, 115, 51);
         frame.getContentPane().add(btnNewButton);
         
         btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(229, 352, 115, 51);
+        btnUpdate.setBounds(205, 352, 115, 51);
         frame.getContentPane().add(btnUpdate);
         
         btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(390, 352, 115, 51);
+        btnDelete.setBounds(366, 352, 115, 51);
         frame.getContentPane().add(btnDelete);
         
         btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
+            public void actionPerformed(ActionEvent e) {
+                // Dispose of the current MedicalRecordWindow frame
+                frame.dispose();
+                
+                // Create and show the Receptionist_GUI window
+                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                receptionistGUI.frame.setVisible(true);
+            }
         });
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBack.setBounds(59, 456, 115, 51);
+        btnBack.setBounds(31, 460, 115, 51);
         frame.getContentPane().add(btnBack);
         
         btnSearch = new JButton("Search");
         btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnSearch.setBounds(538, 348, 115, 51);
+        btnSearch.setBounds(514, 352, 115, 51);
         frame.getContentPane().add(btnSearch);
         
         JFormattedTextField formattedTextField = new JFormattedTextField();
-        formattedTextField.setBounds(243, 429, 362, 116);
+        formattedTextField.setBounds(205, 439, 362, 116);
         frame.getContentPane().add(formattedTextField);
     }
 

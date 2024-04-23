@@ -5,10 +5,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Receptionist_GUI {
 
-    private JFrame frame;
+    public static JFrame frame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -29,6 +30,7 @@ public class Receptionist_GUI {
 
     private void initialize() {
         frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(135,206,250));
         frame.setBounds(100, 100, 600, 454);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -50,13 +52,23 @@ public class Receptionist_GUI {
         
         JButton btnInventory = new JButton("Inventory");
         btnInventory.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnInventory.setBounds(28, 235, 143, 59);
+        btnInventory.setBounds(28, 212, 143, 59);
         frame.getContentPane().add(btnInventory);
         
         JButton btnAppointment = new JButton("Appointment");
         btnAppointment.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnAppointment.setBounds(345, 235, 154, 59);
+        btnAppointment.setBounds(345, 212, 154, 59);
         frame.getContentPane().add(btnAppointment);
+        
+        JButton btnPatient = new JButton("Patient");
+        btnPatient.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnPatient.setBounds(28, 334, 143, 59);
+        frame.getContentPane().add(btnPatient);
+        
+        JButton btnMedicalRecoreds = new JButton("Medical Records");
+        btnMedicalRecoreds.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        btnMedicalRecoreds.setBounds(345, 334, 205, 59);
+        frame.getContentPane().add(btnMedicalRecoreds);
         
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -85,6 +97,22 @@ public class Receptionist_GUI {
                 appointmentWindow.frame.setVisible(true);
             }
         });
+        
+        btnPatient.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Patientwindow patientWindow = new Patientwindow();
+                patientWindow.frame.setVisible(true);
+            }
+        });
+        
+        btnMedicalRecoreds.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow();
+                medicalRecordWindow.frame.setVisible(true);
+            }
+        });
+
+        
     }
 
     public JFrame getFrame() {

@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Login_Page {
 
@@ -44,6 +46,9 @@ public class Login_Page {
      */
     private void initialize() {
         frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(135,206,250));
+        frame.getContentPane().setForeground(SystemColor.activeCaption);
+        frame.setForeground(new Color(128, 0, 0));
         frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 15));
         frame.setBounds(100, 100, 624, 524);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +72,7 @@ public class Login_Page {
         frame.getContentPane().add(txtUsername);
         
         // Set default username
-        txtUsername.setText("admin");
+        
 
         JLabel lblNewLabel_1_1 = new JLabel("Password");
         lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -75,6 +80,7 @@ public class Login_Page {
         frame.getContentPane().add(lblNewLabel_1_1);
 
         JButton btnNewButton = new JButton("Login");
+        btnNewButton.setBackground(new Color(240, 240, 240));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = txtUsername.getText();

@@ -18,6 +18,7 @@ public class Billingwindow {
     private JTextField amountField;
     private Billing billingModule;
     private JTextArea outputArea;
+    private Receptionist_GUI receptionistGUI;
 
     /**
      * Launch the application.
@@ -63,6 +64,8 @@ public class Billingwindow {
         amountField.setColumns(10);
 
         JButton addButton = new JButton("Add Invoice");
+        addButton.setBounds(26, 117, 144, 35);
+        addButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
@@ -72,10 +75,11 @@ public class Billingwindow {
                 outputArea.setText("Invoice added for " + patientName + " with amount $" + amount);
             }
         });
-        addButton.setBounds(26, 117, 117, 23);
         frame.getContentPane().add(addButton);
 
         JButton generateBillButton = new JButton("Generate Bill");
+        generateBillButton.setBounds(180, 117, 133, 35);
+        generateBillButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         generateBillButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
@@ -106,21 +110,21 @@ public class Billingwindow {
                 outputArea.setText(invoiceDetails.toString());
             }
         });
-
-        generateBillButton.setBounds(180, 117, 117, 23);
         frame.getContentPane().add(generateBillButton);
 
         JButton totalInvoicesButton = new JButton("Total Invoices");
+        totalInvoicesButton.setBounds(323, 117, 144, 35);
+        totalInvoicesButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         totalInvoicesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int totalInvoices = billingModule.getInvoices().size();
                 outputArea.setText("Total invoices: " + totalInvoices);
             }
         });
-        totalInvoicesButton.setBounds(323, 117, 117, 23);
         frame.getContentPane().add(totalInvoicesButton);
 
         JButton totalAmountButton = new JButton("Total Amount for Patient");
+        totalAmountButton.setBounds(138, 163, 191, 23);
         totalAmountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
@@ -128,7 +132,6 @@ public class Billingwindow {
                 outputArea.setText("Total amount for " + patientName + " is $" + totalAmount);
             }
         });
-        totalAmountButton.setBounds(138, 163, 191, 23);
         frame.getContentPane().add(totalAmountButton);
 
         outputArea = new JTextArea();
@@ -137,14 +140,27 @@ public class Billingwindow {
         frame.getContentPane().add(scrollPane);
         
         JLabel lblNewLabel = new JLabel("Patient Name");
-        lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblNewLabel.setBounds(26, 28, 98, 20);
+        lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         frame.getContentPane().add(lblNewLabel);
         
         JLabel lblAmount = new JLabel("Amount");
-        lblAmount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblAmount.setBounds(26, 77, 98, 20);
+        lblAmount.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         frame.getContentPane().add(lblAmount);
+        
+        JButton btnNewButton = new JButton("Back");
+        btnNewButton.setBounds(180, 319, 119, 45);
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Perform action to return to the Receptionist_GUI window
+                frame.dispose(); // Close the current window
+                receptionistGUI = new Receptionist_GUI(); // Create an instance of Receptionist_GUI
+                receptionistGUI.getFrame().setVisible(true); // Show the Receptionist_GUI window
+            }
+        });
+        frame.getContentPane().add(btnNewButton);
+    
     }
 
     public JFrame getFrame() {
