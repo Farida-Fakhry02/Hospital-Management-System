@@ -6,9 +6,6 @@ public class InventoryDataModel {
 
     private InventoryDataModel() {
         inventoryItems = new ArrayList<>();
-        
-        // Add some default inventory items
-       
         // Add more inventory items as needed
     }
 
