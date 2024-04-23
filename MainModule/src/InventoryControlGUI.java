@@ -50,8 +50,8 @@ public class InventoryControlGUI extends JFrame {
         contentPane.setLayout(null);
 
         JLabel lbItemID = new JLabel("ItemID:");
-        lbItemID.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lbItemID.setBounds(10, 23, 74, 33);
+        lbItemID.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(lbItemID);
 
         tFItemID = new JTextField();
@@ -60,8 +60,8 @@ public class InventoryControlGUI extends JFrame {
         tFItemID.setColumns(10);
 
         JLabel lbItemName = new JLabel("Item Name:");
-        lbItemName.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lbItemName.setBounds(10, 73, 82, 13);
+        lbItemName.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(lbItemName);
 
         tfItemName = new JTextField();
@@ -70,36 +70,38 @@ public class InventoryControlGUI extends JFrame {
         tfItemName.setColumns(10);
 
         JLabel lblQuantity = new JLabel("Quantity:");
-        lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblQuantity.setBounds(10, 114, 74, 33);
+        lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(lblQuantity);
 
         tfQuantity = new JTextField();
-        tfQuantity.setColumns(10);
         tfQuantity.setBounds(102, 121, 218, 26);
+        tfQuantity.setColumns(10);
         contentPane.add(tfQuantity);
 
         JLabel lblSupplier = new JLabel("Supplier ID:");
-        lblSupplier.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblSupplier.setBounds(10, 163, 82, 33);
+        lblSupplier.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(lblSupplier);
 
         tfSupplier = new JTextField();
-        tfSupplier.setColumns(10);
         tfSupplier.setBounds(102, 168, 218, 26);
+        tfSupplier.setColumns(10);
         contentPane.add(tfSupplier);
 
         JLabel lblDescription = new JLabel("Description:");
-        lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblDescription.setBounds(10, 204, 82, 33);
+        lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(lblDescription);
         
         tfDescription = new JTextField();
-        tfDescription.setColumns(10);
         tfDescription.setBounds(102, 211, 218, 26);
+        tfDescription.setColumns(10);
         contentPane.add(tfDescription);
 
         JButton btnAdditem = new JButton("Add Item");
+        btnAdditem.setBounds(10, 271, 150, 34);
+        btnAdditem.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnAdditem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String itemId = tFItemID.getText();
@@ -131,14 +133,17 @@ public class InventoryControlGUI extends JFrame {
 
                 textArea.append("Item '" + itemName + "' added successfully.\n");
 
-                clearInputFields();
+                // Update the list of inventory items in the data model
+                InventoryDataModel.getInstance().getInventoryItems().add(item);
+
+                //clearInputFields();
             }
         });
-
-        btnAdditem.setBounds(25, 271, 150, 21);
         contentPane.add(btnAdditem);
 
         JButton btnRemoveItem = new JButton("Remove Item");
+        btnRemoveItem.setBounds(170, 272, 150, 33);
+        btnRemoveItem.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnRemoveItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String itemId = tFItemID.getText();
@@ -146,17 +151,33 @@ public class InventoryControlGUI extends JFrame {
                     showError("Invalid Item ID format. Please enter alphanumeric characters only.");
                     return;
                 }
-                
+
+                // Remove the item from the inventory control
                 boolean removed = inventoryControl.removeItem(itemId);
+
+                // Remove the item from the list in the data model
+                ArrayList<InventoryItem> inventoryItems = InventoryDataModel.getInstance().getInventoryItems();
+                InventoryItem itemToRemove = null;
+                for (InventoryItem item : inventoryItems) {
+                    if (item.getItemId().equals(itemId)) {
+                        itemToRemove = item;
+                        break;
+                    }
+                }
+                if (itemToRemove != null) {
+                    inventoryItems.remove(itemToRemove);
+                }
+
                 displayRemoveItemMessage(itemId, removed);
                 updateTextArea();
                 clearInputFields();
             }
         });
-        btnRemoveItem.setBounds(185, 272, 150, 19);
         contentPane.add(btnRemoveItem);
 
         JButton btnUpdate = new JButton("Update Quantity");
+        btnUpdate.setBounds(10, 361, 150, 33);
+        btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String itemId = tFItemID.getText();
@@ -177,10 +198,11 @@ public class InventoryControlGUI extends JFrame {
                 updateTextArea();
             }
         });
-        btnUpdate.setBounds(102, 405, 159, 19);
         contentPane.add(btnUpdate);
 
         JButton btnCheckAvailability = new JButton("Check Availability");
+        btnCheckAvailability.setBounds(10, 316, 150, 34);
+        btnCheckAvailability.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnCheckAvailability.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String itemId = tFItemID.getText();
@@ -188,42 +210,48 @@ public class InventoryControlGUI extends JFrame {
                     showError("Invalid Item ID format. Please enter alphanumeric characters only.");
                     return;
                 }
-                String availability = inventoryControl.checkItemAvailability(itemId);
-                textArea.append("Availability: " + availability + "\n");
+
+                // Check if the item ID is found in the list
+                boolean itemAvailable = false;
+                ArrayList<InventoryItem> inventoryItems = InventoryDataModel.getInstance().getInventoryItems();
+                for (InventoryItem item : inventoryItems) {
+                    if (item.getItemId().equals(itemId)) {
+                        itemAvailable = true;
+                        break;
+                    }
+                }
+
+                // Print the availability message
+                if (itemAvailable) {
+                    textArea.append("Item is available.\n");
+                } else {
+                    textArea.append("Item is not available.\n");
+                }
             }
         });
-        btnCheckAvailability.setBounds(25, 316, 150, 21);
         contentPane.add(btnCheckAvailability);
 
         JButton btnGenerate = new JButton("Generate Report");
+        btnGenerate.setBounds(170, 316, 151, 34);
+        btnGenerate.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnGenerate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                inventoryControl.generateInventoryReport();
-                textArea.append("Inventory report generated.\n");
+                ArrayList<InventoryItem> items = dataModel.getInventoryItems();
+                if (items.isEmpty()) {
+                    textArea.append("No items in the inventory.\n");
+                } else {
+                    textArea.append("Inventory Report:\n");
+                    for (InventoryItem item : items) {
+                        textArea.append(item.toString() + "\n");
+                    }
+                }
             }
         });
-        btnGenerate.setBounds(185, 316, 151, 21);
         contentPane.add(btnGenerate);
 
-        JButton btnSearchItem = new JButton("Search Item");
-        btnSearchItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String itemId = tFItemID.getText();
-                if (!isValidItemId(itemId)) {
-                    showError("Invalid Item ID format. Please enter alphanumeric characters only.");
-                    return;
-                }
-                if (inventoryControl.searchItem(itemId)) {
-                    textArea.append("Item found.\n");
-                } else {
-                    textArea.append("Item not found.\n");
-                }
-            }
-        });
-        btnSearchItem.setBounds(25, 360, 150, 21);
-        contentPane.add(btnSearchItem);
-
         JButton btnSearchSupplier = new JButton("Search Supplier");
+        btnSearchSupplier.setBounds(170, 360, 150, 34);
+        btnSearchSupplier.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnSearchSupplier.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String supplierId = tfSupplier.getText();
@@ -231,14 +259,26 @@ public class InventoryControlGUI extends JFrame {
                     showError("Invalid Supplier ID format. Please enter alphanumeric characters only.");
                     return;
                 }
-                if (inventoryControl.searchSupplier(supplierId)) {
-                    textArea.append("Supplier found.\n");
+
+                // Check if the supplier ID exists in the list
+                boolean supplierExists = false;
+                ArrayList<InventoryItem> inventoryItems = InventoryDataModel.getInstance().getInventoryItems();
+                for (InventoryItem item : inventoryItems) {
+                    if (item.getSupplierId().equals(supplierId)) {
+                        supplierExists = true;
+                        break;
+                    }
+                }
+
+                // Print the result
+                if (supplierExists) {
+                    textArea.append("Supplier exists.\n");
                 } else {
-                    textArea.append("Supplier not found.\n");
+                    textArea.append("Supplier does not exist.\n");
                 }
             }
         });
-        btnSearchSupplier.setBounds(185, 360, 150, 21);
+
         contentPane.add(btnSearchSupplier);
 
         JScrollPane scrollPane = new JScrollPane();
@@ -248,6 +288,22 @@ public class InventoryControlGUI extends JFrame {
         textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
         textArea.setEditable(false);
+        
+        JButton btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the current inventory control window
+                dispose();
+
+                // Open the receptionist window
+                Receptionist_GUI receptionistWindow = new Receptionist_GUI();
+                receptionistWindow.getFrame().setVisible(true);
+            }
+        });
+
+        btnBack.setBounds(97, 405, 150, 33);
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        contentPane.add(btnBack);
 
         inventoryControl = new InventoryControl();
         dataModel = InventoryDataModel.getInstance();

@@ -8,8 +8,7 @@ public class InventoryDataModel {
         inventoryItems = new ArrayList<>();
         
         // Add some default inventory items
-        inventoryItems.add(new InventoryItem("ITEM001", "Product 1", "Description 1", 10, "SUP001"));
-        inventoryItems.add(new InventoryItem("ITEM002", "Product 2", "Description 2", 20, "SUP002"));
+       
         // Add more inventory items as needed
     }
 
