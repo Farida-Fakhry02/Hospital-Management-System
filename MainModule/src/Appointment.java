@@ -9,8 +9,6 @@ public class Appointment {
     private String slot;
 
     // Constructor
-
-
     public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient) {
         this.dateTime = dateTime;
         this.doctor = doctor;
@@ -87,14 +85,9 @@ public class Appointment {
 
 
 /*
-
-RescheduleAppointment(LocalDateTime newDateTime): This method allows rescheduling the appointment to a new date and time.
-
 CancelAppointment(): This method cancels the appointment.
 
 GetAppointmentDuration(): This method calculates and returns the duration of the appointment.
-
-GetAppointmentDetails(): This method retrieves and returns the details of the appointment, such as the appointment time, doctor, patient, and reason.
 
 IsSameDayAppointment(): This method checks if the appointment is scheduled for the same day.
 
@@ -116,11 +109,7 @@ RecordAppointmentOutcome(String outcome): This method records the outcome of the
 
 AddNotes(String notes): This method allows adding additional notes or comments related to the appointment.
 
-ValidateAppointment(): This method validates the appointment details to ensure they meet certain criteria or constraints.
-
-CheckConflicts(List<Appointment> appointments): This method checks for any conflicts or overlaps with other appointments.
-
-PrintAppointmentDetails(): This method prints out the details of the appointment in a formatted manner.*/
+*/
 
 
 }

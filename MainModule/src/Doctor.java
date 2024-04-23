@@ -20,9 +20,7 @@ public class Doctor {
     // List to store booked appointments
     private List<Appointment> appointments;
 
-    //garaby delete ml list ama y7gz
-    //momkn list not available
-    //if
+   
     public Doctor() {
         this.firstName = "";
         this.lastName = "";
@@ -128,7 +126,6 @@ public class Doctor {
     }
 
 //Other methods
-
     public void printDetails() {
         System.out.println("Doctor Details:");
         System.out.println("Name: " + firstName + " " + lastName);
@@ -186,7 +183,6 @@ public class Doctor {
     }
 
 
-
     // Method to reschedule an appointment
     public void rescheduleAppointment(Appointment oldAppointment, Appointment newAppointment) {
         LocalDateTime oldDateTime = oldAppointment.getDateTime();
@@ -237,20 +233,11 @@ ScheduleAppointment(Patient patient, String day, String time): This method allow
 
 CancelAppointment(Appointment appointment): This method cancels a previously scheduled appointment.
 
-GenerateAppointmentConfirmation(Appointment appointment): This method generates an appointment confirmation for a scheduled appointment.
-
 PrescribeMedication(Patient patient, Medication medication): This method allows the doctor to prescribe medication for a patient.
 
 RequestTests(Patient patient, Test[] tests): This method allows the doctor to request medical tests for a patient.
 
-RecordDiagnosis(Patient patient, String diagnosis): This method records a diagnosis for a patient after examination.
-
-GenerateMedicalReport(Patient patient): This method generates a medical report summarizing the patient's visit and treatment.
-
-CalculateConsultationDuration(Patient patient): This method calculates the expected duration of a consultation based on the patient's condition or appointment type.
-
 UpdateAvailability(String day, String time, boolean isAvailable): This method updates the doctor's availability for a specific day and time slot.
-
 
 HandleEmergency(Patient patient): This method allows the doctor to handle emergency cases and provide immediate medical assistance.
 
@@ -259,33 +246,6 @@ HandleEmergency(Patient patient): This method allows the doctor to handle emerge
     public List<Appointment> getAppointments() {
         return appointments;
     }
-
-
-CheckPatientHistory(Patient patient): This method retrieves the medical history of a patient previously treated by the doctor.
-------b3d mn3ml medical record---------
-public class Doctor {
-    // Other attributes and methods...
-
-    // List to store medical records of patients treated by the doctor
-    private List<MedicalRecord> patientMedicalRecords;
-
-    // Constructor and other methods...
-
-    // Method to retrieve patient history
-    public List<MedicalRecord> checkPatientHistory(Patient patient) {
-        List<MedicalRecord> history = new ArrayList<>();
-
-        // Iterate through the medical records and find those belonging to the specified patient
-        for (MedicalRecord record : patientMedicalRecords) {
-            if (record.getPatient().equals(patient)) {
-                history.add(record);
-            }
-        }
-
-        return history;
-    }
-}
-
 
 ----lma a3ml class appointment
 

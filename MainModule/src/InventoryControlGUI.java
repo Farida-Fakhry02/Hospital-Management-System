@@ -40,7 +40,7 @@ public class InventoryControlGUI extends JFrame {
     }
 
     public InventoryControlGUI() {
-        setTitle("Inventory Control");
+        setTitle("Inventory ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 648, 503);
         contentPane = new JPanel();
