@@ -53,83 +53,83 @@ public class Doctorwindow {
         frmP.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 20));
         frmP.getContentPane().setBackground(new Color(135,206,250));
         frmP.setTitle("Doctor");
-        frmP.setBounds(100, 100, 707, 583);
+        frmP.setBounds(100, 100, 682, 583);
         frmP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmP.getContentPane().setLayout(null);
         
         JLabel lblNewLabel = new JLabel("First name");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel.setBounds(10, 20, 103, 20);
+        lblNewLabel.setBounds(10, 34, 103, 20);
         frmP.getContentPane().add(lblNewLabel);
         
         firstNameField = new JTextField();
         firstNameField.setColumns(10);
-        firstNameField.setBounds(191, 20, 139, 20);
+        firstNameField.setBounds(191, 26, 139, 28);
         frmP.getContentPane().add(firstNameField);
         
         JLabel lblNewLabel_1 = new JLabel("Last name");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_1.setBounds(10, 52, 103, 20);
+        lblNewLabel_1.setBounds(10, 64, 103, 20);
         frmP.getContentPane().add(lblNewLabel_1);
         
         lastNameField = new JTextField();
         lastNameField.setColumns(10);
-        lastNameField.setBounds(191, 52, 139, 20);
+        lastNameField.setBounds(191, 62, 139, 28);
         frmP.getContentPane().add(lastNameField);
         
         specialityField = new JTextField();
         specialityField.setColumns(10);
-        specialityField.setBounds(191, 83, 139, 20);
+        specialityField.setBounds(191, 101, 139, 28);
         frmP.getContentPane().add(specialityField);
         
         JLabel lblSpeciality = new JLabel("Speciality");
         lblSpeciality.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblSpeciality.setBounds(10, 83, 103, 28);
+        lblSpeciality.setBounds(10, 101, 103, 28);
         frmP.getContentPane().add(lblSpeciality);
         
         JLabel lblNewLabel_3 = new JLabel("DoctorId");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_3.setBounds(10, 114, 103, 20);
+        lblNewLabel_3.setBounds(10, 150, 103, 20);
         frmP.getContentPane().add(lblNewLabel_3);
         
         doctorIdField = new JTextField();
         doctorIdField.setColumns(10);
-        doctorIdField.setBounds(191, 115, 139, 20);
+        doctorIdField.setBounds(191, 142, 139, 28);
         frmP.getContentPane().add(doctorIdField);
         
         JLabel lblNewLabel_4 = new JLabel("Email-Address");
         lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_4.setBounds(10, 146, 139, 21);
+        lblNewLabel_4.setBounds(10, 189, 139, 21);
         frmP.getContentPane().add(lblNewLabel_4);
         
         emailField = new JTextField();
         emailField.setColumns(10);
-        emailField.setBounds(191, 147, 187, 20);
+        emailField.setBounds(191, 182, 139, 28);
         frmP.getContentPane().add(emailField);
         
         JLabel lblNewLabel_5 = new JLabel("Experience Years");
         lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_5.setBounds(10, 182, 171, 28);
+        lblNewLabel_5.setBounds(10, 220, 171, 28);
         frmP.getContentPane().add(lblNewLabel_5);
         
         JLabel lblNewLabel_7 = new JLabel("Department");
         lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_7.setBounds(10, 220, 151, 20);
+        lblNewLabel_7.setBounds(10, 258, 151, 20);
         frmP.getContentPane().add(lblNewLabel_7);
         
         departmentField = new JTextField();
         departmentField.setColumns(10);
-        departmentField.setBounds(191, 220, 139, 20);
+        departmentField.setBounds(191, 259, 139, 28);
         frmP.getContentPane().add(departmentField);
         
         JLabel lblNewLabel_8 = new JLabel("Consultation fee");
         lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel_8.setBounds(10, 245, 151, 20);
+        lblNewLabel_8.setBounds(10, 300, 151, 20);
         frmP.getContentPane().add(lblNewLabel_8);
         
         consultationFeeField = new JTextField();
         consultationFeeField.setColumns(10);
-        consultationFeeField.setBounds(191, 245, 139, 20);
+        consultationFeeField.setBounds(191, 301, 139, 28);
         frmP.getContentPane().add(consultationFeeField);
         
         JButton btnNewButton = new JButton("Add");
@@ -144,12 +144,12 @@ public class Doctorwindow {
             }
         });
 
-        btnNewButton.setBounds(35, 289, 125, 46);
+        btnNewButton.setBounds(36, 343, 125, 46);
         frmP.getContentPane().add(btnNewButton);
         
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(180, 289, 125, 46);
+        btnUpdate.setBounds(36, 401, 125, 46);
         frmP.getContentPane().add(btnUpdate);
         
         btnUpdate.addActionListener(new ActionListener() {
@@ -181,7 +181,7 @@ public class Doctorwindow {
         
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(333, 289, 125, 46);
+        btnDelete.setBounds(191, 364, 125, 46);
         frmP.getContentPane().add(btnDelete);
 
         // Method to clear input fields
@@ -225,7 +225,7 @@ public class Doctorwindow {
         
         JButton btnExit = new JButton("Back");
         btnExit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnExit.setBounds(486, 289, 125, 46);
+        btnExit.setBounds(191, 420, 125, 46);
         frmP.getContentPane().add(btnExit);
 
         btnExit.addActionListener(new ActionListener() {
@@ -241,12 +241,12 @@ public class Doctorwindow {
 
         
         experienceSpinner = new JSpinner();
-        experienceSpinner.setBounds(191, 189, 30, 20);
+        experienceSpinner.setBounds(191, 220, 51, 29);
         frmP.getContentPane().add(experienceSpinner);
         
         btnPrintDetails = new JButton("Print details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(35, 409, 125, 46);
+        btnPrintDetails.setBounds(35, 457, 125, 46);
         btnPrintDetails.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 printDoctorDetails();
@@ -255,9 +255,8 @@ public class Doctorwindow {
         frmP.getContentPane().add(btnPrintDetails);
         
         JTextArea textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setBounds(223, 378, 322, 127);
-        frmP.getContentPane().add(scrollPane);
+        textArea.setBounds(369, 22, 259, 481);
+        frmP.getContentPane().add(textArea);
     }
     
     private void addDoctor() {

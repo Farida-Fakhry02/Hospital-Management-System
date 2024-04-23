@@ -1,5 +1,4 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -18,7 +17,8 @@ import java.awt.Color;
 
 public class MedicalRecordWindow {
 
-     JFrame frmMedicalRecords;
+	
+    public JFrame frmMedicalRecords;
     private JTextField textField;
     private JComboBox<String> comboBoxDay;
     private JComboBox<String> comboBoxMonth;
@@ -55,6 +55,7 @@ public class MedicalRecordWindow {
         initialize();
     }
 
+   
     /**
      * Initialize the contents of the frame.
      */
@@ -62,7 +63,7 @@ public class MedicalRecordWindow {
         frmMedicalRecords = new JFrame();
         frmMedicalRecords.getContentPane().setBackground(new Color(135,206,250));
         frmMedicalRecords.setTitle("Medical Records");
-        frmMedicalRecords.setBounds(100, 100, 722, 615);
+        frmMedicalRecords.setBounds(100, 100, 722, 551);
         frmMedicalRecords.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmMedicalRecords.getContentPane().setLayout(null);
 
@@ -137,17 +138,17 @@ public class MedicalRecordWindow {
         
         btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(10, 324, 115, 51);
+        btnNewButton.setBounds(21, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnNewButton);
         
         btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(144, 324, 115, 51);
+        btnUpdate.setBounds(155, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnUpdate);
         
         btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(96, 397, 115, 51);
+        btnDelete.setBounds(107, 426, 115, 51);
         frmMedicalRecords.getContentPane().add(btnDelete);
         
         btnBack = new JButton("Back");
@@ -162,16 +163,16 @@ public class MedicalRecordWindow {
             }
         });
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBack.setBounds(242, 397, 115, 51);
+        btnBack.setBounds(253, 426, 115, 51);
         frmMedicalRecords.getContentPane().add(btnBack);
         
         btnSearch = new JButton("Search");
         btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnSearch.setBounds(276, 324, 115, 51);
+        btnSearch.setBounds(287, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnSearch);
         
         JFormattedTextField formattedTextField = new JFormattedTextField();
-        formattedTextField.setBounds(412, 20, 263, 457);
+        formattedTextField.setBounds(444, 20, 231, 457);
         frmMedicalRecords.getContentPane().add(formattedTextField);
     }
 
@@ -184,5 +185,8 @@ public class MedicalRecordWindow {
             ex.printStackTrace();
         }
         return formatter;
+    }
+    public void setVisible(boolean visible) {
+    	frmMedicalRecords.setVisible(visible);
     }
 }

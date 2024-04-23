@@ -94,9 +94,10 @@ public class Receptionist_GUI {
         btnAppointment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AppointmentWindow appointmentWindow = new AppointmentWindow();
-                appointmentWindow.frame.setVisible(true);
+                appointmentWindow.frmAppointment.setVisible(true); // Corrected
             }
         });
+
         
         btnPatient.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -108,7 +109,7 @@ public class Receptionist_GUI {
         btnMedicalRecoreds.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MedicalRecordWindow medicalRecordWindow = new MedicalRecordWindow();
-                medicalRecordWindow.frame.setVisible(true);
+                medicalRecordWindow.frmMedicalRecords.setVisible(true);
             }
         });
 

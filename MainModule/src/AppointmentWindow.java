@@ -61,7 +61,7 @@ public class AppointmentWindow {
         frmAppointment = new JFrame();
         frmAppointment.setTitle("Appointment");
         frmAppointment.getContentPane().setBackground(new Color(135,206,250));
-        frmAppointment.setBounds(100, 100, 708, 611);
+        frmAppointment.setBounds(100, 100, 684, 566);
         frmAppointment.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmAppointment.getContentPane().setLayout(null);
         
@@ -101,7 +101,7 @@ public class AppointmentWindow {
             yearComboBox.addItem(year);
         }
         yearComboBox.setSelectedItem(2024); // Default year is 2024
-        yearComboBox.setBounds(296, 57, 73, 21);
+        yearComboBox.setBounds(296, 57, 56, 21);
         frmAppointment.getContentPane().add(yearComboBox);
         
         textField = new JTextField();
@@ -124,17 +124,17 @@ public class AppointmentWindow {
         
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(57, 313, 112, 42);
+        btnNewButton.setBounds(45, 313, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton);
         
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(57, 375, 112, 42);
+        btnUpdate.setBounds(45, 375, 112, 42);
         frmAppointment.getContentPane().add(btnUpdate);
         
         JButton btnNewButton_1_1 = new JButton("Back");
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_1_1.setBounds(193, 404, 112, 42);
+        btnNewButton_1_1.setBounds(181, 404, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1);
 
         btnNewButton_1_1.addActionListener(new ActionListener() {
@@ -162,12 +162,12 @@ public class AppointmentWindow {
         
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnCancel.setBounds(193, 342, 112, 42);
+        btnCancel.setBounds(181, 342, 112, 42);
         frmAppointment.getContentPane().add(btnCancel);
         
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(57, 438, 122, 42);
+        btnPrintDetails.setBounds(45, 438, 122, 42);
         frmAppointment.getContentPane().add(btnPrintDetails);
         
         JComboBox<Integer> dayComboBox_1 = new JComboBox<Integer>();
@@ -175,7 +175,7 @@ public class AppointmentWindow {
         frmAppointment.getContentPane().add(dayComboBox_1);
         
         textArea = new JTextArea();
-        textArea.setBounds(379, 55, 282, 436);
+        textArea.setBounds(389, 55, 243, 436);
         frmAppointment.getContentPane().add(textArea);
         
         // Add action listeners to month and year JComboBoxes
