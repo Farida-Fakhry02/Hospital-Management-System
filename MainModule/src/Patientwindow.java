@@ -246,6 +246,16 @@ public class Patientwindow {
         btnNewButton_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton_2_1_1_1.setBounds(31, 523, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1_1_1);
+        
+        JLabel lblNewLabel_8 = new JLabel("cm");
+        lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblNewLabel_8.setBounds(231, 237, 49, 14);
+        frame.getContentPane().add(lblNewLabel_8);
+        
+        JLabel lblNewLabel_8_1 = new JLabel("Kg");
+        lblNewLabel_8_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblNewLabel_8_1.setBounds(231, 276, 49, 21);
+        frame.getContentPane().add(lblNewLabel_8_1);
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close the current Patientwindow frame

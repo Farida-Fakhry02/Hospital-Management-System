@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+
 
 public class Billingwindow {
 
@@ -71,6 +73,13 @@ public class Billingwindow {
         addButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Check if any of the text fields are empty
+                if (patientNameField.getText().isEmpty() || amountField.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please fill in both fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if any field is empty
+                }
+
+                // Get the values from the input fields
                 String patientName = patientNameField.getText();
                 double amount = Double.parseDouble(amountField.getText());
                 Billing.Invoice invoice = new Billing.Invoice(patientName, amount);

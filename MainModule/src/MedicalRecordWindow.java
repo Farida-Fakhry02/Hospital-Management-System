@@ -179,6 +179,13 @@ public class MedicalRecordWindow {
         // Add action listener to the "Add" button
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Check if any of the text fields are empty
+                if (textField.getText().isEmpty() || textField_1.getText().isEmpty() ||
+                    textField_2.getText().isEmpty() || textField_3.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if any field is empty
+                }
+
                 // Get the values from the input fields
                 int recordID = Integer.parseInt(textField.getText());
                 String patientName = textField_1.getText();
@@ -205,6 +212,13 @@ public class MedicalRecordWindow {
         btnUpdate = new JButton("Update");
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Check if any of the text fields are empty
+                if (textField.getText().isEmpty() || textField_1.getText().isEmpty() ||
+                    textField_2.getText().isEmpty() || textField_3.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if any field is empty
+                }
+
                 // Get the record ID from the text field
                 int recordIDToUpdate = Integer.parseInt(textField.getText());
                 
