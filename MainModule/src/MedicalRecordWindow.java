@@ -19,6 +19,10 @@ import javax.swing.JScrollPane;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 
 public class MedicalRecordWindow {
 
@@ -84,6 +88,7 @@ public class MedicalRecordWindow {
         frmMedicalRecords.getContentPane().add(scrollPane);
 
         JLabel lblNewLabel = new JLabel("Record ID");
+        
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel.setBounds(31, 20, 133, 27);
         frmMedicalRecords.getContentPane().add(lblNewLabel);
@@ -112,6 +117,20 @@ public class MedicalRecordWindow {
         textField.setBounds(174, 20, 205, 27);
         frmMedicalRecords.getContentPane().add(textField);
         textField.setColumns(10);
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                // Check if the entered character is not a digit
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+                    // Display an error message
+                    JOptionPane.showMessageDialog(null, "Please enter only numeric characters for Record ID.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    // Consume the event to prevent the character from being entered
+                    e.consume();
+                }
+            }
+        });
+        
         
         comboBoxDay = new JComboBox<>();
         comboBoxDay.setBounds(144, 264, 53, 27);
