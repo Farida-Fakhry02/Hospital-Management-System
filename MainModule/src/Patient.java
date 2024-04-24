@@ -11,12 +11,12 @@ public class Patient {
     private String gender;
     private String address;
     private String phoneNumber;
-    private double height;
-    private double weight;
+    private int height;
+    private int weight;
     private int id;
 
     // Constructor
-    public Patient(String firstName, String lastName, LocalDate dateOfBirth, String gender, String address, String phoneNumber, double height, double weight, int id) {
+    public Patient(String firstName, String lastName, LocalDate dateOfBirth, String gender, String address, String phoneNumber, int height, int weight, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -27,7 +27,16 @@ public class Patient {
         this.weight = weight;
         this.id = id;
     }
-
+    public Patient(String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, int height, int weight, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.height = height;
+        this.weight = weight;
+        this.id = id;
+    }
     // Getters and setters
     public String getFirstName() {
         return firstName;
@@ -81,7 +90,7 @@ public class Patient {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -89,7 +98,7 @@ public class Patient {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

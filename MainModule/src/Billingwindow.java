@@ -51,7 +51,7 @@ public class Billingwindow {
     private void initialize() {
         frmBilling = new JFrame();
         frmBilling.setTitle("Billing");
-        frmBilling.getContentPane().setBackground(new Color(135,206,250));
+        frmBilling.getContentPane().setBackground(new Color(135, 206, 250));
         frmBilling.setBounds(100, 100, 505, 428);
         frmBilling.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmBilling.getContentPane().setLayout(null);
@@ -87,7 +87,7 @@ public class Billingwindow {
             public void actionPerformed(ActionEvent e) {
                 String patientName = patientNameField.getText();
                 double totalBill = billingModule.generateBillForPatient(patientName);
-                
+
                 // Fetch the list of invoices for the patient
                 List<Billing.Invoice> patientInvoices = new ArrayList<>();
                 for (Billing.Invoice invoice : billingModule.getInvoices()) {
@@ -95,12 +95,13 @@ public class Billingwindow {
                         patientInvoices.add(invoice);
                     }
                 }
-                
+
                 // Create a StringBuilder to store the invoice details
                 StringBuilder invoiceDetails = new StringBuilder();
-                invoiceDetails.append("Total bill for ").append(patientName).append(" is $").append(totalBill).append("\n");
+                invoiceDetails.append("Total bill for ").append(patientName).append(" is $").append(totalBill)
+                        .append("\n");
                 invoiceDetails.append("Invoice Details:\n");
-                
+
                 // Iterate through each invoice and append details to the StringBuilder
                 for (Billing.Invoice invoice : patientInvoices) {
                     invoiceDetails.append("Invoice Number: ").append(invoice.getInvoiceNumber()).append("\n");
@@ -109,7 +110,7 @@ public class Billingwindow {
                     invoiceDetails.append("Date Issued: ").append(invoice.getDateIssued()).append("\n");
                     invoiceDetails.append("\n"); // Add a new line for separation
                 }
-                
+
                 outputArea.setText(invoiceDetails.toString());
             }
         });
@@ -140,23 +141,23 @@ public class Billingwindow {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 207, 471, 121);
         frmBilling.getContentPane().add(scrollPane);
-        
-                outputArea = new JTextArea();
-                scrollPane.setViewportView(outputArea);
-        
+
+        outputArea = new JTextArea();
+        scrollPane.setViewportView(outputArea);
+
         JLabel lblNewLabel = new JLabel("Patient Name");
         lblNewLabel.setBounds(26, 28, 98, 20);
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
         frmBilling.getContentPane().add(lblNewLabel);
-        
+
         JLabel lblAmount = new JLabel("Amount");
         lblAmount.setBounds(26, 77, 98, 20);
         lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 15));
         frmBilling.getContentPane().add(lblAmount);
-        
+
         JButton btnNewButton = new JButton("Back");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(194, 336, 119, 45);
+        btnNewButton.setBounds(256, 338, 119, 45);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform action to return to the Receptionist_GUI window
@@ -166,7 +167,24 @@ public class Billingwindow {
             }
         });
         frmBilling.getContentPane().add(btnNewButton);
-    
+
+        JButton btnClear = new JButton("Clear");
+        btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnClear.setBounds(127, 338, 119, 45);
+        frmBilling.getContentPane().add(btnClear);
+
+        btnClear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clearInputFields(); // Call the method to clear input fields
+            }
+        });
+    }
+
+    // Method to clear input fields
+    private void clearInputFields() {
+        patientNameField.setText(""); // Clear patient name field
+        amountField.setText(""); // Clear amount field
+        outputArea.setText(""); // Clear output area
     }
 
     public JFrame getFrame() {

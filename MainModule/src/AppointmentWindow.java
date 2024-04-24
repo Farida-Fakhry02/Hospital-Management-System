@@ -134,9 +134,12 @@ public class AppointmentWindow {
         
         JButton btnNewButton_1_1 = new JButton("Back");
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_1_1.setBounds(181, 404, 112, 42);
+        btnNewButton_1_1.setBounds(181, 438, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1);
 
+        
+
+        
         btnNewButton_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close the current window
@@ -162,12 +165,12 @@ public class AppointmentWindow {
         
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnCancel.setBounds(181, 342, 112, 42);
+        btnCancel.setBounds(181, 313, 112, 42);
         frmAppointment.getContentPane().add(btnCancel);
         
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(45, 438, 122, 42);
+        btnPrintDetails.setBounds(175, 375, 119, 42);
         frmAppointment.getContentPane().add(btnPrintDetails);
         
         JComboBox<Integer> dayComboBox_1 = new JComboBox<Integer>();
@@ -181,12 +184,33 @@ public class AppointmentWindow {
         textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
         
+        JButton btnNewButton_1_1_1 = new JButton("Clear");
+        btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_1_1_1.setBounds(45, 438, 112, 42);
+        frmAppointment.getContentPane().add(btnNewButton_1_1_1);
+        
         // Add action listeners to month and year JComboBoxes
         monthComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updateDayComboBox();
             }
         });
+        
+        btnNewButton_1_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Clear text fields
+                textField.setText("");
+                // Clear text area
+                textArea.setText("");
+
+                // Reset dayComboBox to default state
+                dayComboBox.removeAllItems();
+                monthComboBox.setSelectedIndex(0); // Set the selected index of monthComboBox to 0 for January
+                yearComboBox.setSelectedItem(2024); // Set the selected item of yearComboBox to 2024
+                updateDayComboBox(); // Update dayComboBox options based on selected month and year
+            }
+        });
+        
         
         yearComboBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -231,8 +255,8 @@ public class AppointmentWindow {
                 String patientGender = "Female";
                 String patientAddress = "123 Main St, City";
                 String patientPhoneNumber = "9876543210";
-                double patientHeight = 165.0;
-                double patientWeight = 60.0;
+                int patientHeight = 165;
+                int patientWeight = 60;
 
                 Patient patient = new Patient(patientFirstName, patientLastName, patientDateOfBirth, patientGender, patientAddress, patientPhoneNumber, patientHeight, patientWeight, patientID);
                 
@@ -251,6 +275,8 @@ public class AppointmentWindow {
             }
         });
     }
+    
+
     
     // Method to update day JComboBox options based on the selected month and year
     private void updateDayComboBox() {

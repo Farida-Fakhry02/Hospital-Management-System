@@ -24,6 +24,11 @@ public class Patientwindow {
     private JTextField textField_4; // For patient ID
     private Patient patient;
     private int nextId = 1; // Next available ID
+    private JLabel errorLabel; // Label to display error messages
+
+    // Error dialog frame and label
+    private JFrame errorFrame;
+    private JLabel errorDialogLabel;
 
     /**
      * Launch the application.
@@ -32,7 +37,7 @@ public class Patientwindow {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	Patientwindow window = new Patientwindow();
+                    Patientwindow window = new Patientwindow();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -162,19 +167,22 @@ public class Patientwindow {
         lblNewLabel_6.setBounds(10, 238, 103, 27);
         frame.getContentPane().add(lblNewLabel_6);
 
-        heightSpinner = new JSpinner();
+        SpinnerNumberModel heightModel = new SpinnerNumberModel(0, 0, 300, 1); // Change the range and step size as needed
+        heightSpinner = new JSpinner(heightModel);
         heightSpinner.setBounds(172, 238, 49, 20);
         frame.getContentPane().add(heightSpinner);
+
 
         JLabel lblNewLabel_7 = new JLabel("Weight");
         lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblNewLabel_7.setBounds(10, 276, 103, 21);
         frame.getContentPane().add(lblNewLabel_7);
 
-        weightSpinner = new JSpinner();
+        SpinnerNumberModel weightModel = new SpinnerNumberModel(0, 0, 500, 1); // Change the range and step size as needed
+        weightSpinner = new JSpinner(weightModel);
         weightSpinner.setBounds(172, 276, 49, 20);
         frame.getContentPane().add(weightSpinner);
-
+        
         JLabel lblId = new JLabel("ID");
         lblId.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblId.setBounds(10, 65, 34, 19);
@@ -187,49 +195,62 @@ public class Patientwindow {
 
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(29, 311, 125, 46);
+        btnNewButton.setBounds(31, 318, 125, 46);
         frame.getContentPane().add(btnNewButton);
 
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(29, 460, 125, 46);
+        btnUpdate.setBounds(31, 459, 125, 46);
         frame.getContentPane().add(btnUpdate);
 
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(182, 311, 125, 46);
+        btnDelete.setBounds(191, 318, 125, 46);
         frame.getContentPane().add(btnDelete);
 
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(29, 384, 125, 46);
+        btnPrintDetails.setBounds(31, 391, 125, 46);
         frame.getContentPane().add(btnPrintDetails);
 
         JButton btnBmi = new JButton("BMI");
         btnBmi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBmi.setBounds(186, 384, 125, 46);
+        btnBmi.setBounds(195, 391, 125, 46);
         frame.getContentPane().add(btnBmi);
 
         JButton btnAgeCategory = new JButton("Age Category");
         btnAgeCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnAgeCategory.setBounds(186, 460, 125, 46);
+        btnAgeCategory.setBounds(195, 459, 125, 46);
         frame.getContentPane().add(btnAgeCategory);
+        
+        // Create and add a label for displaying error messages
+        errorLabel = new JLabel("");
+        errorLabel.setForeground(Color.RED); // Set color to red
+        errorLabel.setBounds(172, 10, 400, 20); // Adjust the position and size as needed
+        frame.getContentPane().add(errorLabel);
+
+        // JTextArea and JScrollPane
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(369, 140, 217, 418);
+        scrollPane.setBounds(369, 130, 217, 439);
         frame.getContentPane().add(scrollPane);
         
                 textArea = new JTextArea();
                 scrollPane.setViewportView(textArea);
-        
+
         JButton btnNewButton_2_1_1 = new JButton("Back");
         btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1_1.setBounds(129, 523, 125, 46);
+        btnNewButton_2_1_1.setBounds(195, 523, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1_1);
+        
+        JButton btnNewButton_2_1_1_1 = new JButton("Clear");
+        btnNewButton_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_2_1_1_1.setBounds(31, 523, 125, 46);
+        frame.getContentPane().add(btnNewButton_2_1_1_1);
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close the current Patientwindow frame
                 frame.dispose();
-                
+
                 // Create an instance of the Receptionist_GUI and make it visible
                 Receptionist_GUI receptionistGUI = new Receptionist_GUI();
                 receptionistGUI.frame.setVisible(true);
@@ -237,9 +258,50 @@ public class Patientwindow {
         });
 
 
+     // ActionListener for Clear button
+        btnNewButton_2_1_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clearAllFields();
+                textArea.setText(""); // Clear the text area as well
+            }
+            
+            private void clearAllFields() {
+                textField.setText("");
+                textField_1.setText("");
+                dayComboBox.setSelectedIndex(0);
+                monthComboBox.setSelectedIndex(0);
+                yearComboBox.setSelectedIndex(0);
+                rdbtnMale.setSelected(false);
+                rdbtnFemale.setSelected(false);
+                textField_2.setText("");
+                textField_3.setText("");
+                heightSpinner.setValue(0);
+                weightSpinner.setValue(0);
+            }
+        });
+
+        
+     // ActionListener for Update button
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
+                    // Validate height
+                	double heightDouble = ((Number) heightSpinner.getValue()).doubleValue();
+                    int height = (int) heightDouble;
+                    if (height <= 0) {
+                        showError("Height must be a positive integer.");
+                        return;
+                    }
+                	
+                    // Validate weight
+                    double weightDouble = ((Number) weightSpinner.getValue()).doubleValue();
+                    int weight = (int) weightDouble;
+                    if (weight <= 0) {
+                        showError("Weight must be a positive integer.");
+                        return;
+                    }
+                    
+                    // Update patient details
                     patient.setFirstName(textField.getText());
                     patient.setLastName(textField_1.getText());
                     int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
@@ -249,8 +311,27 @@ public class Patientwindow {
                     patient.setGender(rdbtnMale.isSelected() ? "Male" : "Female");
                     patient.setAddress(textField_2.getText());
                     patient.setPhoneNumber(textField_3.getText());
-                    patient.setHeight((int) heightSpinner.getValue());
-                    patient.setWeight((int) weightSpinner.getValue());
+                    patient.setHeight(height);
+                    patient.setWeight(weight);
+                    
+                    // Update GUI components with updated patient details
+                    textField.setText(patient.getFirstName());
+                    textField_1.setText(patient.getLastName());
+                    String[] dateParts = patient.getDateOfBirth().toString().split("-");
+                    dayComboBox.setSelectedItem(dateParts[2]);
+                    monthComboBox.setSelectedItem(dateParts[1]);
+                    yearComboBox.setSelectedItem(dateParts[0]);
+                    if (patient.getGender().equals("Male")) {
+                        rdbtnMale.setSelected(true);
+                        rdbtnFemale.setSelected(false);
+                    } else {
+                        rdbtnMale.setSelected(false);
+                        rdbtnFemale.setSelected(true);
+                    }
+                    textField_2.setText(patient.getAddress());
+                    textField_3.setText(patient.getPhoneNumber());
+                    heightSpinner.setValue(patient.getHeight());
+                    weightSpinner.setValue(patient.getWeight());
 
                     textArea.append("Patient details updated successfully.\n");
                 } else {
@@ -259,6 +340,9 @@ public class Patientwindow {
             }
         });
 
+
+
+        // ActionListener for Delete button
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the identifier of the patient to delete
@@ -301,6 +385,7 @@ public class Patientwindow {
 
         });
 
+        // ActionListener for Print Details button
         btnPrintDetails.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the instance of PatientDataModel
@@ -332,6 +417,7 @@ public class Patientwindow {
             }
         });
 
+        // ActionListener for BMI button
         btnBmi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
@@ -342,30 +428,7 @@ public class Patientwindow {
             }
         });
 
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String firstName = textField.getText();
-                String lastName = textField_1.getText();
-                int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
-                String month = (String) monthComboBox.getSelectedItem();
-                int year = Integer.parseInt((String) yearComboBox.getSelectedItem());
-                String gender = rdbtnMale.isSelected() ? "Male" : "Female";
-                String address = textField_2.getText();
-                String phoneNumber = textField_3.getText();
-                double height = ((Number) heightSpinner.getValue()).doubleValue();
-                double weight = ((Number) weightSpinner.getValue()).doubleValue();
-                int id = Integer.parseInt(textField_4.getText()); // Assuming ID is provided in the input field
-
-                patient = new Patient(firstName, lastName, LocalDate.of(year, Month.valueOf(month.toUpperCase()), day),
-                        gender, address, phoneNumber, height, weight, id);
-
-                // Add patient to data model
-                PatientDataModel.getInstance().getPatients().add(patient);
-
-                textArea.append("Patient added successfully.\n");
-            }
-        });
-
+        // ActionListener for Age Category button
         btnAgeCategory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
@@ -375,5 +438,119 @@ public class Patientwindow {
                 }
             }
         });
+
+
+     // ActionListener for Add button
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Check if all mandatory fields are filled
+                if (textField.getText().isEmpty()) {
+                    showError("First name is mandatory.");
+                    return;
+                }
+                if (textField_1.getText().isEmpty()) {
+                    showError("Last name is mandatory.");
+                    return;
+                }
+                if (textField_4.getText().isEmpty()) {
+                    showError("ID is mandatory.");
+                    return;
+                }
+                
+                if (!rdbtnMale.isSelected() && !rdbtnFemale.isSelected()) {
+                    showError("Gender is mandatory.");
+                    return;
+                }
+                if (textField_3.getText().isEmpty()) {
+                    showError("Phone number is mandatory.");
+                    return;
+                }
+
+                // Check if ID is valid
+                String idText = textField_4.getText();
+                try {
+                    int id = Integer.parseInt(idText);
+                    // Check if ID is non-negative
+                    if (id < 0) {
+                        showError("ID must be a non-negative integer.");
+                        return;
+                    }
+                    // Validate height
+                    double heightDouble = ((Number) heightSpinner.getValue()).doubleValue();
+                    int height = (int) heightDouble;
+                    if (height <= 0) {
+                        showError("Height must be a positive integer.");
+                        return;
+                    }
+                    
+                    // Validate weight
+                    double weightDouble = ((Number) weightSpinner.getValue()).doubleValue();
+                    int weight = (int) weightDouble;
+                    if (weight <= 0) {
+                        showError("Weight must be a positive integer.");
+                        return;
+                    }
+                    
+                    // If all validation passes, proceed to create the patient object and add it
+                    String firstName = textField.getText();
+                    String lastName = textField_1.getText();
+                    int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
+                    String month = (String) monthComboBox.getSelectedItem();
+                    int year = Integer.parseInt((String) yearComboBox.getSelectedItem());
+                    String gender = rdbtnMale.isSelected() ? "Male" : "Female";
+                    String address = textField_2.getText();
+                    String phoneNumber = textField_3.getText();
+
+                    // Create and add patient object
+                    patient = new Patient(firstName, lastName, LocalDate.of(year, Month.valueOf(month.toUpperCase()), day),
+                            gender, address, phoneNumber, height, weight, id);
+
+                    // Add patient to data model
+                    PatientDataModel.getInstance().getPatients().add(patient);
+
+                    textArea.append("Patient added successfully.\n");
+                } catch (NumberFormatException ex) {
+                    showError("Invalid ID format. ID must be an integer.");
+                    return;
+                }
+            }
+        });
+
+
+        }
+
+    // Method to display error message in the error label
+    private void showError(String errorMessage) {
+        // Create and configure error dialog frame
+        errorFrame = new JFrame();
+        errorFrame.setBounds(100, 100, 300, 150);
+        errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        errorFrame.getContentPane().setLayout(null);
+
+        // Create and configure error dialog label
+        errorDialogLabel = new JLabel(errorMessage);
+        errorDialogLabel.setForeground(Color.RED);
+        errorDialogLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        errorDialogLabel.setBounds(10, 10, 300, 100);
+
+        // Add error dialog label to error dialog frame
+        errorFrame.getContentPane().add(errorDialogLabel);
+
+        // Create and configure OK button
+        JButton btnOk = new JButton("OK");
+        btnOk.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnOk.setBounds(100, 80, 89, 23);
+        btnOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the error dialog frame
+                errorFrame.dispose();
+            }
+        });
+
+        // Add OK button to error dialog frame
+        errorFrame.getContentPane().add(btnOk);
+
+        // Set error dialog frame visibility to true
+        errorFrame.setVisible(true);
     }
 }

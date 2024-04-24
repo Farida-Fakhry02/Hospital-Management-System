@@ -12,7 +12,7 @@ public class Main {
         System.out.printf("Hello and welcome!");
         System.out.printf("change detection");
 
-        Patient aliceJohnson = new Patient("Alice", "Johnson", LocalDate.of(1975, 3, 10), "Female", "789 Elm St", "555-123-4567", 170.0, 65.0,1);
+        Patient aliceJohnson = new Patient("Alice", "Johnson", LocalDate.of(1975, 3, 10), "Female", "789 Elm St", "555-123-4567", 170, 65,1);
 
         // Create a billing instance
         Billing billingSystem = new Billing();
