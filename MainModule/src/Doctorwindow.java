@@ -386,10 +386,6 @@ public class Doctorwindow {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
-<<<<<<< HEAD
-    
-    
-=======
     private boolean isValidExperienceYears(int experienceYears) {
         if (experienceYears < 0) {
             displayErrorMessage("Experience year must be positive");
@@ -398,5 +394,4 @@ public class Doctorwindow {
         return true;
     }
 
->>>>>>> 77b63532d0c82aac390a0df0f6d3395fd3177b8d
 }

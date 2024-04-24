@@ -109,12 +109,30 @@ public class InventoryControlGUI extends JFrame {
                 String quantityText = tfQuantity.getText();
                 String supplierId = tfSupplier.getText();
                 String description = tfDescription.getText();
-                
+
+                // Check if all mandatory fields are filled
+                if (itemId.isEmpty()) {
+                    showError("Item ID is mandatory.");
+                    return;
+                }
+                if (itemName.isEmpty()) {
+                    showError("Item Name is mandatory.");
+                    return;
+                }
+                if (quantityText.isEmpty()) {
+                    showError("Quantity is mandatory.");
+                    return;
+                }
+                if (supplierId.isEmpty()) {
+                    showError("Supplier ID is mandatory.");
+                    return;
+                }
+
                 if (!isValidItemId(itemId)) {
                     showError("Invalid Item ID format. Please enter alphanumeric characters only.");
                     return;
                 }
-                
+
                 int quantity;
                 try {
                     quantity = Integer.parseInt(quantityText);
@@ -139,6 +157,7 @@ public class InventoryControlGUI extends JFrame {
                 //clearInputFields();
             }
         });
+
         contentPane.add(btnAdditem);
 
         JButton btnRemoveItem = new JButton("Remove Item");
