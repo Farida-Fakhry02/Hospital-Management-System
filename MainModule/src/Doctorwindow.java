@@ -28,7 +28,9 @@ public class Doctorwindow {
     private JTextField consultationFeeField;
     private JSpinner experienceSpinner;
     private JButton btnPrintDetails;
+    private JLabel successLabel;
     private Doctor doctor;
+    private JScrollPane scrollPane;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -47,6 +49,7 @@ public class Doctorwindow {
         initialize();
         doctor = new Doctor();
     }
+    
 
     private void initialize() {
         frmP = new JFrame();
@@ -132,6 +135,12 @@ public class Doctorwindow {
         consultationFeeField.setBounds(191, 301, 139, 28);
         frmP.getContentPane().add(consultationFeeField);
         
+        successLabel = new JLabel("");
+        successLabel.setForeground(Color.GREEN);
+        successLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        successLabel.setBounds(10, 460, 350, 20);
+        frmP.getContentPane().add(successLabel);
+        
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.addActionListener(new ActionListener() {
@@ -155,29 +164,46 @@ public class Doctorwindow {
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Update doctor details
-                doctor.setFirstName(firstNameField.getText());
-                doctor.setLastName(lastNameField.getText());
-                doctor.setSpecialty(specialityField.getText());
-                doctor.setDoctorID(doctorIdField.getText());
-                doctor.setEmailAddress(emailField.getText());
-                doctor.setDepartment(departmentField.getText());
-                try {
-                    doctor.setExperienceYears(Integer.parseInt(experienceSpinner.getValue().toString()));
-                } catch (NumberFormatException ex) {
-                    // Handle invalid input for experience years
-                }
-                try {
-                    doctor.setConsultationFee(Double.parseDouble(consultationFeeField.getText()));
-                } catch (NumberFormatException ex) {
-                    // Handle invalid input for consultation fee
-                }
+                String doctorIdToUpdate = doctorIdField.getText();
 
-                // You can perform additional actions if needed
+                // Get the instance of DoctorDataModel
+                DoctorDataModel dataModel = DoctorDataModel.getInstance();
 
-                // For example, print doctor details after update
-                doctor.printDetails();
+                // Get the list of doctors
+                LinkedList<Doctor> doctorList = dataModel.getDoctors();
+
+                // Iterate through the list to find the doctor with the matching ID
+                for (Doctor currentDoctor : doctorList) {
+                    if (currentDoctor.getDoctorID().equals(doctorIdToUpdate)) {
+                        currentDoctor.setFirstName(firstNameField.getText());
+                        currentDoctor.setLastName(lastNameField.getText());
+                        currentDoctor.setSpecialty(specialityField.getText());
+                        currentDoctor.setDoctorID(doctorIdField.getText());
+                        currentDoctor.setEmailAddress(emailField.getText());
+                        currentDoctor.setDepartment(departmentField.getText());
+                        try {
+                            currentDoctor.setExperienceYears(Integer.parseInt(experienceSpinner.getValue().toString()));
+                        } catch (NumberFormatException ex) {
+                            // Handle invalid input for experience years
+                        }
+                        try {
+                            currentDoctor.setConsultationFee(Double.parseDouble(consultationFeeField.getText()));
+                        } catch (NumberFormatException ex) {
+                            // Handle invalid input for consultation fee
+                        }
+
+                        // Display success message
+                        JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
+                        textArea.append("Updated successfully.\n");
+
+                        // Break the loop after the doctor is found and updated
+                        break;
+                    }
+                }
             }
         });
+
+
         
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -252,9 +278,10 @@ public class Doctorwindow {
                 printDoctorDetails();
             }
         });
+
         frmP.getContentPane().add(btnPrintDetails);
         
-        JScrollPane scrollPane = new JScrollPane();
+        scrollPane = new JScrollPane();
         scrollPane.setBounds(382, 26, 256, 483);
         frmP.getContentPane().add(scrollPane);
         
@@ -275,6 +302,10 @@ public class Doctorwindow {
         Doctor doctorToAdd = new Doctor(firstName, lastName, specialty, "", doctorId, email, experienceYears, department, consultationFee, new ArrayList<>());
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
         dataModel.getDoctors().add(doctorToAdd);
+
+        // Update success label
+        JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
+        textArea.append("Doctor added successfully.\n");
     }
 
     private void printDoctorDetails() {
@@ -293,10 +324,10 @@ public class Doctorwindow {
             details.append("Consultation Fee: $").append(doctor.getConsultationFee()).append("\n\n");
         }
         
-        JScrollPane scrollPane = (JScrollPane) frmP.getContentPane().getComponentAt(223, 378);
         JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
         textArea.setText(details.toString());
     }
+
 
     public JFrame getFrame() {
         return frmP;
