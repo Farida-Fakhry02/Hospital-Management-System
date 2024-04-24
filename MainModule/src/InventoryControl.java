@@ -34,9 +34,10 @@ public class InventoryControl {
             item.setQuantity(quantity);
             inventory.put(itemId, item);
         } else {
-            System.out.println("Item with ID " + itemId + " does not exist in inventory.");
+            throw new IllegalArgumentException("Item with ID " + itemId + " does not exist in inventory.");
         }
     }
+
 
     // Method to check availability of an item in inventory
     public String checkItemAvailability(String itemId) {
