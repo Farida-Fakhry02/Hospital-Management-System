@@ -115,13 +115,15 @@ public class AppointmentWindow {
         
      // Day ComboBox
         dayComboBox = new JComboBox<>();
+        dayComboBox.setMaximumRowCount(31);
         for (int day = 1; day <= 31; day++) {
-            dayComboBox.addItem(day);
+        	dayComboBox.addItem(day);
         }
-        dayComboBox.setSelectedItem(1); // Default day is 1
         dayComboBox.setBounds(157, 57, 46, 21);
         frmAppointment.getContentPane().add(dayComboBox);
 
+
+        
         
         // Month ComboBox
         monthComboBox = new JComboBox<>(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
@@ -152,7 +154,7 @@ public class AppointmentWindow {
         
         JButton btnNewButton_1_1 = new JButton("Back");
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_1_1.setBounds(181, 438, 112, 42);
+        btnNewButton_1_1.setBounds(181, 438, 122, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1);
 
         btnNewButton_1_1.addActionListener(new ActionListener() {
@@ -169,12 +171,12 @@ public class AppointmentWindow {
 
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnCancel.setBounds(181, 313, 112, 42);
+        btnCancel.setBounds(181, 313, 122, 42);
         frmAppointment.getContentPane().add(btnCancel);
         
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(182, 375, 112, 42);
+        btnPrintDetails.setBounds(182, 375, 121, 42);
         frmAppointment.getContentPane().add(btnPrintDetails);
         
         List<String> doctorNames = DoctorDataModel.getInstance().getDoctorNames();
@@ -295,12 +297,27 @@ public class AppointmentWindow {
     
     // Method to update day JComboBox options based on the selected month and year
     private void updateDayComboBox() {
+        // Store the currently selected day
+        Integer selectedDay = (Integer) dayComboBox.getSelectedItem();
+
         int monthIndex = monthComboBox.getSelectedIndex();
         int year = (int) yearComboBox.getSelectedItem();
         int daysInMonth = YearMonth.of(year, monthIndex + 1).lengthOfMonth(); // Get the number of days in the selected month
+        
+        // Clear the day ComboBox
         dayComboBox.removeAllItems();
+        
+        // Add the days corresponding to the selected month
         for (int day = 1; day <= daysInMonth; day++) {
             dayComboBox.addItem(day);
+        }
+        
+        // Re-select the previously selected day if it exists in the new month
+        if (selectedDay != null && selectedDay >= 1 && selectedDay <= daysInMonth) {
+            dayComboBox.setSelectedItem(selectedDay);
+        } else {
+            // If the previously selected day is not valid for the new month, select the first day
+            dayComboBox.setSelectedIndex(0);
         }
     }
 }
