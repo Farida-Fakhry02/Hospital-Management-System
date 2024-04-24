@@ -30,6 +30,7 @@ doctors = new LinkedList<>();
         doctors.add(doctor2);
     
     }
+    
         
         
         // initialize the list with default values, if needed
@@ -45,6 +46,16 @@ doctors = new LinkedList<>();
     public LinkedList<Doctor> getDoctors() {
         return doctors;
     }
+    
+    public List<String> getDoctorNames() {
+        List<String> doctorNames = new ArrayList<>();
+        for (Doctor doctor : doctors) {
+            String fullName = doctor.getFirstName() + " " + doctor.getLastName();
+            doctorNames.add("Dr. " + fullName);
+        }
+        return doctorNames;
+    }
+   
 }
     
 

@@ -17,6 +17,10 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+
 
 public class AppointmentWindow {
 
@@ -137,9 +141,6 @@ public class AppointmentWindow {
         btnNewButton_1_1.setBounds(181, 438, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1);
 
-        
-
-        
         btnNewButton_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close the current window
@@ -150,19 +151,8 @@ public class AppointmentWindow {
                 receptionistWindow.frame.setVisible(true);
             }
         });
-        btnNewButton_1_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Close the current window
-                frmAppointment.dispose();
-
-                // Show the receptionist window
-                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
-                receptionistGUI.getFrame().setVisible(true);
-            }
-        });
 
 
-        
         JButton btnCancel = new JButton("Cancel");
         btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnCancel.setBounds(181, 313, 112, 42);
@@ -173,9 +163,13 @@ public class AppointmentWindow {
         btnPrintDetails.setBounds(175, 375, 119, 42);
         frmAppointment.getContentPane().add(btnPrintDetails);
         
-        JComboBox<Integer> dayComboBox_1 = new JComboBox<Integer>();
-        dayComboBox_1.setBounds(157, 120, 112, 21);
-        frmAppointment.getContentPane().add(dayComboBox_1);
+        List<String> doctorNames = DoctorDataModel.getInstance().getDoctorNames();
+        
+        // Populate the JComboBox with doctor names
+        JComboBox<String> doctorComboBox = new JComboBox<>(doctorNames.toArray(new String[0]));
+        doctorComboBox.setBounds(157, 120, 112, 21);
+        frmAppointment.getContentPane().add(doctorComboBox);
+        
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(369, 57, 262, 434);
