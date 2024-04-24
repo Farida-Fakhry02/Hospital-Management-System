@@ -5,18 +5,26 @@ import java.time.format.*;
 public class Appointment {
     private LocalDateTime date;
     private Doctor doctor;
-    private String patientId;
+    private Patient patient;
     private String slot;
 
     // Constructor
-    public Appointment(LocalDateTime localDateTime, Doctor doctor, String patientId, String slot) {
+    public Appointment(LocalDateTime localDateTime, Doctor doctor, Patient patient, String slot) {
         this.date = localDateTime;
         this.doctor = doctor;
-        this.patientId = patientId;
+        this.patient = patient;
         this.slot = slot;
     }
 
-    // Getters and setters
+    public Appointment(LocalDateTime dateTime, Doctor doctor2, Patient patient2) {
+    	
+    	date=dateTime;
+    	doctor=doctor2;
+    	patient=patient2;
+		// TODO Auto-generated constructor stub
+	}
+
+	// Getters and setters
     public LocalDateTime getDate() {
         return date;
     }
@@ -33,12 +41,12 @@ public class Appointment {
         this.doctor = doctor;
     }
 
-    public String getPatientId() {
-        return patientId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public String getSlot() {
@@ -54,30 +62,30 @@ public class Appointment {
         System.out.println("Appointment Details:");
         System.out.println("Date: " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
-        System.out.println("Patient ID: " + patientId);
+        System.out.println("Patient ID: " + patient.getId());
         System.out.println("Slot: " + slot);
     }
 
     // Other methods
     // Add appointment
-    public static void addAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId, String slot) {
-        appointments.add(new Appointment(date, doctor, patientId, slot));
+    public static void addAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, Patient patient, String slot) {
+        appointments.add(new Appointment(date, doctor, patient, slot));
     }
 
     // Cancel appointment
-    public static void cancelAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId) {
+    public static void cancelAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, Patient patient) {
         appointments.removeIf(appointment ->
                 appointment.getDate().equals(date) &&
                 appointment.getDoctor().equals(doctor) &&
-                appointment.getPatientId().equals(patientId));
+                appointment.getPatient().equals(patient));
     }
 
     // Update appointment
-    public static void updateAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId, String newSlot) {
+    public static void updateAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, Patient patient, String newSlot) {
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date) &&
                     appointment.getDoctor().equals(doctor) &&
-                    appointment.getPatientId().equals(patientId)) {
+                    appointment.getPatient().equals(patient)) {
                 appointment.setSlot(newSlot);
                 return;
             }
