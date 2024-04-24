@@ -142,8 +142,7 @@ public class Doctorwindow {
                     addDoctor();
                 } else {
 
-                    displayErrorMessage("Invalid input - id should be an integer");
-                    displayErrorMessage("Invalid Doctor ID");
+                    displayErrorMessage("Invalid Doctor ID - id should be an integer");
 
                 }
             }
@@ -168,7 +167,7 @@ public class Doctorwindow {
                 // Get the list of doctors
                 LinkedList<Doctor> doctorList = dataModel.getDoctors();
 
-                // Iterate through the list to find the doctor with the matching ID
+                // Iterate through the private void addDoctor() {list to find the doctor with the matching ID
                 for (Doctor currentDoctor : doctorList) {
                     if (currentDoctor.getDoctorID().equals(doctorIdToUpdate)) {
                         currentDoctor.setFirstName(firstNameField.getText());
@@ -333,6 +332,13 @@ public class Doctorwindow {
             return; // Exit method if fee is not a number
         }
 
+        // Check if experience years is valid
+        int experienceYears = (int) experienceSpinner.getValue();
+        if (experienceYears < 0) {
+            displayErrorMessage("Experience years must be a positive number");
+            return; // Exit method if years is not positive
+        }
+
         // Proceed to add the doctor if all checks pass
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
@@ -340,7 +346,6 @@ public class Doctorwindow {
         String doctorId = doctorIdField.getText();
         String email = emailField.getText();
         String department = departmentField.getText();
-        int experienceYears = (int) experienceSpinner.getValue();
 
         Doctor doctorToAdd = new Doctor(firstName, lastName, specialty, "", doctorId, email, experienceYears, department, consultationFee, new ArrayList<>());
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
@@ -351,9 +356,6 @@ public class Doctorwindow {
         textArea.append("Doctor added successfully.\n");
     }
 
-
-
-    
     
     private void printDoctorDetails() {
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
@@ -396,6 +398,5 @@ public class Doctorwindow {
         }
         return true;
     }
-
 
 }

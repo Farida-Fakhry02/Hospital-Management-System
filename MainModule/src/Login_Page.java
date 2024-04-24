@@ -66,7 +66,7 @@ public class Login_Page {
         frame.getContentPane().add(lblNewLabel_1);
 
         txtUsername = new JTextField();
-        txtUsername.setToolTipText("Please enter the username");
+        txtUsername.setToolTipText("Please enter your username");
         txtUsername.setColumns(10);
         txtUsername.setBounds(228, 191, 183, 30);
         frame.getContentPane().add(txtUsername);
@@ -100,6 +100,7 @@ public class Login_Page {
         frame.getContentPane().add(btnNewButton);
         
         passwordField = new JPasswordField();
+        passwordField.setToolTipText("Please enter your password");
         passwordField.setBounds(228, 277, 183, 33);
         frame.getContentPane().add(passwordField);
         
