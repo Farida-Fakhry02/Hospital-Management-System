@@ -133,9 +133,15 @@ public class InventoryControlGUI extends JFrame {
                     return;
                 }
 
+                
                 int quantity;
                 try {
                     quantity = Integer.parseInt(quantityText);
+                    if (quantity < 0) {
+                        // Quantity should be positive, display error message
+                    	showError("Quantity should be a positive number.");
+                        return;
+                    }
                 } catch (NumberFormatException ex) {
                     showError("Invalid Quantity format. Please enter a valid integer value.");
                     return;
@@ -153,8 +159,6 @@ public class InventoryControlGUI extends JFrame {
 
                 // Update the list of inventory items in the data model
                 InventoryDataModel.getInstance().getInventoryItems().add(item);
-
-                //clearInputFields();
             }
         });
 
