@@ -178,20 +178,99 @@ public class MedicalRecordWindow {
             }
         });
     
-
-
-
-
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.setBounds(21, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnNewButton);
         
         btnUpdate = new JButton("Update");
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get the record ID from the text field
+                int recordIDToUpdate = Integer.parseInt(textField.getText());
+                
+                // Find the index of the record with the specified record ID
+                int index = -1;
+                for (int i = 0; i < medicalRecords.size(); i++) {
+                    if (medicalRecords.get(i).getRecordId() == recordIDToUpdate) {
+                        index = i;
+                        break;
+                    }
+                }
+                
+                // If the record ID is found
+                if (index != -1) {
+                    // Update the fields of the medical record
+                    medicalRecords.get(index).setPatientName(textField_1.getText());
+                    medicalRecords.get(index).setDiagnosis(textField_2.getText());
+                    medicalRecords.get(index).setTreatment(textField_3.getText());
+                    // Update the text area to display the updated information
+                    JTextArea textArea = new JTextArea();
+                    for (MedicalRecord record : medicalRecords) {
+                        textArea.append(record.toString() + "\n");
+                    }
+                    scrollPane.setViewportView(textArea);
+                    // Display a success message
+                    textArea.append("Record updated successfully.\n");
+                    
+                } else {
+                    // Display an error message if the record ID is not found
+                    JTextArea textArea = new JTextArea();
+                    for (MedicalRecord record : medicalRecords) {
+                        textArea.append(record.toString() + "\n");
+                    }
+                    scrollPane.setViewportView(textArea);
+                    textArea.append("Record ID not found.\n");
+                }
+            }
+        });
+
+
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnUpdate.setBounds(155, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnUpdate);
         
         btnDelete = new JButton("Delete");
+        btnDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get the record ID from the text field
+                int recordIDToDelete = Integer.parseInt(textField.getText());
+                
+                // Find the index of the record with the specified record ID
+                int index = -1;
+                for (int i = 0; i < medicalRecords.size(); i++) {
+                    if (medicalRecords.get(i).getRecordId() == recordIDToDelete) {
+                        index = i;
+                        break;
+                    }
+                }
+                
+                // If the record ID is found
+                if (index != -1) {
+                    // Remove the record from the list
+                    medicalRecords.remove(index);
+                    // Clear all text fields
+                    textField.setText("");
+                    textField_1.setText("");
+                    textField_2.setText("");
+                    textField_3.setText("");
+                    // Clear the text area
+                    JTextArea textArea = new JTextArea();
+                    scrollPane.setViewportView(textArea);
+                    // Display a success message
+                    textArea.append("Record deleted successfully.\n");
+                } else {
+                    // Display an error message if the record ID is not found
+                    JTextArea textArea = new JTextArea();
+                    for (MedicalRecord record : medicalRecords) {
+                        textArea.append(record.toString() + "\n");
+                    }
+                    scrollPane.setViewportView(textArea);
+                    textArea.append("Record ID not found.\n");
+                }
+            }
+        });
+
+
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnDelete.setBounds(107, 426, 115, 51);
         frmMedicalRecords.getContentPane().add(btnDelete);
@@ -212,6 +291,34 @@ public class MedicalRecordWindow {
         frmMedicalRecords.getContentPane().add(btnBack);
         
         btnSearch = new JButton("Search");
+        btnSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get the record ID from the text field
+                int searchRecordID = Integer.parseInt(textField.getText());
+                
+                // Check if the record ID exists in the list
+                boolean found = false;
+                for (MedicalRecord record : medicalRecords) {
+                    if (record.getRecordId() == searchRecordID) {
+                        // Record found, print its information
+                        textArea.setText(""); // Clear previous content
+                        textArea.append("Record ID: " + record.getRecordId() + "\n");
+                        textArea.append("Patient Name: " + record.getPatientName() + "\n");
+                        textArea.append("Diagnosis: " + record.getDiagnosis() + "\n");
+                        textArea.append("Treatment: " + record.getTreatment() + "\n");
+                        textArea.append("Date: " + record.getDate() + "\n");
+                        found = true;
+                        break;
+                    }
+                }
+                
+                // If the record ID is not found, display an error message
+                if (!found) {
+                    textArea.setText("Record ID not found");
+                }
+            }
+        });
+
         btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnSearch.setBounds(287, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnSearch);
