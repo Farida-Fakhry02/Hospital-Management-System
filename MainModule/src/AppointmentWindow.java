@@ -31,6 +31,7 @@ public class AppointmentWindow {
     private JComboBox<Integer> yearComboBox;
     private AppointmentManager appointmentManager;
     private JTextArea textArea;
+    private JTextField textField;
 
     /**
      * Launch the application.
@@ -167,9 +168,10 @@ public class AppointmentWindow {
         btnNewButton_1_1_1.setBounds(45, 438, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1_1);
         
-        JComboBox PatientDropDown = new JComboBox();
-        PatientDropDown.setBounds(157, 183, 137, 28);
-        frmAppointment.getContentPane().add(PatientDropDown);
+        textField = new JTextField();
+        textField.setBounds(157, 186, 112, 28);
+        frmAppointment.getContentPane().add(textField);
+        textField.setColumns(10);
         
         // Add action listeners to month and year JComboBoxes
         monthComboBox.addActionListener(new ActionListener() {
