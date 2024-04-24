@@ -24,6 +24,11 @@ public class Patientwindow {
     private JTextField textField_4; // For patient ID
     private Patient patient;
     private int nextId = 1; // Next available ID
+    private JLabel errorLabel; // Label to display error messages
+
+    // Error dialog frame and label
+    private JFrame errorFrame;
+    private JLabel errorDialogLabel;
 
     /**
      * Launch the application.
@@ -32,7 +37,7 @@ public class Patientwindow {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	Patientwindow window = new Patientwindow();
+                    Patientwindow window = new Patientwindow();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -214,13 +219,21 @@ public class Patientwindow {
         btnAgeCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnAgeCategory.setBounds(186, 460, 125, 46);
         frame.getContentPane().add(btnAgeCategory);
+        
+        // Create and add a label for displaying error messages
+        errorLabel = new JLabel("");
+        errorLabel.setForeground(Color.RED); // Set color to red
+        errorLabel.setBounds(172, 10, 400, 20); // Adjust the position and size as needed
+        frame.getContentPane().add(errorLabel);
+
+        // JTextArea and JScrollPane
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(369, 140, 217, 418);
         frame.getContentPane().add(scrollPane);
-        
-                textArea = new JTextArea();
-                scrollPane.setViewportView(textArea);
-        
+
+        textArea = new JTextArea();
+        scrollPane.setViewportView(textArea);
+
         JButton btnNewButton_2_1_1 = new JButton("Back");
         btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton_2_1_1.setBounds(129, 523, 125, 46);
@@ -229,17 +242,30 @@ public class Patientwindow {
             public void actionPerformed(ActionEvent e) {
                 // Close the current Patientwindow frame
                 frame.dispose();
-                
+
                 // Create an instance of the Receptionist_GUI and make it visible
                 Receptionist_GUI receptionistGUI = new Receptionist_GUI();
                 receptionistGUI.frame.setVisible(true);
             }
         });
 
-
+        // ActionListener for Update button
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
+                    // Validate height
+                    int height = (int) heightSpinner.getValue();
+                    if (height <= 0) {
+                        showError("Height must be a positive integer.");
+                        return;
+                    }
+                    // Validate weight
+                    int weight = (int) weightSpinner.getValue();
+                    if (weight <= 0) {
+                        showError("Weight must be a positive integer.");
+                        return;
+                    }
+                    // Update patient details
                     patient.setFirstName(textField.getText());
                     patient.setLastName(textField_1.getText());
                     int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
@@ -249,8 +275,8 @@ public class Patientwindow {
                     patient.setGender(rdbtnMale.isSelected() ? "Male" : "Female");
                     patient.setAddress(textField_2.getText());
                     patient.setPhoneNumber(textField_3.getText());
-                    patient.setHeight((int) heightSpinner.getValue());
-                    patient.setWeight((int) weightSpinner.getValue());
+                    patient.setHeight(height);
+                    patient.setWeight(weight);
 
                     textArea.append("Patient details updated successfully.\n");
                 } else {
@@ -259,6 +285,7 @@ public class Patientwindow {
             }
         });
 
+        // ActionListener for Delete button
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the identifier of the patient to delete
@@ -301,6 +328,7 @@ public class Patientwindow {
 
         });
 
+        // ActionListener for Print Details button
         btnPrintDetails.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the instance of PatientDataModel
@@ -332,6 +360,7 @@ public class Patientwindow {
             }
         });
 
+        // ActionListener for BMI button
         btnBmi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
@@ -342,30 +371,7 @@ public class Patientwindow {
             }
         });
 
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String firstName = textField.getText();
-                String lastName = textField_1.getText();
-                int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
-                String month = (String) monthComboBox.getSelectedItem();
-                int year = Integer.parseInt((String) yearComboBox.getSelectedItem());
-                String gender = rdbtnMale.isSelected() ? "Male" : "Female";
-                String address = textField_2.getText();
-                String phoneNumber = textField_3.getText();
-                double height = ((Number) heightSpinner.getValue()).doubleValue();
-                double weight = ((Number) weightSpinner.getValue()).doubleValue();
-                int id = Integer.parseInt(textField_4.getText()); // Assuming ID is provided in the input field
-
-                patient = new Patient(firstName, lastName, LocalDate.of(year, Month.valueOf(month.toUpperCase()), day),
-                        gender, address, phoneNumber, height, weight, id);
-
-                // Add patient to data model
-                PatientDataModel.getInstance().getPatients().add(patient);
-
-                textArea.append("Patient added successfully.\n");
-            }
-        });
-
+        // ActionListener for Age Category button
         btnAgeCategory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
@@ -375,5 +381,91 @@ public class Patientwindow {
                 }
             }
         });
+
+        // ActionListener for Add button
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Validate and process patient data before adding
+
+                // Check if ID is valid
+                String idText = textField_4.getText();
+                try {
+                    int id = Integer.parseInt(idText);
+                    // Check if ID is non-negative
+                    if (id < 0) {
+                        showError("ID must be a non-negative integer.");
+                        return;
+                    }
+                    // Validate height
+                    int height = (int) heightSpinner.getValue();
+                    if (height <= 0) {
+                        showError("Height must be a positive integer.");
+                        return;
+                    }
+                    // Validate weight
+                    int weight = (int) weightSpinner.getValue();
+                    if (weight <= 0) {
+                        showError("Weight must be a positive integer.");
+                        return;
+                    }
+                    // If all validation passes, proceed to create the patient object and add it
+                    String firstName = textField.getText();
+                    String lastName = textField_1.getText();
+                    int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
+                    String month = (String) monthComboBox.getSelectedItem();
+                    int year = Integer.parseInt((String) yearComboBox.getSelectedItem());
+                    String gender = rdbtnMale.isSelected() ? "Male" : "Female";
+                    String address = textField_2.getText();
+                    String phoneNumber = textField_3.getText();
+
+                    // Create and add patient object
+                    patient = new Patient(firstName, lastName, LocalDate.of(year, Month.valueOf(month.toUpperCase()), day),
+                            gender, address, phoneNumber, height, weight, id);
+
+                    // Add patient to data model
+                    PatientDataModel.getInstance().getPatients().add(patient);
+
+                    textArea.append("Patient added successfully.\n");
+                } catch (NumberFormatException ex) {
+                    showError("Invalid ID format. ID must be an integer.");
+                    return;
+                }
+            }
+        });
+        }
+
+    // Method to display error message in the error label
+    private void showError(String errorMessage) {
+        // Create and configure error dialog frame
+        errorFrame = new JFrame();
+        errorFrame.setBounds(100, 100, 300, 150);
+        errorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        errorFrame.getContentPane().setLayout(null);
+
+        // Create and configure error dialog label
+        errorDialogLabel = new JLabel(errorMessage);
+        errorDialogLabel.setForeground(Color.RED);
+        errorDialogLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        errorDialogLabel.setBounds(10, 10, 300, 100);
+
+        // Add error dialog label to error dialog frame
+        errorFrame.getContentPane().add(errorDialogLabel);
+
+        // Create and configure OK button
+        JButton btnOk = new JButton("OK");
+        btnOk.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnOk.setBounds(100, 80, 89, 23);
+        btnOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Close the error dialog frame
+                errorFrame.dispose();
+            }
+        });
+
+        // Add OK button to error dialog frame
+        errorFrame.getContentPane().add(btnOk);
+
+        // Set error dialog frame visibility to true
+        errorFrame.setVisible(true);
     }
 }
