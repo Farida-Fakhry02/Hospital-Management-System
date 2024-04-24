@@ -515,8 +515,6 @@ public class Patientwindow {
                 }
             }
         });
-
-
         }
 
     // Method to display error message in the error label

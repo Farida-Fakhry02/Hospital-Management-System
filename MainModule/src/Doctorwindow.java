@@ -141,7 +141,7 @@ public class Doctorwindow {
                 if (isValidDoctorId() && isValidExperienceYears((int) experienceSpinner.getValue())) {
                     addDoctor();
                 } else {
-                    displayErrorMessage("Invalid input");
+                    displayErrorMessage("Invalid input - id should be an integer");
                 }
             }
         });
@@ -333,15 +333,38 @@ public class Doctorwindow {
     }
     
     private void addDoctor() {
+        // Check if all mandatory fields are filled
+        if (firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() ||
+                specialityField.getText().isEmpty() || doctorIdField.getText().isEmpty() ||
+                emailField.getText().isEmpty() || departmentField.getText().isEmpty() ||
+                consultationFeeField.getText().isEmpty()) {
+            // If any mandatory field is empty, display an error message
+            displayErrorMessage("All fields are mandatory. Please fill in all the required fields.");
+            return;
+        }
+
+        // Check if consultation fee is valid
+        double consultationFee;
+        try {
+            consultationFee = Double.parseDouble(consultationFeeField.getText());
+            if (consultationFee <= 0) {
+                displayErrorMessage("Consultation fee must be a positive number");
+                return; // Exit method if fee is not positive
+            }
+        } catch (NumberFormatException ex) {
+            displayErrorMessage("Invalid consultation fee");
+            return; // Exit method if fee is not a number
+        }
+
+        // Proceed to add the doctor if all checks pass
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String specialty = specialityField.getText();
         String doctorId = doctorIdField.getText();
         String email = emailField.getText();
         String department = departmentField.getText();
-        double consultationFee = Double.parseDouble(consultationFeeField.getText());
         int experienceYears = (int) experienceSpinner.getValue();
-        
+
         Doctor doctorToAdd = new Doctor(firstName, lastName, specialty, "", doctorId, email, experienceYears, department, consultationFee, new ArrayList<>());
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
         dataModel.getDoctors().add(doctorToAdd);
@@ -350,6 +373,8 @@ public class Doctorwindow {
         JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
         textArea.append("Doctor added successfully.\n");
     }
+
+
 
     
     
