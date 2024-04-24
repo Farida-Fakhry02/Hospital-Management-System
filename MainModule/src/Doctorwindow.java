@@ -142,7 +142,7 @@ public class Doctorwindow {
                     addDoctor();
                 } else {
 
-                    displayErrorMessage("Invalid Doctor ID - id should be an integer");
+                    displayErrorMessage("Invalid Doctor ID - id should be an alphanumeric value");
 
                 }
             }
@@ -383,7 +383,7 @@ public class Doctorwindow {
     }
     private boolean isValidDoctorId() {
         String doctorId = doctorIdField.getText();
-        return doctorId.matches("\\d+");
+        return doctorId.matches("[a-zA-Z0-9]+");
     }
     private void displayErrorMessage(String message) {
         // Display the error message in a dialog box
