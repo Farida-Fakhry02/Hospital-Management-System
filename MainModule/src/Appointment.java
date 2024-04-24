@@ -3,44 +3,27 @@ import java.time.*;
 import java.time.format.*;
 
 public class Appointment {
-    private LocalDateTime dateTime;
+    private LocalDateTime date;
     private Doctor doctor;
-    private Patient patient;
+    private String patientId;
     private String slot;
 
     // Constructor
-    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient) {
-        this.dateTime = dateTime;
+    public Appointment(LocalDateTime localDateTime, Doctor doctor, String patientId, String slot) {
+        this.date = localDateTime;
         this.doctor = doctor;
-        this.patient = patient;
-        this.slot = formatSlot(dateTime);
-    }
-
-    public Appointment(LocalDateTime dateTime, Doctor doctor, Patient patient, String slot) {
-        this.dateTime = dateTime;
-        this.doctor = doctor;
-        this.patient = patient;
+        this.patientId = patientId;
         this.slot = slot;
     }
 
-// Getters and setters
-
-    public String getSlot() {
-        return slot;
+    // Getters and setters
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setSlot(String slot) {
-        this.slot = slot;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
 
     public Doctor getDoctor() {
         return doctor;
@@ -50,66 +33,64 @@ public class Appointment {
         this.doctor = doctor;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
-  
+    public String getSlot() {
+        return slot;
+    }
 
-    //other methods
+    public void setSlot(String slot) {
+        this.slot = slot;
+    }
 
     // Method to print appointment details
     public void printDetails() {
         System.out.println("Appointment Details:");
-        System.out.println("Date and Time: " + dateTime);
+        System.out.println("Date: " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println("Doctor: " + doctor.getFirstName() + " " + doctor.getLastName());
-        System.out.println("Patient: " + patient.getFirstName() + " " + patient.getLastName());
-        System.out.println("Slot: "+slot);
+        System.out.println("Patient ID: " + patientId);
+        System.out.println("Slot: " + slot);
     }
 
-
-    // Method to format the slot
-    private String formatSlot(LocalDateTime dateTime) {
-        // Get the day of the week in a shorter format (e.g., "Mon", "Tue", etc.)
-        String dayOfWeek = dateTime.getDayOfWeek().toString().substring(0, 3);
-        // Get the time in HH:mm format
-        String time = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
-        // Combine day of the week and time
-        return dayOfWeek + " " + time;
+    // Other methods
+    // Add appointment
+    public static void addAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId, String slot) {
+        appointments.add(new Appointment(date, doctor, patientId, slot));
     }
 
+    // Cancel appointment
+    public static void cancelAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId) {
+        appointments.removeIf(appointment ->
+                appointment.getDate().equals(date) &&
+                appointment.getDoctor().equals(doctor) &&
+                appointment.getPatientId().equals(patientId));
+    }
 
+    // Update appointment
+    public static void updateAppointment(List<Appointment> appointments, LocalDateTime date, Doctor doctor, String patientId, String newSlot) {
+        for (Appointment appointment : appointments) {
+            if (appointment.getDate().equals(date) &&
+                    appointment.getDoctor().equals(doctor) &&
+                    appointment.getPatientId().equals(patientId)) {
+                appointment.setSlot(newSlot);
+                return;
+            }
+        }
+        System.out.println("Appointment not found for update.");
+    }
 
-/*
-CancelAppointment(): This method cancels the appointment.
-
-GetAppointmentDuration(): This method calculates and returns the duration of the appointment.
-
-IsSameDayAppointment(): This method checks if the appointment is scheduled for the same day.
-
-IsUpcomingAppointment(): This method checks if the appointment is upcoming (i.e., scheduled for a future date and time).
-
-CheckDoctorAvailability(): This method checks if the doctor is available at the scheduled appointment time.
-
-CheckPatientEligibility(): This method checks if the patient is eligible for the appointment (e.g., if they have met certain criteria or completed necessary prerequisites).
-
-GenerateAppointmentConfirmation(): This method generates a confirmation message or document for the appointment.
-
-SendAppointmentReminder(): This method sends a reminder to the patient about the upcoming appointment.
-
-UpdateReason(String newReason): This method allows updating the reason for the appointment.
-
-CalculateCost(): This method calculates the cost of the appointment (if applicable, e.g., consultation fee).
-
-RecordAppointmentOutcome(String outcome): This method records the outcome of the appointment (e.g., diagnosis, treatment plan).
-
-AddNotes(String notes): This method allows adding additional notes or comments related to the appointment.
-
-*/
-
-
+    // Show all appointments
+    public static void showAllAppointments(List<Appointment> appointments) {
+        System.out.println("All Appointments:");
+        for (Appointment appointment : appointments) {
+            appointment.printDetails();
+            System.out.println();
+        }
+    }
 }
