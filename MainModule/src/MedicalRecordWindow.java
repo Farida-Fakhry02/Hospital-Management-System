@@ -42,6 +42,7 @@ public class MedicalRecordWindow {
      * Launch the application.
      */
     private List<MedicalRecord> medicalRecords = new ArrayList<>();
+    private JButton btnClear;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -272,7 +273,7 @@ public class MedicalRecordWindow {
 
 
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(107, 426, 115, 51);
+        btnDelete.setBounds(21, 413, 115, 51);
         frmMedicalRecords.getContentPane().add(btnDelete);
         
         btnBack = new JButton("Back");
@@ -287,7 +288,7 @@ public class MedicalRecordWindow {
             }
         });
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBack.setBounds(253, 426, 115, 51);
+        btnBack.setBounds(287, 413, 115, 51);
         frmMedicalRecords.getContentPane().add(btnBack);
         
         btnSearch = new JButton("Search");
@@ -335,6 +336,21 @@ public class MedicalRecordWindow {
         btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnAdd.setBounds(22, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnAdd);
+        
+        btnClear = new JButton("Clear");
+        btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnClear.setBounds(155, 413, 115, 51);
+        frmMedicalRecords.getContentPane().add(btnClear);
+        // Add action listener to the "Clear" button
+        btnClear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Clear all text fields
+                textField.setText("");
+                textField_1.setText("");
+                textField_2.setText("");
+                textField_3.setText("");
+            }
+        });
     }
 
     // Create a MaskFormatter for the date field
