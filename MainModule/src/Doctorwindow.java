@@ -138,10 +138,14 @@ public class Doctorwindow {
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (isValidDoctorId() && isValidExperienceYears((int) experienceSpinner.getValue())) {
+                if (isValidDoctorId()) {
                     addDoctor();
                 } else {
+<<<<<<< HEAD
                     displayErrorMessage("Invalid input - id should be an integer");
+=======
+                    displayErrorMessage("Invalid Doctor ID");
+>>>>>>> 786a5c66d2d3acad3920aa83ff9f29c16926fb13
                 }
             }
         });
@@ -174,33 +178,15 @@ public class Doctorwindow {
                         currentDoctor.setDoctorID(doctorIdField.getText());
                         currentDoctor.setEmailAddress(emailField.getText());
                         currentDoctor.setDepartment(departmentField.getText());
-
-                        // Validate and set experience years
-                        int experienceYears;
                         try {
-                            experienceYears = Integer.parseInt(experienceSpinner.getValue().toString());
-                            if (experienceYears < 0) {
-                                displayErrorMessage("Experience years must be positive");
-                                return;
-                            }
-                            currentDoctor.setExperienceYears(experienceYears);
+                            currentDoctor.setExperienceYears(Integer.parseInt(experienceSpinner.getValue().toString()));
                         } catch (NumberFormatException ex) {
-                            displayErrorMessage("Invalid experience years");
-                            return;
+                            // Handle invalid input for experience years
                         }
-
-                        // Validate and set consultation fee
-                        double consultationFee;
                         try {
-                            consultationFee = Double.parseDouble(consultationFeeField.getText());
-                            if (consultationFee < 0) {
-                                displayErrorMessage("Consultation fee must be positive");
-                                return;
-                            }
-                            currentDoctor.setConsultationFee(consultationFee);
+                            currentDoctor.setConsultationFee(Double.parseDouble(consultationFeeField.getText()));
                         } catch (NumberFormatException ex) {
-                            displayErrorMessage("Invalid consultation fee");
-                            return;
+                            // Handle invalid input for consultation fee
                         }
 
                         // Display success message
@@ -213,7 +199,6 @@ public class Doctorwindow {
                 }
             }
         });
-
 
 
         
@@ -235,25 +220,19 @@ public class Doctorwindow {
                 LinkedList<Doctor> doctorList = dataModel.getDoctors();
 
                 // Iterate through the list to find the doctor with the matching ID
-                for (Doctor currentDoctor : doctorList) {
-                    if (currentDoctor.getDoctorID().equals(doctorIDToDelete)) {
-                        // Remove the current doctor from the list
-                        doctorList.remove(currentDoctor);
-
+                for (Doctor doctor : doctorList) {
+                    if (doctor.getDoctorID().equals(doctorIDToDelete)) {
+                        // Remove the doctor from the list
+                        doctorList.remove(doctor);
                         // Optionally, update the GUI to reflect the changes
                         // For example, clear the input fields
                         clearInputFields();
-
-                        // Display success message
-                        JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
-                        textArea.append("Doctor deleted successfully.\n");
-
                         // Break the loop after the doctor is found and removed
                         break;
                     }
                 }
             }
-
+            
             private void clearInputFields() {
                 firstNameField.setText("");
                 lastNameField.setText("");
@@ -265,7 +244,6 @@ public class Doctorwindow {
                 // Clear any other fields if needed
             }
         });
-
 
         
         JButton btnExit = new JButton("Back");
@@ -411,6 +389,7 @@ public class Doctorwindow {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+<<<<<<< HEAD
     private boolean isValidExperienceYears(int experienceYears) {
         if (experienceYears < 0) {
             displayErrorMessage("Experience year must be positive");
@@ -419,4 +398,8 @@ public class Doctorwindow {
         return true;
     }
 
+=======
+    
+    
+>>>>>>> 786a5c66d2d3acad3920aa83ff9f29c16926fb13
 }
