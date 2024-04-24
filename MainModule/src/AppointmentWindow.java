@@ -231,8 +231,8 @@ public class AppointmentWindow {
                 String patientGender = "Female";
                 String patientAddress = "123 Main St, City";
                 String patientPhoneNumber = "9876543210";
-                double patientHeight = 165.0;
-                double patientWeight = 60.0;
+                int patientHeight = 165;
+                int patientWeight = 60;
 
                 Patient patient = new Patient(patientFirstName, patientLastName, patientDateOfBirth, patientGender, patientAddress, patientPhoneNumber, patientHeight, patientWeight, patientID);
                 

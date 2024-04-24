@@ -167,19 +167,22 @@ public class Patientwindow {
         lblNewLabel_6.setBounds(10, 238, 103, 27);
         frame.getContentPane().add(lblNewLabel_6);
 
-        heightSpinner = new JSpinner();
+        SpinnerNumberModel heightModel = new SpinnerNumberModel(0, 0, 300, 1); // Change the range and step size as needed
+        heightSpinner = new JSpinner(heightModel);
         heightSpinner.setBounds(172, 238, 49, 20);
         frame.getContentPane().add(heightSpinner);
+
 
         JLabel lblNewLabel_7 = new JLabel("Weight");
         lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblNewLabel_7.setBounds(10, 276, 103, 21);
         frame.getContentPane().add(lblNewLabel_7);
 
-        weightSpinner = new JSpinner();
+        SpinnerNumberModel weightModel = new SpinnerNumberModel(0, 0, 500, 1); // Change the range and step size as needed
+        weightSpinner = new JSpinner(weightModel);
         weightSpinner.setBounds(172, 276, 49, 20);
         frame.getContentPane().add(weightSpinner);
-
+        
         JLabel lblId = new JLabel("ID");
         lblId.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblId.setBounds(10, 65, 34, 19);
@@ -202,7 +205,7 @@ public class Patientwindow {
 
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(182, 311, 125, 46);
+        btnDelete.setBounds(200, 311, 125, 46);
         frame.getContentPane().add(btnDelete);
 
         JButton btnPrintDetails = new JButton("Print Details");
@@ -212,12 +215,12 @@ public class Patientwindow {
 
         JButton btnBmi = new JButton("BMI");
         btnBmi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBmi.setBounds(186, 384, 125, 46);
+        btnBmi.setBounds(204, 384, 125, 46);
         frame.getContentPane().add(btnBmi);
 
         JButton btnAgeCategory = new JButton("Age Category");
         btnAgeCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnAgeCategory.setBounds(186, 460, 125, 46);
+        btnAgeCategory.setBounds(204, 460, 125, 46);
         frame.getContentPane().add(btnAgeCategory);
         
         // Create and add a label for displaying error messages
@@ -249,22 +252,27 @@ public class Patientwindow {
             }
         });
 
-        // ActionListener for Update button
+
+     // ActionListener for Update button
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
                     // Validate height
-                    int height = (int) heightSpinner.getValue();
+                	double heightDouble = ((Number) heightSpinner.getValue()).doubleValue();
+                    int height = (int) heightDouble;
                     if (height <= 0) {
                         showError("Height must be a positive integer.");
                         return;
                     }
+                	
                     // Validate weight
-                    int weight = (int) weightSpinner.getValue();
+                    double weightDouble = ((Number) weightSpinner.getValue()).doubleValue();
+                    int weight = (int) weightDouble;
                     if (weight <= 0) {
                         showError("Weight must be a positive integer.");
                         return;
                     }
+                    
                     // Update patient details
                     patient.setFirstName(textField.getText());
                     patient.setLastName(textField_1.getText());
@@ -277,6 +285,25 @@ public class Patientwindow {
                     patient.setPhoneNumber(textField_3.getText());
                     patient.setHeight(height);
                     patient.setWeight(weight);
+                    
+                    // Update GUI components with updated patient details
+                    textField.setText(patient.getFirstName());
+                    textField_1.setText(patient.getLastName());
+                    String[] dateParts = patient.getDateOfBirth().toString().split("-");
+                    dayComboBox.setSelectedItem(dateParts[2]);
+                    monthComboBox.setSelectedItem(dateParts[1]);
+                    yearComboBox.setSelectedItem(dateParts[0]);
+                    if (patient.getGender().equals("Male")) {
+                        rdbtnMale.setSelected(true);
+                        rdbtnFemale.setSelected(false);
+                    } else {
+                        rdbtnMale.setSelected(false);
+                        rdbtnFemale.setSelected(true);
+                    }
+                    textField_2.setText(patient.getAddress());
+                    textField_3.setText(patient.getPhoneNumber());
+                    heightSpinner.setValue(patient.getHeight());
+                    weightSpinner.setValue(patient.getWeight());
 
                     textArea.append("Patient details updated successfully.\n");
                 } else {
@@ -284,6 +311,8 @@ public class Patientwindow {
                 }
             }
         });
+
+
 
         // ActionListener for Delete button
         btnDelete.addActionListener(new ActionListener() {
@@ -382,10 +411,32 @@ public class Patientwindow {
             }
         });
 
-        // ActionListener for Add button
+
+     // ActionListener for Add button
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Validate and process patient data before adding
+                // Check if all mandatory fields are filled
+                if (textField.getText().isEmpty()) {
+                    showError("First name is mandatory.");
+                    return;
+                }
+                if (textField_1.getText().isEmpty()) {
+                    showError("Last name is mandatory.");
+                    return;
+                }
+                if (textField_4.getText().isEmpty()) {
+                    showError("ID is mandatory.");
+                    return;
+                }
+                
+                if (!rdbtnMale.isSelected() && !rdbtnFemale.isSelected()) {
+                    showError("Gender is mandatory.");
+                    return;
+                }
+                if (textField_3.getText().isEmpty()) {
+                    showError("Phone number is mandatory.");
+                    return;
+                }
 
                 // Check if ID is valid
                 String idText = textField_4.getText();
@@ -397,17 +448,21 @@ public class Patientwindow {
                         return;
                     }
                     // Validate height
-                    int height = (int) heightSpinner.getValue();
+                    double heightDouble = ((Number) heightSpinner.getValue()).doubleValue();
+                    int height = (int) heightDouble;
                     if (height <= 0) {
                         showError("Height must be a positive integer.");
                         return;
                     }
+                    
                     // Validate weight
-                    int weight = (int) weightSpinner.getValue();
+                    double weightDouble = ((Number) weightSpinner.getValue()).doubleValue();
+                    int weight = (int) weightDouble;
                     if (weight <= 0) {
                         showError("Weight must be a positive integer.");
                         return;
                     }
+                    
                     // If all validation passes, proceed to create the patient object and add it
                     String firstName = textField.getText();
                     String lastName = textField_1.getText();
@@ -432,6 +487,8 @@ public class Patientwindow {
                 }
             }
         });
+
+
         }
 
     // Method to display error message in the error label
