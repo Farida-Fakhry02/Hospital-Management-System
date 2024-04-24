@@ -26,8 +26,6 @@ public class AppointmentWindow {
 
     public JFrame frmAppointment;
     public static JFrame frame;
-
-    private JTextField textField;
     private JComboBox<Integer> dayComboBox;
     private JComboBox<String> monthComboBox;
     private JComboBox<Integer> yearComboBox;
@@ -79,7 +77,7 @@ public class AppointmentWindow {
         lblDoctor.setBounds(45, 105, 65, 42);
         frmAppointment.getContentPane().add(lblDoctor);
         
-        JLabel lblPatient = new JLabel("Patient ID ");
+        JLabel lblPatient = new JLabel("Patient");
         lblPatient.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblPatient.setBounds(45, 172, 112, 42);
         frmAppointment.getContentPane().add(lblPatient);
@@ -107,20 +105,6 @@ public class AppointmentWindow {
         yearComboBox.setSelectedItem(2024); // Default year is 2024
         yearComboBox.setBounds(296, 57, 56, 21);
         frmAppointment.getContentPane().add(yearComboBox);
-        
-        textField = new JTextField();
-        textField.setBounds(157, 184, 82, 28);
-        frmAppointment.getContentPane().add(textField);
-        textField.setColumns(10);
-        // Add key listener to validate input
-        textField.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    e.consume();  // ignore non-numeric input
-                }
-            }
-        });
         
         JComboBox comboBox_3 = new JComboBox();
         comboBox_3.setBounds(157, 250, 137, 28);
@@ -182,6 +166,10 @@ public class AppointmentWindow {
         btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton_1_1_1.setBounds(45, 438, 112, 42);
         frmAppointment.getContentPane().add(btnNewButton_1_1_1);
+        
+        JComboBox PatientDropDown = new JComboBox();
+        PatientDropDown.setBounds(157, 183, 137, 28);
+        frmAppointment.getContentPane().add(PatientDropDown);
         
         // Add action listeners to month and year JComboBoxes
         monthComboBox.addActionListener(new ActionListener() {
