@@ -195,32 +195,32 @@ public class Patientwindow {
 
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(29, 311, 125, 46);
+        btnNewButton.setBounds(31, 318, 125, 46);
         frame.getContentPane().add(btnNewButton);
 
         JButton btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnUpdate.setBounds(29, 460, 125, 46);
+        btnUpdate.setBounds(31, 459, 125, 46);
         frame.getContentPane().add(btnUpdate);
 
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(200, 311, 125, 46);
+        btnDelete.setBounds(191, 318, 125, 46);
         frame.getContentPane().add(btnDelete);
 
         JButton btnPrintDetails = new JButton("Print Details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(29, 384, 125, 46);
+        btnPrintDetails.setBounds(31, 391, 125, 46);
         frame.getContentPane().add(btnPrintDetails);
 
         JButton btnBmi = new JButton("BMI");
         btnBmi.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBmi.setBounds(204, 384, 125, 46);
+        btnBmi.setBounds(195, 391, 125, 46);
         frame.getContentPane().add(btnBmi);
 
         JButton btnAgeCategory = new JButton("Age Category");
         btnAgeCategory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnAgeCategory.setBounds(204, 460, 125, 46);
+        btnAgeCategory.setBounds(195, 459, 125, 46);
         frame.getContentPane().add(btnAgeCategory);
         
         // Create and add a label for displaying error messages
@@ -231,16 +231,21 @@ public class Patientwindow {
 
         // JTextArea and JScrollPane
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(369, 140, 217, 418);
+        scrollPane.setBounds(369, 130, 217, 439);
         frame.getContentPane().add(scrollPane);
-
-        textArea = new JTextArea();
-        scrollPane.setViewportView(textArea);
+        
+                textArea = new JTextArea();
+                scrollPane.setViewportView(textArea);
 
         JButton btnNewButton_2_1_1 = new JButton("Back");
         btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1_1.setBounds(129, 523, 125, 46);
+        btnNewButton_2_1_1.setBounds(195, 523, 125, 46);
         frame.getContentPane().add(btnNewButton_2_1_1);
+        
+        JButton btnNewButton_2_1_1_1 = new JButton("Clear");
+        btnNewButton_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton_2_1_1_1.setBounds(31, 523, 125, 46);
+        frame.getContentPane().add(btnNewButton_2_1_1_1);
         btnNewButton_2_1_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close the current Patientwindow frame
@@ -253,6 +258,29 @@ public class Patientwindow {
         });
 
 
+     // ActionListener for Clear button
+        btnNewButton_2_1_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clearAllFields();
+                textArea.setText(""); // Clear the text area as well
+            }
+            
+            private void clearAllFields() {
+                textField.setText("");
+                textField_1.setText("");
+                dayComboBox.setSelectedIndex(0);
+                monthComboBox.setSelectedIndex(0);
+                yearComboBox.setSelectedIndex(0);
+                rdbtnMale.setSelected(false);
+                rdbtnFemale.setSelected(false);
+                textField_2.setText("");
+                textField_3.setText("");
+                heightSpinner.setValue(0);
+                weightSpinner.setValue(0);
+            }
+        });
+
+        
      // ActionListener for Update button
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

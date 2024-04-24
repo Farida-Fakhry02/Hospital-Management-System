@@ -301,9 +301,21 @@ public class InventoryControlGUI extends JFrame {
             }
         });
 
-        btnBack.setBounds(97, 405, 150, 33);
+        btnBack.setBounds(170, 405, 150, 33);
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
         contentPane.add(btnBack);
+        
+        JButton btnClear = new JButton("Clear");
+        btnClear.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		 clearInputFields();
+        	}
+        });
+        
+        
+        btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnClear.setBounds(10, 404, 150, 33);
+        contentPane.add(btnClear);
 
         inventoryControl = new InventoryControl();
         dataModel = InventoryDataModel.getInstance();
@@ -337,6 +349,10 @@ public class InventoryControlGUI extends JFrame {
             textArea.append(item.toString() + "\n");
         }
     }
+    
+
+
+
 
     private void displayRemoveItemMessage(String itemId, boolean removed) {
         if (removed) {

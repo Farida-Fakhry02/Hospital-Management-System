@@ -28,7 +28,6 @@ public class Doctorwindow {
     private JTextField consultationFeeField;
     private JSpinner experienceSpinner;
     private JButton btnPrintDetails;
-    private JLabel successLabel;
     private Doctor doctor;
     private JScrollPane scrollPane;
 
@@ -135,12 +134,6 @@ public class Doctorwindow {
         consultationFeeField.setBounds(191, 301, 139, 28);
         frmP.getContentPane().add(consultationFeeField);
         
-        successLabel = new JLabel("");
-        successLabel.setForeground(Color.GREEN);
-        successLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        successLabel.setBounds(10, 460, 350, 20);
-        frmP.getContentPane().add(successLabel);
-        
         JButton btnNewButton = new JButton("Add");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.addActionListener(new ActionListener() {
@@ -207,7 +200,7 @@ public class Doctorwindow {
         
         JButton btnDelete = new JButton("Delete");
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnDelete.setBounds(191, 364, 125, 46);
+        btnDelete.setBounds(191, 401, 125, 46);
         frmP.getContentPane().add(btnDelete);
 
         // Method to clear input fields
@@ -251,7 +244,7 @@ public class Doctorwindow {
         
         JButton btnExit = new JButton("Back");
         btnExit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnExit.setBounds(191, 420, 125, 46);
+        btnExit.setBounds(191, 457, 125, 46);
         frmP.getContentPane().add(btnExit);
 
         btnExit.addActionListener(new ActionListener() {
@@ -272,7 +265,7 @@ public class Doctorwindow {
         
         btnPrintDetails = new JButton("Print details");
         btnPrintDetails.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnPrintDetails.setBounds(35, 457, 125, 46);
+        btnPrintDetails.setBounds(191, 343, 125, 46);
         btnPrintDetails.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 printDoctorDetails();
@@ -287,6 +280,30 @@ public class Doctorwindow {
         
         JTextArea textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
+        
+        JButton btnClear = new JButton("Clear");
+        btnClear.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		clearInputFields(); 
+        	}
+        });
+        
+        btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnClear.setBounds(36, 457, 125, 46);
+        frmP.getContentPane().add(btnClear);
+    }
+    
+ 
+ // Method to clear input fields
+    private void clearInputFields() {
+        firstNameField.setText("");
+        lastNameField.setText("");
+        specialityField.setText("");
+        doctorIdField.setText("");
+        emailField.setText("");
+        departmentField.setText("");
+        consultationFeeField.setText("");
+        experienceSpinner.setValue(0); // Reset spinner value
     }
     
     private void addDoctor() {
@@ -308,6 +325,8 @@ public class Doctorwindow {
         textArea.append("Doctor added successfully.\n");
     }
 
+    
+    
     private void printDoctorDetails() {
         DoctorDataModel dataModel = DoctorDataModel.getInstance();
         LinkedList<Doctor> doctors = dataModel.getDoctors();
@@ -340,4 +359,7 @@ public class Doctorwindow {
         // Display the error message in a dialog box
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
+    
+    
 }
