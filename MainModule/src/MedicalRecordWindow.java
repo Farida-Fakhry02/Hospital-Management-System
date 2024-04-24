@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import javax.swing.JTextArea;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,6 +16,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MedicalRecordWindow {
 
@@ -37,6 +41,8 @@ public class MedicalRecordWindow {
     /**
      * Launch the application.
      */
+    private List<MedicalRecord> medicalRecords = new ArrayList<>();
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -68,6 +74,13 @@ public class MedicalRecordWindow {
         frmMedicalRecords.setBounds(100, 100, 722, 551);
         frmMedicalRecords.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmMedicalRecords.getContentPane().setLayout(null);
+        
+        
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false); // Make it non-editable
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setBounds(451, 20, 231, 457);
+        frmMedicalRecords.getContentPane().add(scrollPane);
 
         JLabel lblNewLabel = new JLabel("Record ID");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -142,6 +155,36 @@ public class MedicalRecordWindow {
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.setBounds(21, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnNewButton);
+
+        // Add action listener to the "Add" button
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get the values from the input fields
+                int recordID = Integer.parseInt(textField.getText());
+                String patientName = textField_1.getText();
+                String diagnosis = textField_2.getText();
+                String treatment = textField_3.getText();
+                LocalDate date = LocalDate.of(Integer.parseInt(comboBoxYear.getSelectedItem().toString()),
+                        comboBoxMonth.getSelectedIndex() + 1, Integer.parseInt(comboBoxDay.getSelectedItem().toString()));
+
+                // Create a new medical record
+                MedicalRecord medicalRecord = new MedicalRecord(recordID, patientName, diagnosis, treatment, date);
+
+                // Add the medical record to the array
+                medicalRecords.add(medicalRecord);
+
+                // Display success message
+                textArea.append("Record added successfully.\n");
+            }
+        });
+    
+
+
+
+
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnNewButton.setBounds(21, 339, 115, 51);
+        frmMedicalRecords.getContentPane().add(btnNewButton);
         
         btnUpdate = new JButton("Update");
         btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -180,6 +223,11 @@ public class MedicalRecordWindow {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(451, 20, 231, 457);
         frmMedicalRecords.getContentPane().add(scrollPane);
+        
+        JButton btnAdd = new JButton("Add");
+        btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnAdd.setBounds(22, 339, 115, 51);
+        frmMedicalRecords.getContentPane().add(btnAdd);
     }
 
     // Create a MaskFormatter for the date field

@@ -19,6 +19,7 @@
 /Doctorwindow$3.class
 /Doctorwindow$4.class
 /Doctorwindow$5.class
+<<<<<<< HEAD
 /Patientwindow$10.class
 /InventoryControlGUI$9.class
 /AppointmentWindow$8.class
@@ -29,3 +30,6 @@
 /Billingwindow$4.class
 /Billingwindow$5.class
 /Billingwindow$7.class
+=======
+/MedicalRecordWindow$3.class
+>>>>>>> 77b63532d0c82aac390a0df0f6d3395fd3177b8d

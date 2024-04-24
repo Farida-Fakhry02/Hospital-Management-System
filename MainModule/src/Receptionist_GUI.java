@@ -37,7 +37,7 @@ public class Receptionist_GUI {
         
         JLabel lblNewLabel = new JLabel("Welcome !");
         lblNewLabel.setFont(new Font("Monotype Corsiva", Font.PLAIN, 30));
-        lblNewLabel.setBounds(236, 11, 128, 80);
+        lblNewLabel.setBounds(214, 11, 128, 80);
         frame.getContentPane().add(lblNewLabel);
         
         JButton btnNewButton = new JButton("Doctor");
@@ -47,7 +47,7 @@ public class Receptionist_GUI {
         
         JButton btnBilling = new JButton("Billing");
         btnBilling.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnBilling.setBounds(345, 102, 143, 59);
+        btnBilling.setBounds(371, 102, 143, 59);
         frame.getContentPane().add(btnBilling);
         
         JButton btnInventory = new JButton("Inventory");
@@ -57,7 +57,7 @@ public class Receptionist_GUI {
         
         JButton btnAppointment = new JButton("Appointment");
         btnAppointment.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnAppointment.setBounds(345, 212, 154, 59);
+        btnAppointment.setBounds(371, 212, 154, 59);
         frame.getContentPane().add(btnAppointment);
         
         JButton btnPatient = new JButton("Patient");
@@ -67,7 +67,7 @@ public class Receptionist_GUI {
         
         JButton btnMedicalRecoreds = new JButton("Medical Records");
         btnMedicalRecoreds.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        btnMedicalRecoreds.setBounds(345, 334, 205, 59);
+        btnMedicalRecoreds.setBounds(371, 334, 205, 59);
         frame.getContentPane().add(btnMedicalRecoreds);
         
         btnNewButton.addActionListener(new ActionListener() {
