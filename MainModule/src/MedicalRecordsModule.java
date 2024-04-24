@@ -106,39 +106,16 @@ class MedicalRecordsModule {
         }
         return result;
     }
+    
+    private static final MedicalRecordsModule instance = new MedicalRecordsModule();
 
-    // Search medical records by diagnosis
-    /*public List<MedicalRecord> searchMedicalRecordsByDiagnosis(String diagnosis) {
-        List<MedicalRecord> result = new ArrayList<>();
-        for (MedicalRecord record : records.values()) {
-            if (record.getDiagnosis().equalsIgnoreCase(diagnosis)) {
-                result.add(record);
-            }
-        }
-        return result;
+    // Get the singleton instance
+    public static MedicalRecordsModule getInstance() {
+        return instance;
     }
 
-    // Search medical records by date range
-    public List<MedicalRecord> searchMedicalRecordsByDateRange(LocalDate startDate, LocalDate endDate) {
-        List<MedicalRecord> result = new ArrayList<>();
-        for (MedicalRecord record : records.values()) {
-            LocalDate recordDate = record.getDate();
-            if (recordDate != null && (recordDate.isEqual(startDate) || recordDate.isEqual(endDate) ||
-                    (recordDate.isAfter(startDate) && recordDate.isBefore(endDate)))) {
-                result.add(record);
-            }
-        }
-        return result;
-    }*/
-
-    // Get all medical records
-    /*public List<MedicalRecord> getAllMedicalRecords() {
-        return new ArrayList<>(records.values());
-    }*/
-
-    // Count medical records
-    /*public int countMedicalRecords() {
-        return records.size();
-    }*/
+    public void addRecord(MedicalRecord recordToAdd) {
+        records.put(recordToAdd.getRecordId(), recordToAdd);
+    }
 
 }
