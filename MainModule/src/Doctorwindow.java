@@ -144,6 +144,10 @@ public class Doctorwindow {
 
                     displayErrorMessage("Invalid input - id should be an integer");
                     displayErrorMessage("Invalid Doctor ID");
+<<<<<<< HEAD
+=======
+
+>>>>>>> d2187802ad1ca7c38a9a9d50e547a131079df4c5
                 }
             }
         });
@@ -387,7 +391,10 @@ public class Doctorwindow {
         JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> d2187802ad1ca7c38a9a9d50e547a131079df4c5
     private boolean isValidExperienceYears(int experienceYears) {
         if (experienceYears < 0) {
             displayErrorMessage("Experience year must be positive");
@@ -396,4 +403,9 @@ public class Doctorwindow {
         return true;
     }
 
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> d2187802ad1ca7c38a9a9d50e547a131079df4c5
 }
