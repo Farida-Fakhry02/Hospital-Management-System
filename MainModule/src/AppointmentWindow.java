@@ -152,21 +152,7 @@ public class AppointmentWindow {
         btnUpdate.setBounds(45, 375, 112, 42);
         frmAppointment.getContentPane().add(btnUpdate);
         
-        JButton btnNewButton_1_1 = new JButton("Back");
-        btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_1_1.setBounds(181, 438, 122, 42);
-        frmAppointment.getContentPane().add(btnNewButton_1_1);
-
-        btnNewButton_1_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Close the current window
-                frmAppointment.dispose();
-
-                // Show the receptionist window
-                Receptionist_GUI receptionistWindow = new Receptionist_GUI();
-                receptionistWindow.frame.setVisible(true);
-            }
-        });
+        
 
 
         JButton btnCancel = new JButton("Cancel");
@@ -206,6 +192,22 @@ public class AppointmentWindow {
         JComboBox comboBox_3_1_1 = new JComboBox();
         comboBox_3_1_1.setBounds(157, 254, 112, 21);
         frmAppointment.getContentPane().add(comboBox_3_1_1);
+        
+        JButton btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Dispose of the current frame
+                frmAppointment.dispose();
+                
+                // Create and show the Receptionist_GUI window
+                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                receptionistGUI.frmReceptionist.setVisible(true);
+            }
+        });
+
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnBack.setBounds(182, 438, 121, 42);
+        frmAppointment.getContentPane().add(btnBack);
         
         // Add action listeners to month and year JComboBoxes
         monthComboBox.addActionListener(new ActionListener() {

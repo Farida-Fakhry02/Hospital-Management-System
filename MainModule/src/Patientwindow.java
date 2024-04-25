@@ -237,10 +237,7 @@ public class Patientwindow {
                 textArea = new JTextArea();
                 scrollPane.setViewportView(textArea);
 
-        JButton btnNewButton_2_1_1 = new JButton("Back");
-        btnNewButton_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton_2_1_1.setBounds(195, 523, 125, 46);
-        frame.getContentPane().add(btnNewButton_2_1_1);
+        
         
         JButton btnNewButton_2_1_1_1 = new JButton("Clear");
         btnNewButton_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -256,16 +253,23 @@ public class Patientwindow {
         lblNewLabel_8_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblNewLabel_8_1.setBounds(231, 276, 49, 21);
         frame.getContentPane().add(lblNewLabel_8_1);
-        btnNewButton_2_1_1.addActionListener(new ActionListener() {
+        
+        JButton btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Close the current Patientwindow frame
+                // Dispose of the current frame
                 frame.dispose();
-
-                // Create an instance of the Receptionist_GUI and make it visible
+                
+                // Create and show the Receptionist_GUI window
                 Receptionist_GUI receptionistGUI = new Receptionist_GUI();
-                receptionistGUI.frame.setVisible(true);
+                receptionistGUI.frmReceptionist.setVisible(true);
             }
         });
+
+        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnBack.setBounds(195, 523, 125, 46);
+        frame.getContentPane().add(btnBack);
+        
 
 
      // ActionListener for Clear button
