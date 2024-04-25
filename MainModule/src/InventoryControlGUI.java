@@ -159,6 +159,9 @@ public class InventoryControlGUI extends JFrame {
 
                 // Update the list of inventory items in the data model
                 InventoryDataModel.getInstance().getInventoryItems().add(item);
+
+                // Clear input fields after successful addition
+               // clearInputFields();
             }
         });
 
@@ -212,15 +215,24 @@ public class InventoryControlGUI extends JFrame {
                 int quantity;
                 try {
                     quantity = Integer.parseInt(quantityText);
+                    if (quantity < 0) {
+                        showError("Quantity should be a positive number.");
+                        return;
+                    }
                 } catch (NumberFormatException ex) {
                     showError("Invalid Quantity format. Please enter a valid integer value.");
                     return;
                 }
-                inventoryControl.updateItemQuantity(itemId, quantity);
-                textArea.append("Quantity updated successfully.\n");
-                updateTextArea();
+                try {
+                    inventoryControl.updateItemQuantity(itemId, quantity);
+                    textArea.append("Quantity updated successfully.\n");
+                    updateTextArea();
+                } catch (IllegalArgumentException ex) {
+                    showError(ex.getMessage());
+                }
             }
         });
+
         contentPane.add(btnUpdate);
 
         JButton btnCheckAvailability = new JButton("Check Availability");

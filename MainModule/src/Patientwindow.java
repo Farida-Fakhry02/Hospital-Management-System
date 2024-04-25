@@ -352,11 +352,11 @@ public class Patientwindow {
 
 
 
-        // ActionListener for Delete button
+     // ActionListener for Delete button
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the identifier of the patient to delete
-                String patientNameToDelete = textField.getText(); // Assuming the first name is used as the identifier
+                String idToDelete = textField_4.getText(); // Assuming the ID is entered as text
 
                 // Get the instance of PatientDataModel
                 PatientDataModel dataModel = PatientDataModel.getInstance();
@@ -364,36 +364,22 @@ public class Patientwindow {
                 // Get the list of patients
                 ArrayList<Patient> patientList = dataModel.getPatients();
 
-                // Iterate through the list to find the patient with the matching name
+                // Iterate through the list to find the patient with the matching ID
                 for (Patient patient : patientList) {
-                    if (patient.getFirstName().equals(patientNameToDelete)) {
+                    if (String.valueOf(patient.getId()).equals(idToDelete)) {
                         // Remove the patient from the list
                         patientList.remove(patient);
-                        // Optionally, update the GUI to reflect the changes
-                        // For example, clear the input fields
-                        clearAllFields();
+
+                        // Display message indicating successful deletion
+                        JOptionPane.showMessageDialog(frame, "Patient successfully deleted.");
+
                         // Break the loop after the patient is found and removed
                         break;
                     }
                 }
             }
-
-            private void clearAllFields() {
-                textField.setText("");
-                textField_1.setText("");
-                dayComboBox.setSelectedIndex(0);
-                monthComboBox.setSelectedIndex(0);
-                yearComboBox.setSelectedIndex(0);
-                rdbtnMale.setSelected(false);
-                rdbtnFemale.setSelected(false);
-                textField_2.setText("");
-                textField_3.setText("");
-                heightSpinner.setValue(0);
-                weightSpinner.setValue(0);
-                textArea.setText("");
-            }
-
         });
+
 
         // ActionListener for Print Details button
         btnPrintDetails.addActionListener(new ActionListener() {
