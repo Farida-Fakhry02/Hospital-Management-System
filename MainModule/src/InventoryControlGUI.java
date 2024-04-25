@@ -196,7 +196,7 @@ public class InventoryControlGUI extends JFrame {
 
                 displayRemoveItemMessage(itemId, removed);
                 updateTextArea();
-                clearInputFields();
+                //clearInputFields();
             }
         });
         contentPane.add(btnRemoveItem);
@@ -371,6 +371,7 @@ public class InventoryControlGUI extends JFrame {
         tfQuantity.setText("");
         tfSupplier.setText("");
         tfDescription.setText("");
+        textArea.setText("");
     }
 
     private void showError(String message) {
