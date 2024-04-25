@@ -47,6 +47,7 @@ public class MedicalRecordWindow {
      */
     private List<MedicalRecord> medicalRecords = new ArrayList<>();
     private JButton btnClear;
+    private JButton btnBack_1;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -309,20 +310,7 @@ public class MedicalRecordWindow {
         btnDelete.setBounds(21, 413, 115, 51);
         frmMedicalRecords.getContentPane().add(btnDelete);
         
-        btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Dispose of the current MedicalRecordWindow frame
-                frmMedicalRecords.dispose();
-                
-                // Create and show the Receptionist_GUI window
-                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
-                receptionistGUI.frame.setVisible(true);
-            }
-        });
-        btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnBack.setBounds(287, 413, 115, 51);
-        frmMedicalRecords.getContentPane().add(btnBack);
+        
         
         btnSearch = new JButton("Search");
         btnSearch.addActionListener(new ActionListener() {
@@ -374,6 +362,26 @@ public class MedicalRecordWindow {
         btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnClear.setBounds(155, 413, 115, 51);
         frmMedicalRecords.getContentPane().add(btnClear);
+        
+        btnBack_1 = new JButton("Back");
+        btnBack_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        btnBack_1.setBounds(287, 413, 115, 51);
+        frmMedicalRecords.getContentPane().add(btnBack_1);
+        
+        btnBack_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Dispose of the current MedicalRecordWindow frame
+                frmMedicalRecords.dispose();
+                
+                // Create and show the Receptionist_GUI window
+                Receptionist_GUI receptionistGUI = new Receptionist_GUI();
+                receptionistGUI.frmReceptionist.setVisible(true);
+            }
+        });
+
+        
+        
+        
         // Add action listener to the "Clear" button
         btnClear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
