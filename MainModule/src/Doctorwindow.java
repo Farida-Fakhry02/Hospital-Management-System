@@ -167,7 +167,7 @@ public class Doctorwindow {
                 // Get the list of doctors
                 LinkedList<Doctor> doctorList = dataModel.getDoctors();
 
-                // Iterate through the private void addDoctor() {list to find the doctor with the matching ID
+                // Iterate through the list to find the doctor with the matching ID
                 for (Doctor currentDoctor : doctorList) {
                     if (currentDoctor.getDoctorID().equals(doctorIdToUpdate)) {
                         currentDoctor.setFirstName(firstNameField.getText());
@@ -177,12 +177,22 @@ public class Doctorwindow {
                         currentDoctor.setEmailAddress(emailField.getText());
                         currentDoctor.setDepartment(departmentField.getText());
                         try {
-                            currentDoctor.setExperienceYears(Integer.parseInt(experienceSpinner.getValue().toString()));
+                            int experienceYears = Integer.parseInt(experienceSpinner.getValue().toString());
+                            if (experienceYears < 0) {
+                                displayErrorMessage("Experience years must be a positive number");
+                                return; // Exit method if years is not positive
+                            }
+                            currentDoctor.setExperienceYears(experienceYears);
                         } catch (NumberFormatException ex) {
                             // Handle invalid input for experience years
                         }
                         try {
-                            currentDoctor.setConsultationFee(Double.parseDouble(consultationFeeField.getText()));
+                            double consultationFee = Double.parseDouble(consultationFeeField.getText());
+                            if (consultationFee < 0) {
+                                displayErrorMessage("Consultation fee must be a non-negative number");
+                                return; // Exit method if fee is negative
+                            }
+                            currentDoctor.setConsultationFee(consultationFee);
                         } catch (NumberFormatException ex) {
                             // Handle invalid input for consultation fee
                         }
@@ -222,9 +232,14 @@ public class Doctorwindow {
                     if (doctor.getDoctorID().equals(doctorIDToDelete)) {
                         // Remove the doctor from the list
                         doctorList.remove(doctor);
+                        
                         // Optionally, update the GUI to reflect the changes
                         // For example, clear the input fields
                         clearInputFields();
+                        
+                        // Show success message
+                        JOptionPane.showMessageDialog(null, "Doctor deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
                         // Break the loop after the doctor is found and removed
                         break;
                     }
@@ -306,7 +321,12 @@ public class Doctorwindow {
         departmentField.setText("");
         consultationFeeField.setText("");
         experienceSpinner.setValue(0); // Reset spinner value
+        
+        // Clear the text area
+        JTextArea textArea = (JTextArea) scrollPane.getViewport().getView();
+        textArea.setText("");
     }
+
     
     private void addDoctor() {
         // Check if all mandatory fields are filled
