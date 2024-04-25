@@ -177,7 +177,7 @@ public class MedicalRecordWindow {
         btnNewButton.setBounds(21, 339, 115, 51);
         frmMedicalRecords.getContentPane().add(btnNewButton);
 
-        // Add action listener to the "Add" button
+     // Add action listener to the "Add" button
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Check if any of the text fields are empty
@@ -201,10 +201,19 @@ public class MedicalRecordWindow {
                 // Add the medical record to the array
                 medicalRecords.add(medicalRecord);
 
-                // Display success message
+                // Display success message and print the details of the added medical record in the scrollable pane
+                JTextArea textArea = new JTextArea();
+                scrollPane.setViewportView(textArea);
                 textArea.append("Record added successfully.\n");
+                // Print the details of the added medical record
+                textArea.append("Record ID: " + medicalRecord.getRecordId() + "\n");
+                textArea.append("Patient Name: " + medicalRecord.getPatientName() + "\n");
+                textArea.append("Diagnosis: " + medicalRecord.getDiagnosis() + "\n");
+                textArea.append("Treatment: " + medicalRecord.getTreatment() + "\n");
+                textArea.append("Date: " + medicalRecord.getDate() + "\n");
             }
         });
+
     
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
         btnNewButton.setBounds(21, 339, 115, 51);
@@ -390,6 +399,7 @@ public class MedicalRecordWindow {
                 textField_1.setText("");
                 textField_2.setText("");
                 textField_3.setText("");
+                textArea.setText("");
             }
         });
     }

@@ -291,29 +291,47 @@ public class Patientwindow {
                 textField_3.setText("");
                 heightSpinner.setValue(0);
                 weightSpinner.setValue(0);
+                textField_4.setText(""); 
             }
+
         });
 
         
+ 
      // ActionListener for Update button
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (patient != null) {
-                    // Validate height
-                	double heightDouble = ((Number) heightSpinner.getValue()).doubleValue();
-                    int height = (int) heightDouble;
-                    if (height <= 0) {
-                        showError("Height must be a positive integer.");
+                    // Get the identifier of the patient to update
+                    int idToUpdate;
+                    try {
+                        idToUpdate = Integer.parseInt(textField_4.getText());
+                    } catch (NumberFormatException ex) {
+                        showError("Invalid ID format. ID must be an integer.");
                         return;
                     }
-                	
-                    // Validate weight
-                    double weightDouble = ((Number) weightSpinner.getValue()).doubleValue();
-                    int weight = (int) weightDouble;
-                    if (weight <= 0) {
-                        showError("Weight must be a positive integer.");
+                    
+                    // Get the instance of PatientDataModel
+                    PatientDataModel dataModel = PatientDataModel.getInstance();
+                    
+                    // Get the list of patients
+                    ArrayList<Patient> patientList = dataModel.getPatients();
+                    
+                    // Check if the patient with the given ID exists in the list
+                    boolean patientFound = false;
+                    for (Patient p : patientList) {
+                        if (p.getId() == idToUpdate) {
+                            patientFound = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!patientFound) {
+                        showError("Patient with ID " + idToUpdate + " not found. Cannot update.");
                         return;
                     }
+                    
+                    // Validation for height and weight can be kept here as before
                     
                     // Update patient details
                     patient.setFirstName(textField.getText());
@@ -325,9 +343,9 @@ public class Patientwindow {
                     patient.setGender(rdbtnMale.isSelected() ? "Male" : "Female");
                     patient.setAddress(textField_2.getText());
                     patient.setPhoneNumber(textField_3.getText());
-                    patient.setHeight(height);
-                    patient.setWeight(weight);
-                    
+                    patient.setHeight((int) heightSpinner.getValue());
+                    patient.setWeight((int) weightSpinner.getValue());
+
                     // Update GUI components with updated patient details
                     textField.setText(patient.getFirstName());
                     textField_1.setText(patient.getLastName());
@@ -353,6 +371,7 @@ public class Patientwindow {
                 }
             }
         });
+
 
 
 

@@ -54,7 +54,7 @@ public class Billingwindow {
         frmBilling = new JFrame();
         frmBilling.setTitle("Billing");
         frmBilling.getContentPane().setBackground(new Color(135, 206, 250));
-        frmBilling.setBounds(100, 100, 505, 428);
+        frmBilling.setBounds(100, 100, 506, 530);
         frmBilling.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmBilling.getContentPane().setLayout(null);
 
@@ -81,7 +81,18 @@ public class Billingwindow {
 
                 // Get the values from the input fields
                 String patientName = patientNameField.getText();
-                double amount = Double.parseDouble(amountField.getText());
+                double amount;
+                try {
+                    amount = Double.parseDouble(amountField.getText());
+                    if (amount <= 0) {
+                        JOptionPane.showMessageDialog(null, "Amount must be a positive value.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Exit the method if amount is not positive
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Amount must be a numeric value.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Exit the method if amount is not numeric
+                }
+                
                 Billing.Invoice invoice = new Billing.Invoice(patientName, amount);
                 billingModule.addInvoice(invoice);
                 outputArea.setText("Invoice added for " + patientName + " with amount $" + amount);
@@ -148,11 +159,11 @@ public class Billingwindow {
         });
         frmBilling.getContentPane().add(totalAmountButton);
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 207, 471, 121);
+        scrollPane.setBounds(10, 222, 471, 190);
         frmBilling.getContentPane().add(scrollPane);
-
-        outputArea = new JTextArea();
-        scrollPane.setViewportView(outputArea);
+        
+                outputArea = new JTextArea();
+                scrollPane.setViewportView(outputArea);
 
         JLabel lblNewLabel = new JLabel("Patient Name");
         lblNewLabel.setBounds(26, 28, 98, 20);
@@ -166,7 +177,7 @@ public class Billingwindow {
 
         JButton btnNewButton = new JButton("Back");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(256, 338, 119, 45);
+        btnNewButton.setBounds(251, 435, 119, 45);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform action to return to the Receptionist_GUI window
@@ -179,7 +190,7 @@ public class Billingwindow {
 
         JButton btnClear = new JButton("Clear");
         btnClear.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnClear.setBounds(127, 338, 119, 45);
+        btnClear.setBounds(122, 435, 119, 45);
         frmBilling.getContentPane().add(btnClear);
 
         btnClear.addActionListener(new ActionListener() {
